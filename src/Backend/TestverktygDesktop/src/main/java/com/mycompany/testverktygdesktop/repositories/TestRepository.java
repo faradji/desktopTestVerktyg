@@ -6,8 +6,6 @@
 package com.mycompany.testverktygdesktop.repositories;
 
 import com.mycompany.testverktygdesktop.models.Test;
-import com.mycompany.testverktygdesktop.models.Test;
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -38,31 +36,29 @@ public class TestRepository {
     public Test getTest(int testId) {
         Session session= sessionFactory.openSession();
         Test test = (Test)session.get(Test.class, testId);
+        test.getQuestions();
         session.close();
+        System.out.println("repo");
         return test;  
     }
-    
 
     public List<Test> getTests() {
-        List <Test> tests = new ArrayList();
-        try{
         Session session= sessionFactory.openSession();
+        List <Test> tests = session.createCriteria(Test.class).list();
         
-        tests = session.createCriteria(Test.class).list();
+        System.out.println("repo");
         
-        for (int i = 0; i < tests.size(); i++){
+         for (int i = 0; i < tests.size(); i++){
             tests.get(i).getQuestions().size();
         }
 //        tests.stream().forEach((t)->{
 //            t.getQuestions().size();});
         
         session.close();
-        }catch(Exception e){
-            System.out.println(e.getCause() + e.getMessage());
-        }
         return tests;
         
     }
+    
 
     public Test updateTest(Test test) {
         Session session= sessionFactory.openSession();

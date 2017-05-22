@@ -1,7 +1,6 @@
 
 package com.mycompany.testverktygdesktop.resources;
 
-import com.mycompany.testverktygdesktop.models.Question;
 import com.mycompany.testverktygdesktop.models.Test;
 import com.mycompany.testverktygdesktop.repositories.TestRepository;
 import javax.ws.rs.Consumes;
@@ -26,12 +25,13 @@ public class TestResource {
     @GET
     @Path("/{testId}")
     public Test getTest(@PathParam ("testId")int testId){
-        
+        System.out.println("resource");
         return tr.getTest(testId);
     }
     
     @GET
     public List <Test> getTests(){
+        System.out.println("resource");
         return tr.getTests();
     }
     

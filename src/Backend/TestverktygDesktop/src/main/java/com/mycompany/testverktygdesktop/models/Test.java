@@ -34,12 +34,10 @@ public class Test implements Serializable{
     
     public Test(){}
 
-    public Test(int id, String name, String subject, List<Question> questions, List<Student> students) {
+    public Test(int id, String name, String subject) {
         this.id = id;
         this.name = name;
         this.subject = subject;
-        this.questions = questions;
-        this.students = students;
     }
 
     public int getId() {
@@ -77,10 +75,10 @@ public class Test implements Serializable{
     public List<Student> getStudents() {
         return students;
     }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
+//
+//    public void setStudents(List<Student> students) {
+//        this.students = students;
+//    }
     
     
     
