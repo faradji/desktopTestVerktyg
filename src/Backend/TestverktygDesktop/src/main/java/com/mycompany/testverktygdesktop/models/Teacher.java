@@ -5,10 +5,38 @@
  */
 package com.mycompany.testverktygdesktop.models;
 
-/**
- *
- * @author louiseahokas
- */
-public class Teacher {
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
+
+public class Teacher extends Participant implements Serializable{
+    
+    String subject;
+    
+    @OneToMany(mappedBy="teacher")
+    @JsonBackReference
+    List <Test> tests;
+    
+    public Teacher(){
+        super();
+    }
+
+    public Teacher(int id, String name, String password, String subject) {
+        super(id, name, password);
+        this.subject = subject;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+    
     
 }
