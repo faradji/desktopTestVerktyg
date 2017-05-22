@@ -29,26 +29,26 @@ public class QuestionResource {
         return qr.getQuestion(questionId);
     }
     
-//    @GET
-//    public List <Question> getQuestions(@PathParam ("testId") int testId){
-//        return qr.getQuestions(testId);
-//    }
-//    
-//    @PUT
-//    public Question updateQuestion(@PathParam ("testId") int testId, Question question){
-//        return qr.updateQuestion(testId, question);
-//    }
-//    
-//    @POST
-//    public Question addQuestion(@PathParam ("testId") int testId, Question question){
-//        return qr.addQuestion(testId, question);
-//    }
-//    
-//    @DELETE
-//    @Path("/{questionId}")
-//    public void deleteQuestion(@PathParam ("questionId") int questionId){
-//        qr.deleteQuestion(questionId);
-//    }
+    @GET
+    public List <Question> getQuestions(@PathParam ("testId") int testId){
+        return qr.getQuestions(testId);
+    }
+    
+    @PUT
+    public Question updateQuestion(@PathParam ("testId") int testId, Question question){
+        return qr.updateQuestion(testId, question);
+    }
+    
+    @POST
+    public Question addQuestion(@PathParam ("testId") int testId, Question question){
+        return qr.addQuestion(testId, question);
+    }
+    
+    @DELETE
+    @Path("/{questionId}")
+    public void deleteQuestion(@PathParam ("questionId") int questionId){
+        qr.deleteQuestion(questionId);
+    }
     
     
 }
