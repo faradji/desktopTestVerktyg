@@ -36,8 +36,7 @@ public class TestRepository {
     public Test getTest(int testId) {
         Session session = sessionFactory.openSession();
         Test test = (Test) session.get(Test.class, testId);
-            test.getQuestions();
-        //close rör till det, fixa!!
+            test.getQuestions().size();
             session.close();
         return test;
     }
