@@ -27,7 +27,7 @@ public class Question implements Serializable{
     
     public Question(){}
 
-    public Question(int id, String qText, int correctAnswer, int[] answers, Test test) {
+    public Question(int id, String qText, int correctAnswer, int[] answers) {
         this.id = id;
         this.qText = qText;
         this.correctAnswer = correctAnswer;

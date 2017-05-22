@@ -37,6 +37,12 @@ public class Teacher extends Participant implements Serializable{
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
+    }
+    
+    
     
     
 }
