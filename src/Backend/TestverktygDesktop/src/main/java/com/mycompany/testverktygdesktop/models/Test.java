@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-
 public class Test implements Serializable{
     
     @Id@GeneratedValue
@@ -35,6 +34,7 @@ public class Test implements Serializable{
     public Test(){}
 
     public Test(int id, String name, String subject) {
+        System.out.println("new user");
         this.id = id;
         this.name = name;
         this.subject = subject;
