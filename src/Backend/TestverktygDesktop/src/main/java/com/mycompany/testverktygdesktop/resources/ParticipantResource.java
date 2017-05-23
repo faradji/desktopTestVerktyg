@@ -16,12 +16,13 @@ import javax.ws.rs.PathParam;
  *
  * @author louiseahokas
  */
+@Path("/participants")
 public class ParticipantResource {
         ParticipantRepository sr = new ParticipantRepository();
 
     @GET
     @Path("/{participantId}")
-    public Participant getParticipant(@PathParam("userId") int participantId)
+    public Participant getParticipant(@PathParam("participantId") int participantId)
     {
         System.out.println("resource");
         return sr.getParticipant(participantId);
@@ -51,5 +52,15 @@ public class ParticipantResource {
     public void deleteParticipant(@PathParam("participantId") int participantId)
     {
         sr.deleteParticipant(participantId);
+    }
+        
+    @Path("/teachers")
+    public TeacherResource teachers() {
+        return new TeacherResource();
+    }
+        
+    @Path("/students")
+    public StudentResource students() {
+        return new StudentResource();
     }
 }

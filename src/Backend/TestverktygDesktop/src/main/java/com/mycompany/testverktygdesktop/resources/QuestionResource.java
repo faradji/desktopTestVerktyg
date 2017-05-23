@@ -13,7 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/")
+@Path("/questions")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
@@ -21,16 +21,16 @@ public class QuestionResource {
 
     QuestionRepository qr = new QuestionRepository();
 
-    @GET
-    @Path("/{questionId}")
-    public Question getQuestion(@PathParam("questionId") int questionId) {
+//    @GET
+//    @Path("/{questionId}")
+//    public Question getQuestion(@PathParam("testId") int testId,@PathParam("questionId") int questionId) {
+//
+//        return qr.getQuestion(testId,questionId);
+//    }
 
-        return qr.getQuestion(questionId);
-    }
-
     @GET
-    public List<Question> getQuestions(@PathParam("testId") int testId) {
-        return qr.getQuestions(testId);
+    public List<Question> getQuestions() {
+        return qr.getQuestions();
     }
 
     @PUT

@@ -14,18 +14,29 @@ public class QuestionRepository {
         sessionFactory = myHibernateUtil.getSessionFactory();
     }
 
-    public Question getQuestion(int questionId) {
+//    public Question getQuestion(int testId,int questionId) {
+//        Session session = sessionFactory.openSession();
+//        Test test=(Test) session.get(Test.class, testId);
+//        Question question = null;
+//        test.getQuestions().stream().forEach((t)->{
+//        if(t.getId()==questionId){
+//            question.setAnswers(t.getAnswers());
+//            question.setCorrectAnswer(t.getCorrectAnswer());
+//            question.setId(t.getId());
+//            question.setqText(t.getqText());
+//            question.setTest(test);
+//        }else{
+//            System.out.println("Question not found in QuestionRepository/getQuestion()");
+//        }
+//        });
+//        
+//        session.close();
+//        return question;
+//    }
+
+    public List<Question> getQuestions() {
         Session session = sessionFactory.openSession();
-        Question question = (Question) session.get(Question.class, questionId);
-        session.close();
-        return question;
-    }
-
-    public List<Question> getQuestions(int testId) {
-        Session session = sessionFactory.openSession();
-
-        List<Question> questions = session.createCriteria(Question.class).list();
-
+        List<Question> questions =session.createCriteria(Question.class).list();
         session.close();
         return questions;
 
