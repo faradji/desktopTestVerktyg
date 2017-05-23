@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.testverktygdesktop.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -13,15 +8,15 @@ import javax.persistence.OneToMany;
 
 @Entity
 
-public class Teacher extends Participant implements Serializable{
-    
+public class Teacher extends Participant implements Serializable {
+
     String subject;
-    
-    @OneToMany(mappedBy="teacher")
+
+    @OneToMany(mappedBy = "teacher")
     @JsonBackReference
-    List <Test> tests;
-    
-    public Teacher(){
+    List<Test> tests;
+
+    public Teacher() {
         super();
     }
 
@@ -37,6 +32,9 @@ public class Teacher extends Participant implements Serializable{
     public void setSubject(String subject) {
         this.subject = subject;
     }
-    
+
+    public List<Test> getTests() {
+        return tests;
+    }
     
 }

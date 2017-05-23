@@ -1,4 +1,3 @@
-
 package com.mycompany.testverktygdesktop.models;
 
 import java.io.Serializable;
@@ -13,28 +12,30 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
+public class Test implements Serializable {
 
-public class Test implements Serializable{
-    
-    @Id@GeneratedValue
+    @Id
+    @GeneratedValue
     int id;
     String name;
     String subject;
-    
-    @OneToMany(mappedBy="test")
+
+    @OneToMany(mappedBy = "test")
     @JsonBackReference
-    List <Question> questions;
-    
+    List<Question> questions;
+
     @ManyToMany(mappedBy = "tests")
-    List <Student> students;
-    
+    List<Student> students;
+
     @ManyToOne
     @JsonIgnore
     Teacher teacher;
-    
-    public Test(){}
+
+    public Test() {
+    }
 
     public Test(int id, String name, String subject) {
+        System.out.println("new user");
         this.id = id;
         this.name = name;
         this.subject = subject;
@@ -79,7 +80,5 @@ public class Test implements Serializable{
 //    public void setStudents(List<Student> students) {
 //        this.students = students;
 //    }
-    
-    
-    
+
 }

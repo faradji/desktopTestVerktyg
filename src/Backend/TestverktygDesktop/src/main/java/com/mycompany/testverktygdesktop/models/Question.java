@@ -1,4 +1,3 @@
-
 package com.mycompany.testverktygdesktop.models;
 
 import java.io.Serializable;
@@ -15,12 +14,14 @@ import org.hibernate.annotations.Type;
 
 @Entity
 
-public class Question implements Serializable{
-    
-    @Id@GeneratedValue
+public class Question implements Serializable {
+
+    @Id
+    @GeneratedValue
     int id;
     String qText;
     int correctAnswer;
+
     
     @Type(type="com.mycompany.testverktygdesktop.services.QuestionService")
     @Column(name = "answers")
@@ -30,8 +31,9 @@ public class Question implements Serializable{
     @JsonBackReference
     @JsonIgnore
     Test test;
-    
-    public Question(){}
+
+    public Question() {
+    }
 
     public Question(int id, String qText, int correctAnswer, ArrayList answers) {
         this.id = id;
@@ -75,11 +77,8 @@ public class Question implements Serializable{
 //    public Test getTest() {
 //        return test;
 //    }
-
     public void setTest(Test test) {
         this.test = test;
     }
-    
-    
-    
+
 }
