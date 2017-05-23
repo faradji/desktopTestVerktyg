@@ -31,6 +31,9 @@ public class Question implements Serializable {
     @JsonIgnore
     Test test;
 
+    public Question() {
+    }
+
     public Question(int id, String qText, int correctAnswer, ArrayList answers) {
         this.id = id;
         this.qText = qText;
