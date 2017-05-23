@@ -1,9 +1,5 @@
 package com.mycompany.testverktygdesktop.resources;
 
-<<<<<<< HEAD
-public class UserResource {
-    
-=======
 import com.mycompany.testverktygdesktop.models.Participant;
 import com.mycompany.testverktygdesktop.models.Student;
 import com.mycompany.testverktygdesktop.repositories.StudentRepository;
@@ -20,12 +16,13 @@ import javax.ws.rs.PathParam;
  *
  * @author louiseahokas
  */
+@Path("/participants")
 public class ParticipantResource {
         ParticipantRepository sr = new ParticipantRepository();
 
     @GET
     @Path("/{participantId}")
-    public Participant getParticipant(@PathParam("userId") int participantId)
+    public Participant getParticipant(@PathParam("participantId") int participantId)
     {
         System.out.println("resource");
         return sr.getParticipant(participantId);
@@ -56,5 +53,14 @@ public class ParticipantResource {
     {
         sr.deleteParticipant(participantId);
     }
->>>>>>> magnus
+        
+    @Path("/teachers")
+    public TeacherResource teachers() {
+        return new TeacherResource();
+    }
+        
+    @Path("/students")
+    public StudentResource students() {
+        return new StudentResource();
+    }
 }

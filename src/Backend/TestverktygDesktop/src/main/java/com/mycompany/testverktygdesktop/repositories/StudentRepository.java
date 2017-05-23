@@ -1,10 +1,7 @@
 
 package com.mycompany.testverktygdesktop.repositories;
 
-<<<<<<< HEAD
-public class StudentRepository {
-    
-=======
+
 import com.mycompany.testverktygdesktop.models.Student;
 import com.mycompany.testverktygdesktop.models.Test;
 import java.util.List;
@@ -50,39 +47,38 @@ public class StudentRepository
         session.close();
         return students;
     }
+//
+//    public Student addStudent(Student student)
+//    {
+//        Session session = sessionFactory.openSession();
+//        session.beginTransaction();
+//        session.save(student);
+//        session.getTransaction().commit();
+//        session.close();
+//        return student;
+//    }
+//
+//    public Student updateStudent(Student student)
+//    {
+//        Session session = sessionFactory.openSession();
+//        session.beginTransaction();
+//
+//        session.update(student);
+//
+//        session.getTransaction().commit();
+//        session.close();
+//        return student;
+//    }
+//
+//    public void deleteStudent(int studentId)
+//    {
+//        Session session = sessionFactory.openSession();
+//        session.beginTransaction();
+//        Student student = (Student) session.get(Student.class, studentId);
+//
+//        session.delete(student);
+//        session.getTransaction().commit();
+//        session.close();
+//    }
 
-    public Student addStudent(Student student)
-    {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.save(student);
-        session.getTransaction().commit();
-        session.close();
-        return student;
-    }
-
-    public Student updateStudent(Student student)
-    {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-
-        session.update(student);
-
-        session.getTransaction().commit();
-        session.close();
-        return student;
-    }
-
-    public void deleteStudent(int studentId)
-    {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        Student student = (Student) session.get(Student.class, studentId);
-
-        session.delete(student);
-        session.getTransaction().commit();
-        session.close();
-    }
-
->>>>>>> magnus
 }

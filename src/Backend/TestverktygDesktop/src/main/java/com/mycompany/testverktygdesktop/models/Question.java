@@ -21,17 +21,12 @@ public class Question implements Serializable {
     int id;
     String qText;
     int correctAnswer;
-<<<<<<< HEAD
 
-    int[] answers;
-
-=======
     
     @Type(type="com.mycompany.testverktygdesktop.services.QuestionService")
     @Column(name = "answers")
     private ArrayList<String> answers;
     
->>>>>>> magnus
     @ManyToOne
     @JsonBackReference
     @JsonIgnore

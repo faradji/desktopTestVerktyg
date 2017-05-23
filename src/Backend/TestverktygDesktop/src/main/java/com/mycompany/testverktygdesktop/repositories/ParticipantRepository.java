@@ -1,10 +1,5 @@
 package com.mycompany.testverktygdesktop.repositories;
 
-<<<<<<< HEAD
-
-public class UserRepository {
-    
-=======
 import com.mycompany.testverktygdesktop.models.Participant;
 import com.mycompany.testverktygdesktop.models.Test;
 import java.util.List;
@@ -78,5 +73,4 @@ public class ParticipantRepository
         session.close();
     }
 
->>>>>>> magnus
 }

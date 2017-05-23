@@ -33,4 +33,8 @@ public class Teacher extends Participant implements Serializable {
         this.subject = subject;
     }
 
+    public List<Test> getTests() {
+        return tests;
+    }
+    
 }
