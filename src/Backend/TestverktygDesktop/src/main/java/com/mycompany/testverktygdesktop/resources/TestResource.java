@@ -13,7 +13,7 @@ import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.PUT;
 
-@Path("/test")
+@Path("/tests")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
@@ -51,9 +51,14 @@ public class TestResource {
         tr.deleteTest(testId);
     }
 
-    @Path("/{testId}/question")
+    @Path("/{testId}/questions")
     public QuestionResource question() {
         return new QuestionResource();
     }
-
+    
+    @GET
+    @Path("/{participantId}/teachertests")
+    public List<Test> getTeacherTests(@PathParam("participantId") int participantId){
+        return tr.getTeacherTests(participantId);
+    }
 }
