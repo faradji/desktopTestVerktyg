@@ -4,10 +4,14 @@ package com.mycompany.testverktygdesktop.models;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Type;
 
 @Entity
 
@@ -18,7 +22,9 @@ public class Question implements Serializable{
     String qText;
     int correctAnswer;
     
-    int [] answers;
+    @Type(type="com.mycompany.testverktygdesktop.services.QuestionService")
+    @Column(name = "answers")
+    private ArrayList<String> answers;
     
     @ManyToOne
     @JsonBackReference
@@ -27,7 +33,7 @@ public class Question implements Serializable{
     
     public Question(){}
 
-    public Question(int id, String qText, int correctAnswer, int[] answers) {
+    public Question(int id, String qText, int correctAnswer, ArrayList answers) {
         this.id = id;
         this.qText = qText;
         this.correctAnswer = correctAnswer;
@@ -58,11 +64,11 @@ public class Question implements Serializable{
         this.correctAnswer = correctAnswer;
     }
 
-    public int[] getAnswers() {
+    public ArrayList getAnswers() {
         return answers;
     }
 
-    public void setAnswers(int[] answers) {
+    public void setAnswers(ArrayList answers) {
         this.answers = answers;
     }
 
