@@ -1,21 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.testverktygdesktop.repositories;
 
 import com.mycompany.testverktygdesktop.models.Test;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-/**
- *
- * @author louiseahokas
- */
 public class TestRepository {
 
     SessionFactory sessionFactory;
@@ -36,16 +25,14 @@ public class TestRepository {
     public Test getTest(int testId) {
         Session session = sessionFactory.openSession();
         Test test = (Test) session.get(Test.class, testId);
-            test.getQuestions().size();
-            session.close();
+        test.getQuestions().size();
+        session.close();
         return test;
     }
 
     public List<Test> getTests() {
         Session session = sessionFactory.openSession();
         List<Test> tests = session.createCriteria(Test.class).list();
-
-        System.out.println("repo");
 
         for (int i = 0; i < tests.size(); i++) {
             tests.get(i).getQuestions().size();

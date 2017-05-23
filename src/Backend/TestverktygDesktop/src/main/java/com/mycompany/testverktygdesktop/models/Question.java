@@ -1,4 +1,3 @@
-
 package com.mycompany.testverktygdesktop.models;
 
 import java.io.Serializable;
@@ -11,21 +10,23 @@ import javax.persistence.ManyToOne;
 
 @Entity
 
-public class Question implements Serializable{
-    
-    @Id@GeneratedValue
+public class Question implements Serializable {
+
+    @Id
+    @GeneratedValue
     int id;
     String qText;
     int correctAnswer;
-    
-    int [] answers;
-    
+
+    int[] answers;
+
     @ManyToOne
     @JsonBackReference
     @JsonIgnore
     Test test;
-    
-    public Question(){}
+
+    public Question() {
+    }
 
     public Question(int id, String qText, int correctAnswer, int[] answers) {
         this.id = id;
@@ -69,11 +70,8 @@ public class Question implements Serializable{
 //    public Test getTest() {
 //        return test;
 //    }
-
     public void setTest(Test test) {
         this.test = test;
     }
-    
-    
-    
+
 }

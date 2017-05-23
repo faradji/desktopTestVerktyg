@@ -1,4 +1,3 @@
-
 package com.mycompany.testverktygdesktop.resources;
 
 import com.mycompany.testverktygdesktop.models.Question;
@@ -19,36 +18,35 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 
 public class QuestionResource {
-    
+
     QuestionRepository qr = new QuestionRepository();
-    
+
     @GET
     @Path("/{questionId}")
-    public Question getQuestion(@PathParam ("questionId")int questionId){
-        
+    public Question getQuestion(@PathParam("questionId") int questionId) {
+
         return qr.getQuestion(questionId);
     }
-    
+
     @GET
-    public List <Question> getQuestions(@PathParam ("testId") int testId){
+    public List<Question> getQuestions(@PathParam("testId") int testId) {
         return qr.getQuestions(testId);
     }
-    
+
     @PUT
-    public Question updateQuestion(@PathParam ("testId") int testId, Question question){
+    public Question updateQuestion(@PathParam("testId") int testId, Question question) {
         return qr.updateQuestion(testId, question);
     }
-    
+
     @POST
-    public Question addQuestion(@PathParam ("testId") int testId, Question question){
+    public Question addQuestion(@PathParam("testId") int testId, Question question) {
         return qr.addQuestion(testId, question);
     }
-    
+
     @DELETE
     @Path("/{questionId}")
-    public void deleteQuestion(@PathParam ("questionId") int questionId){
+    public void deleteQuestion(@PathParam("questionId") int questionId) {
         qr.deleteQuestion(questionId);
     }
-    
-    
+
 }

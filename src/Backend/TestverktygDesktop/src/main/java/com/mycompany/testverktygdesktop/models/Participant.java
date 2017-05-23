@@ -1,4 +1,3 @@
-
 package com.mycompany.testverktygdesktop.models;
 
 import java.io.Serializable;
@@ -9,16 +8,18 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 
-public class Participant implements Serializable{
-    
-    @Id@GeneratedValue
+public class Participant implements Serializable {
+
+    @Id
+    @GeneratedValue
     int id;
     String name;
     String password;
-    
-    public Participant(){}
+
+    public Participant() {
+    }
 
     public Participant(int id, String name, String password) {
         this.id = id;
@@ -49,7 +50,5 @@ public class Participant implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
+
 }
