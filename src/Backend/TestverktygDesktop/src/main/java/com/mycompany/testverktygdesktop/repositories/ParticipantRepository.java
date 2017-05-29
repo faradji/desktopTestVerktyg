@@ -1,27 +1,19 @@
 package com.mycompany.testverktygdesktop.repositories;
 
 import com.mycompany.testverktygdesktop.models.Participant;
-import com.mycompany.testverktygdesktop.models.Test;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-/**
- *
- * @author louiseahokas
- */
-public class ParticipantRepository
-{
+public class ParticipantRepository {
 
     SessionFactory sessionFactory;
 
-    public ParticipantRepository()
-    {
+    public ParticipantRepository() {
         sessionFactory = myHibernateUtil.getSessionFactory();
     }
 
-    public Participant getParticipant(int participantId)
-    {
+    public Participant getParticipant(int participantId) {
         Session session = sessionFactory.openSession();
         Participant participant = (Participant) session.get(Participant.class, participantId);
 
@@ -30,8 +22,7 @@ public class ParticipantRepository
         return participant;
     }
 
-    public List<Participant> getParticipants()
-    {
+    public List<Participant> getParticipants() {
         Session session = sessionFactory.openSession();
         List<Participant> participants = session.createCriteria(Participant.class).list();
 
@@ -40,8 +31,7 @@ public class ParticipantRepository
         return participants;
     }
 
-    public Participant addParticipant(Participant participant)
-    {
+    public Participant addParticipant(Participant participant) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(participant);
@@ -50,8 +40,7 @@ public class ParticipantRepository
         return participant;
     }
 
-    public Participant updateParticipant(Participant participant)
-    {
+    public Participant updateParticipant(Participant participant) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -62,8 +51,7 @@ public class ParticipantRepository
         return participant;
     }
 
-    public void deleteParticipant(int participantId)
-    {
+    public void deleteParticipant(int participantId) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Participant participant = (Participant) session.get(Participant.class, participantId);
