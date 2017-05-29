@@ -1,9 +1,17 @@
 package repositories;
 
+import models.Participant;
+
 public class ParticipantRepository {
 
     public ParticipantRepository() {
        
+    }
+    
+    public Participant getParticipant(String participantName)
+    {
+        Participant p = new Participant();
+        return p;
     }
 //
 //    public Participant getParticipant(int participantId) {
