@@ -10,7 +10,7 @@ public class Test implements Serializable {
     String name;
     String subject;
     int autoCorrectedTest;
-
+    int totalTime;
     List<Question> questions;
 
     List<Student> students;
@@ -20,11 +20,13 @@ public class Test implements Serializable {
     public Test() {
     }
 
-    public Test(int id, String name, String subject) {
+    public Test(int id, String name, String subject, int autoCorrectedTest, int totalTime) {
         System.out.println("new user");
         this.id = id;
         this.name = name;
         this.subject = subject;
+        this.autoCorrectedTest = autoCorrectedTest;
+        this.totalTime = totalTime;
     }
 
     public int getId() {
@@ -55,6 +57,14 @@ public class Test implements Serializable {
         return questions;
     }
 
+    public int getAutoCorrectedTest() {
+        return autoCorrectedTest;
+    }
+
+    public void setAutoCorrectedTest(int autoCorrectedTest) {
+        this.autoCorrectedTest = autoCorrectedTest;
+    }
+
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
@@ -63,16 +73,18 @@ public class Test implements Serializable {
         return students;
     }
     
-    public int getAutoCorrectedTest() {
-        return autoCorrectedTest;
-    }
-
-    public void setAutoCorrectedTest(int autoCorrectedTest) {
-        this.autoCorrectedTest = autoCorrectedTest;
-    }
+    
 //
 //    public void setStudents(List<Student> students) {
 //        this.students = students;
 //    }
+
+    public int getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(int totalTime) {
+        this.totalTime = totalTime;
+    }
 
 }
