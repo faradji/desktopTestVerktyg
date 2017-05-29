@@ -1,34 +1,19 @@
-package com.mycompany.testverktygdesktop.models;
+package models;
 
 import java.io.Serializable;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-@Entity
+
 public class Test implements Serializable {
 
-    @Id
-    @GeneratedValue
     int id;
     String name;
     String subject;
 
-    @OneToMany(mappedBy = "test")
-    @JsonBackReference
     List<Question> questions;
 
-    @ManyToMany(mappedBy = "tests")
     List<Student> students;
 
-    @ManyToOne
-    @JsonIgnore
     Teacher teacher;
 
     public Test() {

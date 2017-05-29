@@ -1,35 +1,16 @@
-package com.mycompany.testverktygdesktop.models;
+package models;
 
 import java.io.Serializable;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import org.hibernate.annotations.Type;
-
-@Entity
 
 public class Question implements Serializable {
 
-    @Id
-    @GeneratedValue
     int id;
     String qText;
     int correctAnswer;
 
-    
-    @Type(type="com.mycompany.testverktygdesktop.services.QuestionService")
-    @Column(name = "answers")
     private ArrayList<String> answers;
-    
-    @ManyToOne
-    @JsonBackReference
-    @JsonIgnore
+
     Test test;
 
     public Question() {

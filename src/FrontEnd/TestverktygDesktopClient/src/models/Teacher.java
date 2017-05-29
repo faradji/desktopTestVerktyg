@@ -1,19 +1,12 @@
-package com.mycompany.testverktygdesktop.models;
+package models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-
-@Entity
 
 public class Teacher extends Participant implements Serializable {
 
     String subject;
 
-    @OneToMany(mappedBy = "teacher")
-    @JsonBackReference
     List<Test> tests;
 
     public Teacher() {
