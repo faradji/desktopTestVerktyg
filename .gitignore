@@ -19,3 +19,4 @@ bin-release/
 # information for Eclipse / Flash Builder.
 /src/TestverktygDesktop/target/
 /src/Backend/TestverktygDesktop/target/
+src/Backend/TestverktygDesktop/src/main/resources/hibernate\.cfg\.xml

@@ -9,6 +9,7 @@ public class Test implements Serializable {
     int id;
     String name;
     String subject;
+    int autoCorrectedTest;
 
     List<Question> questions;
 
@@ -60,6 +61,14 @@ public class Test implements Serializable {
 
     public List<Student> getStudents() {
         return students;
+    }
+    
+    public int getAutoCorrectedTest() {
+        return autoCorrectedTest;
+    }
+
+    public void setAutoCorrectedTest(int autoCorrectedTest) {
+        this.autoCorrectedTest = autoCorrectedTest;
     }
 //
 //    public void setStudents(List<Student> students) {

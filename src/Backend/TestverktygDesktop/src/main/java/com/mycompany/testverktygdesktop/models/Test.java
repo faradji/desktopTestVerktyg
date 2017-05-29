@@ -19,6 +19,7 @@ public class Test implements Serializable {
     int id;
     String name;
     String subject;
+    int autoCorrectedTest;
 
     @OneToMany(mappedBy = "test")
     @JsonBackReference
@@ -76,9 +77,18 @@ public class Test implements Serializable {
     public List<Student> getStudents() {
         return students;
     }
+    
 //
 //    public void setStudents(List<Student> students) {
 //        this.students = students;
 //    }
+
+    public int getAutoCorrectedTest() {
+        return autoCorrectedTest;
+    }
+
+    public void setAutoCorrectedTest(int autoCorrectedTest) {
+        this.autoCorrectedTest = autoCorrectedTest;
+    }
 
 }
