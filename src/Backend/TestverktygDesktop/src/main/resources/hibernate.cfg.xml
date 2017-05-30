@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/testverktygdesktop?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/TestverktygDesktop?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
     <property name="hibernate.show_sql">true</property>
@@ -14,5 +14,6 @@
     <mapping class="com.mycompany.testverktygdesktop.models.Teacher"/>
     <mapping class="com.mycompany.testverktygdesktop.models.Participant"/>
     <mapping class="com.mycompany.testverktygdesktop.models.Test"/>
+    <mapping class="com.mycompany.testverktygdesktop.models.StudentAnswer"/>
   </session-factory>
 </hibernate-configuration>

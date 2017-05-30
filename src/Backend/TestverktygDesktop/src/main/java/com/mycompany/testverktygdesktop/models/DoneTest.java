@@ -15,19 +15,20 @@ public class DoneTest implements Serializable{
     String studentName;
     String course;
     String testName;
-    List<Integer> givenAnswers=new ArrayList();
-    List<String> questions =new ArrayList();
+    String givenAnswer;
+    List<Question> questions =new ArrayList();
     
     public DoneTest()
     {
 
     }
 
-    public DoneTest(int studentid, String studentName, String course, String testName) {
+    public DoneTest(int studentid, String studentName, String course,String givenAnswer, String testName) {
         this.studentid = studentid;
         this.studentName = studentName;
         this.course = course;
         this.testName = testName;
+        this.givenAnswer = givenAnswer;
     }
 
     public int getStudentid() {
@@ -62,19 +63,19 @@ public class DoneTest implements Serializable{
         this.testName = testName;
     }
 
-    public List<Integer> getGivenAnswers() {
-        return givenAnswers;
+    public String getGivenAnswer() {
+        return givenAnswer;
     }
 
-    public void setGivenAnswers(List<Integer> givenAnswers) {
-        this.givenAnswers = givenAnswers;
+    public void setGivenAnswer(String givenAnswers) {
+        this.givenAnswer = givenAnswers;
     }
 
-    public List<String> getQuestions() {
+    public List<Question> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<String> questions) {
+    public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
 

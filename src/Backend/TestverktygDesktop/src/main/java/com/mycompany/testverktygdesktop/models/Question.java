@@ -74,9 +74,9 @@ public class Question implements Serializable {
         this.answers = answers;
     }
 
-//    public Test getTest() {
-//        return test;
-//    }
+    public Test getTest() {
+        return test;
+    }
     public void setTest(Test test) {
         this.test = test;
     }

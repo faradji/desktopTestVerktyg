@@ -90,18 +90,14 @@ public class TeacherAddTestController implements Initializable
     private void checkBoxHandler(MouseEvent event)
     {
         String source1 = event.getSource().toString();
+        System.out.println(source1);
 
         switch (source1)
         {
             case "checkBxQuestionAlt1":
             {
-                checkBxQuestionAlt1.
-                
-                
                 checkBxQuestionAlt1.selectedProperty().setValue(Boolean.TRUE);
-                       
                 
-
                 checkBxQuestionAlt2.selectedProperty().setValue(Boolean.FALSE);
                 checkBxQuestionAlt3.selectedProperty().setValue(Boolean.FALSE);
                 checkBxQuestionAlt4.selectedProperty().setValue(Boolean.FALSE);
