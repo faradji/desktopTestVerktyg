@@ -79,6 +79,8 @@ public class TeacherAddTestController implements Initializable
 
     List<Question> newTest = new ArrayList();
 
+    int chosenCheckBoxId = 0;
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -89,23 +91,18 @@ public class TeacherAddTestController implements Initializable
     @FXML
     private void checkBoxHandler(MouseEvent event)
     {
-        String source1 = event.getSource().toString();
+        String source1 = event.getSource().toString().substring(12, 31);
 
         switch (source1)
         {
             case "checkBxQuestionAlt1":
             {
-                checkBxQuestionAlt1.
-                
-                
-                checkBxQuestionAlt1.selectedProperty().setValue(Boolean.TRUE);
-                       
-                
+                checkBxQuestionAlt1.selectedProperty().set(true);
 
-                checkBxQuestionAlt2.selectedProperty().setValue(Boolean.FALSE);
-                checkBxQuestionAlt3.selectedProperty().setValue(Boolean.FALSE);
-                checkBxQuestionAlt4.selectedProperty().setValue(Boolean.FALSE);
-
+                checkBxQuestionAlt2.selectedProperty().set(false);
+                checkBxQuestionAlt3.selectedProperty().set(false);
+                checkBxQuestionAlt4.selectedProperty().set(false);
+                chosenCheckBoxId = 1;
                 break;
             }
 
@@ -116,6 +113,7 @@ public class TeacherAddTestController implements Initializable
                 checkBxQuestionAlt1.selectedProperty().set(false);
                 checkBxQuestionAlt3.selectedProperty().set(false);
                 checkBxQuestionAlt4.selectedProperty().set(false);
+                chosenCheckBoxId = 2;
                 break;
             }
 
@@ -126,6 +124,7 @@ public class TeacherAddTestController implements Initializable
                 checkBxQuestionAlt1.selectedProperty().set(false);
                 checkBxQuestionAlt2.selectedProperty().set(false);
                 checkBxQuestionAlt4.selectedProperty().set(false);
+                chosenCheckBoxId = 3;
                 break;
             }
 
@@ -136,13 +135,12 @@ public class TeacherAddTestController implements Initializable
                 checkBxQuestionAlt1.selectedProperty().set(false);
                 checkBxQuestionAlt2.selectedProperty().set(false);
                 checkBxQuestionAlt3.selectedProperty().set(false);
-
+                chosenCheckBoxId = 4;
                 break;
             }
 
         }
         labelTeacherName.setText(source1);
-        System.out.println("Hej");
     }
 
     public void setLabelsOfTeacher()
@@ -162,9 +160,30 @@ public class TeacherAddTestController implements Initializable
         tempAnswers.add(textFieldQuestionAlt2.getText());
         tempAnswers.add(textFieldQuestionAlt3.getText());
         tempAnswers.add(textFieldQuestionAlt4.getText());
+        q.setImageURL(textFieldImageUrl.getText());
         q.setAnswers(tempAnswers);
 
-        q.setCorrectAnswer(0);
+        if (chosenCheckBoxId > 0)
+        {
+            q.setCorrectAnswer(chosenCheckBoxId);
+            
+            newTest.add(q);
+
+            textFieldQuestionText.clear();
+            textFieldQuestionAlt1.clear();
+            textFieldQuestionAlt2.clear();
+            textFieldQuestionAlt3.clear();
+            textFieldQuestionAlt4.clear();
+
+            checkBxQuestionAlt1.selectedProperty().set(false);
+            checkBxQuestionAlt2.selectedProperty().set(false);
+            checkBxQuestionAlt3.selectedProperty().set(false);
+            checkBxQuestionAlt4.selectedProperty().set(false);
+        } else
+        {
+            System.out.println("Felmeddelande i GUI");
+        }
+
     }
 
     @FXML
