@@ -23,12 +23,12 @@
       <TextField fx:id="textFieldTimeLeft" layoutX="200.0" layoutY="97.0" />
       <TextField fx:id="textFieldQuestionText" layoutX="200.0" layoutY="140.0" prefHeight="25.0" prefWidth="360.0" />
       <TextField fx:id="textFieldQuestionAlt1" layoutX="200.0" layoutY="170.0" prefHeight="25.0" prefWidth="96.0" />
-      <CheckBox fx:id="checkBxQuestionAlt1" layoutX="300.0" layoutY="174.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" selected="true" />
+      <CheckBox id="checkBxQuestionAlt1" fx:id="checkBxQuestionAlt1" layoutX="300.0" layoutY="174.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
       <TextField fx:id="textFieldQuestionAlt2" layoutX="349.0" layoutY="170.0" prefHeight="25.0" prefWidth="96.0" />
-      <CheckBox fx:id="checkBxQuestionAlt2" layoutX="449.0" layoutY="174.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
-      <CheckBox fx:id="checkBxQuestionAlt3" layoutX="300.0" layoutY="209.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
+      <CheckBox id="checkBxQuestionAlt2" fx:id="checkBxQuestionAlt2" layoutX="449.0" layoutY="174.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
+      <CheckBox id="checkBxQuestionAlt3" fx:id="checkBxQuestionAlt3" layoutX="300.0" layoutY="209.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
       <TextField fx:id="textFieldQuestionAlt4" layoutX="349.0" layoutY="205.0" prefHeight="25.0" prefWidth="96.0" />
-      <CheckBox fx:id="checkBxQuestionAlt4" layoutX="449.0" layoutY="209.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
+      <CheckBox id="checkBxQuestionAlt4" fx:id="checkBxQuestionAlt4" layoutX="449.0" layoutY="209.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
       <TextField fx:id="textFieldQuestionAlt3" layoutX="200.0" layoutY="205.0" prefHeight="25.0" prefWidth="96.0" />
       <ImageView fx:id="imageViewImage" fitHeight="142.0" fitWidth="169.0" layoutX="411.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="textFieldImageUrl" layoutX="200.0" layoutY="246.0" prefHeight="25.0" prefWidth="169.0" />
