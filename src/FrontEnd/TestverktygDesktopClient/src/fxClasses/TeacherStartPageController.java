@@ -6,6 +6,8 @@
 package fxClasses;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +16,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import models.Test;
+import propertymodels.Student;
+import propertymodels.StudentAnswer;
+import repositories.ParticipantRepository;
 import repositories.TestRepository;
 
 
@@ -56,10 +62,15 @@ public class TeacherStartPageController implements Initializable {
     }
     
     public void populateTableDoneTests(){
-        ObservableList<Test> temp = tr.getTests();
+        ObservableList<StudentAnswer> temp = tr.getStudentAnswers();
         tableDoneTests.getColumns().addAll(columnStudent, columnCourse, columnTest);
         tableDoneTests.setItems(temp);
-        columnStudent.se
+        ParticipantRepository pr= new ParticipantRepository();
+        List<Student> students = new ArrayList();
+        temp.stream().forEach((t)->{
+            students.add(pr.getParticipant(t.getParticipant_Id()));
+        });
+        columnStudent.setCellValueFactory(new PropertyValueFactory<, String>(""));
         
     }
     @Override
