@@ -1,5 +1,6 @@
-package models;
+package propertymodels;
 
+import models.*;
 import java.io.Serializable;
 import java.util.List;
 
