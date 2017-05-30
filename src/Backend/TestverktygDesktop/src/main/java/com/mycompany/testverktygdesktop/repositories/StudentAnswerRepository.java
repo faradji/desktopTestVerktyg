@@ -5,8 +5,12 @@
  */
 package com.mycompany.testverktygdesktop.repositories;
 
+import com.mycompany.testverktygdesktop.models.Student;
 import com.mycompany.testverktygdesktop.models.StudentAnswer;
 import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -14,10 +18,21 @@ import java.util.List;
  */
 public class StudentAnswerRepository
 {
+    SessionFactory sessionFactory;
 
+    public StudentAnswerRepository() {
+        sessionFactory = myHibernateUtil.getSessionFactory();
+    }
+    
+                   
     public List<StudentAnswer> getStudentAnswers()
     {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query query=session.createQuery("FROM ");
+        List<StudentAnswer> doneTests = session.createCriteria(StudentAnswer.class).list();
         
+        return doneTests;
     }
     
 }
