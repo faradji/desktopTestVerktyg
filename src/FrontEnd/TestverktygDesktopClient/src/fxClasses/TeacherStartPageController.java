@@ -59,7 +59,7 @@ public class TeacherStartPageController implements Initializable {
         ObservableList<Test> temp = tr.getTests();
         tableDoneTests.getColumns().addAll(columnStudent, columnCourse, columnTest);
         tableDoneTests.setItems(temp);
-        columnStudent.set
+        columnStudent.se
         
     }
     @Override
