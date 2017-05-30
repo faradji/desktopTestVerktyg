@@ -29,10 +29,11 @@ public class StudentAnswerRepository
     {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Query query=session.createQuery("FROM ");
-        List<StudentAnswer> doneTests = session.createCriteria(StudentAnswer.class).list();
         
-        return doneTests;
+        List<StudentAnswer> studentAnswers = session.createCriteria(StudentAnswer.class).list();
+        
+        session.close();
+        return studentAnswers;
     }
     
 }

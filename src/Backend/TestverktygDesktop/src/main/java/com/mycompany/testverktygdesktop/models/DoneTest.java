@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.testverktygdesktop.models;
 
 import java.io.Serializable;
@@ -13,7 +9,7 @@ import java.util.List;
  *
  * @author Diddi
  */
-public class DoneTests implements Serializable{
+public class DoneTest implements Serializable{
 
     int studentid;
     String studentName;
@@ -22,12 +18,12 @@ public class DoneTests implements Serializable{
     List<Integer> givenAnswers=new ArrayList();
     List<String> questions =new ArrayList();
     
-    public DoneTests()
+    public DoneTest()
     {
 
     }
 
-    public DoneTests(int studentid, String studentName, String course, String testName) {
+    public DoneTest(int studentid, String studentName, String course, String testName) {
         this.studentid = studentid;
         this.studentName = studentName;
         this.course = course;
