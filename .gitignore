@@ -20,3 +20,5 @@ bin-release/
 /src/TestverktygDesktop/target/
 /src/Backend/TestverktygDesktop/target/
 src/Backend/TestverktygDesktop/src/main/resources/hibernate\.cfg\.xml
+/src/FrontEnd/TestverktygDesktopClient/build/
+/src/FrontEnd/TestverktygDesktopClient/dist/
