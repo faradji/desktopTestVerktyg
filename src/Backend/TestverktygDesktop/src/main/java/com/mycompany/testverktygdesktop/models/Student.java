@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
 @Entity
-
 public class Student extends Participant implements Serializable {
 
     @ManyToMany

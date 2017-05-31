@@ -8,6 +8,7 @@ public class Question implements Serializable {
     int id;
     String qText;
     int correctAnswer;
+    String imageURL;
 
     private ArrayList<String> answers;
 
@@ -16,11 +17,12 @@ public class Question implements Serializable {
     public Question() {
     }
 
-    public Question(int id, String qText, int correctAnswer, ArrayList answers) {
+    public Question(int id, String qText, int correctAnswer, ArrayList answers, String imageURL) {
         this.id = id;
         this.qText = qText;
         this.correctAnswer = correctAnswer;
         this.answers = answers;
+        this.imageURL = imageURL;
     }
 
     public int getId() {
@@ -61,5 +63,17 @@ public class Question implements Serializable {
     public void setTest(Test test) {
         this.test = test;
     }
+
+    public String getImageURL()
+    {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL)
+    {
+        this.imageURL = imageURL;
+    }
+    
+    
 
 }
