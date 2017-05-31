@@ -15,7 +15,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import jdk.nashorn.internal.objects.annotations.Getter;
 
 /**
  *
@@ -37,33 +36,33 @@ public class StudentAnswerResource
         System.out.println("resource");
         return sRepo.getStudentAnswers();
     }
-
-    @POST
-    public StudentAnswer addParticipant(StudentAnswer studentAnswer)
-    {
-        return sr.addParticipant(participant);
-    }
-
-    @PUT
-    public Participant updateParticipant(Participant participant)
-    {
-        return sr.updateParticipant(participant);
-    }
-
-    @DELETE
-    @Path("/{participantId}")
-    public void deleteParticipant(@PathParam("participantId") int participantId)
-    {
-        sr.deleteParticipant(participantId);
-    }
-        
-    @Path("/teachers")
-    public TeacherResource teachers() {
-        return new TeacherResource();
-    }
-        
-    @Path("/students")
-    public StudentResource students() {
-        return new StudentResource();
-    }
+//
+//    @POST
+//    public StudentAnswer addParticipant(StudentAnswer studentAnswer)
+//    {
+//        return sRepo.addParticipant(participant);
+//    }
+//
+//    @PUT
+//    public Participant updateParticipant(Participant participant)
+//    {
+//        return sRepo.updateParticipant(participant);
+//    }
+//
+//    @DELETE
+//    @Path("/{participantId}")
+//    public void deleteParticipant(@PathParam("participantId") int participantId)
+//    {
+//        sRepo.deleteParticipant(participantId);
+//    }
+//        
+//    @Path("/teachers")
+//    public TeacherResource teachers() {
+//        return new TeacherResource();
+//    }
+//        
+//    @Path("/students")
+//    public StudentResource students() {
+//        return new StudentResource();
+//    }
 }
