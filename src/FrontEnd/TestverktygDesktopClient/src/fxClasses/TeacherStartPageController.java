@@ -18,18 +18,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import propertymodels.DoneTest;
-import propertymodels.Student;
-import propertymodels.StudentAnswer;
 import repositories.DoneTestRepository;
-import repositories.ParticipantRepository;
-import repositories.TestRepository;
 
-public class TeacherStartPageController implements Initializable
-{
+public class TeacherStartPageController implements Initializable {
 
     @FXML
-    TableView tableDoneTests;
+    TableView tableDoneTest;
     @FXML
     Label teacherName;
     @FXML
@@ -37,14 +31,12 @@ public class TeacherStartPageController implements Initializable
 
     DoneTestRepository doneTestRepo = new DoneTestRepository();
 
-    public void addTest(ActionEvent event)
-    {
+    public void addTest(ActionEvent event) {
 
         //todo
     }
 
-    private void populateTableViewTitle()
-    {
+    private void populateTableViewTitle() {
 //        ObservableList<AuthorProp> temp = logicClass.getObservableListOfAuthors();
 //        titleColumn.setCellValueFactory(new PropertyValueFactory<BookProp, String>("title"));
 //        tableViewTitle.setItems(logicClass.getObservableListOfBooks());
@@ -60,42 +52,47 @@ public class TeacherStartPageController implements Initializable
         //tableViewBooks.setItems(logicClass.getObservableListOfBooks());
     }
 
-    public void populateTableDoneTests()
-    {
-        
+    public void populateTableDoneTests() {
+
         List<models.DoneTest> temp = doneTestRepo.getDoneTests();
         ObservableList<propertymodels.DoneTest> doneTests = FXCollections.observableArrayList();
-        
-        for(int i = 0; i < temp.size(); i++){
-            propertymodels.DoneTest tempProp = new propertymodels.DoneTest();
-            tempProp.setCourse(temp.get(i).getCourse());
-            tempProp.setGivenAnswer(temp.get(i).getGivenAnswer());
-            tempProp.setStudentName(temp.get(i).getStudentName());
-            tempProp.setStudentid(temp.get(i).getStudentid());
-            tempProp.setTestName(temp.get(i).getTestName());
-            
-            for(int j = 0; j < temp.get(i).getQuestions().size(); j++){
-                List<propertymodels.Question> tempQ = new ArrayList();
-                propertymodels.Question q = new propertymodels.Question();
-            }
+
+        for (int i = 0; i < temp.size(); i++) {
+
+            propertymodels.DoneTest tempProp = new propertymodels.DoneTest(temp.get(i).getStudentid(),
+                    temp.get(i).getStudentName(),
+                    temp.get(i).getCourse(),
+                    temp.get(i).getTestName(),
+                    temp.get(i).getGivenAnswer());
+
+//            for(int j = 0; j < temp.get(i).getQuestions().size(); j++){
+//                List<propertymodels.Question> tempQ = new ArrayList();
+//                propertymodels.Question q = new propertymodels.Question();
+//            }
 //tempProp.setQuestions(temp.get(i).getQuestions());
-            
-            
-            doneTests.add(tempProp);   
+            doneTests.add(tempProp);
+
         }
-        tableDoneTests.getColumns().addAll(columnStudent, columnCourse, columnTest);
+
+        tableDoneTest.setEditable(false);
+
         
-        
-        columnStudent.setCellValueFactory(new PropertyValueFactory<propertymodels.DoneTest, String>("studentName"));
-        columnCourse.setCellValueFactory(new PropertyValueFactory<propertymodels.DoneTest, String>("course"));
-        columnTest.setCellValueFactory(new PropertyValueFactory<propertymodels.DoneTest, String>("testName"));
-        tableDoneTests.setItems(doneTests);
-        
+        columnStudent.setCellValueFactory(
+                new PropertyValueFactory<propertymodels.DoneTest, String>("studentName")
+        );
+        columnCourse.setCellValueFactory(
+                new PropertyValueFactory<propertymodels.DoneTest, String>("course")
+        );
+        columnTest.setCellValueFactory(
+                new PropertyValueFactory<propertymodels.DoneTest, String>("testName")
+        );
+
+        tableDoneTest.setItems(doneTests);
+
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         populateTableDoneTests();
     }
 
