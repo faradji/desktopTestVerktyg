@@ -65,7 +65,7 @@ public class TeacherStartPageController implements Initializable
         
         List<models.DoneTest> temp = doneTestRepo.getDoneTests();
         ObservableList<propertymodels.DoneTest> doneTests = FXCollections.observableArrayList();
-        System.out.println("utanför for loopen" + temp.get(0).getCourse());
+//        System.out.println("utanför for loopen" + temp.get(0).getCourse());
         propertymodels.DoneTest tempProp = new propertymodels.DoneTest();
         
         for(int i = 0; i < temp.size(); i++){
