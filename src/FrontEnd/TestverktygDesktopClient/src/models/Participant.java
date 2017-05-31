@@ -7,6 +7,7 @@ public class Participant implements Serializable {
     int id;
     String name;
     String password;
+    String dtype;
 
     public Participant() {
     }

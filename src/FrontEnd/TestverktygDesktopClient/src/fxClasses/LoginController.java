@@ -29,14 +29,17 @@ public class LoginController implements Initializable {
     
     Participant currentParticipant = new Participant();
     
-    @FXML Button btnNext;
+    @FXML Button btnLogin;
     @FXML TextField txtUserName;
     @FXML PasswordField txtPassword;
     @FXML Label lblUserName, lblPassword;
     
-    @FXML private void btnNextClicked()
+    @FXML private void btnLoginClicked()
     {
-        
+        if (txtPassword.getText().equals(currentParticipant.getPassword()))
+        {
+            //Återkom hit senare
+        }
     }
     
     

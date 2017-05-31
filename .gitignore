@@ -19,3 +19,5 @@ bin-release/
 # information for Eclipse / Flash Builder.
 /src/TestverktygDesktop/target/
 /src/Backend/TestverktygDesktop/target/
+/src/FrontEnd/TestverktygDesktopClient/build/
+/src/FrontEnd/TestverktygDesktopClient/dist/
