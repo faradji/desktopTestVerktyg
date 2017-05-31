@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +17,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import propertymodels.DoneTest;
 import propertymodels.Student;
 import propertymodels.StudentAnswer;
+import repositories.DoneTestRepository;
 import repositories.ParticipantRepository;
 import repositories.TestRepository;
 
@@ -31,7 +35,7 @@ public class TeacherStartPageController implements Initializable
     @FXML
     TableColumn columnStudent, columnCourse, columnTest;
 
-    TestRepository tr = new TestRepository();
+    DoneTestRepository doneTestRepo = new DoneTestRepository();
 
     public void addTest(ActionEvent event)
     {
@@ -58,17 +62,35 @@ public class TeacherStartPageController implements Initializable
 
     public void populateTableDoneTests()
     {
-        ObservableList<StudentAnswer> temp = tr.getStudentAnswers();
+        
+        List<models.DoneTest> temp = doneTestRepo.getDoneTests();
+        ObservableList<propertymodels.DoneTest> doneTests = FXCollections.observableArrayList();
+        
+        for(int i = 0; i < temp.size(); i++){
+            propertymodels.DoneTest tempProp = new propertymodels.DoneTest();
+            tempProp.setCourse(temp.get(i).getCourse());
+            tempProp.setGivenAnswer(temp.get(i).getGivenAnswer());
+            tempProp.setStudentName(temp.get(i).getStudentName());
+            tempProp.setStudentid(temp.get(i).getStudentid());
+            tempProp.setTestName(temp.get(i).getTestName());
+            
+            for(int j = 0; j < temp.get(i).getQuestions().size(); j++){
+                List<propertymodels.Question> tempQ = new ArrayList();
+                propertymodels.Question q = new propertymodels.Question())
+            }
+//tempProp.setQuestions(temp.get(i).getQuestions());
+            
+            
+            doneTests.add(tempProp);   
+        }
         tableDoneTests.getColumns().addAll(columnStudent, columnCourse, columnTest);
-        tableDoneTests.setItems(temp);
-        ParticipantRepository pr = new ParticipantRepository();
-        List<Student> students = new ArrayList();
-        temp.stream().forEach((t) ->
-        {
-            students.add(pr.getParticipant(t.getParticipant_Id()));
-        });
-//        columnStudent.setCellValueFactory(new PropertyValueFactory<, String>(""));
-
+        
+        
+        columnStudent.setCellValueFactory(new PropertyValueFactory<propertymodels.DoneTest, String>("studentName"));
+        columnCourse.setCellValueFactory(new PropertyValueFactory<propertymodels.DoneTest, String>("course"));
+        columnTest.setCellValueFactory(new PropertyValueFactory<propertymodels.DoneTest, String>("testName"));
+        tableDoneTests.setItems(doneTests);
+        
     }
 
     @Override

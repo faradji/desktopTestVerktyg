@@ -16,8 +16,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
- *
- * @author louiseahokas
  */
 public class DoneTestsRepository {
 
@@ -56,23 +54,23 @@ public class DoneTestsRepository {
             Test test = (Test) sessionGetTest.get(Test.class, q.getTest().getId());
 
                 
-//            List<Question> questions = sessionGetQuestions.createCriteria(Question.class).list();
+            List<Question> questions = sessionGetQuestions.createCriteria(Question.class).list();
 
 
             doneTests.add(new DoneTest(student.getId(), student.getName(), test.getSubject(), studentAnswers.get(i).getGivenAnswer(), test.getName()));
-
-//            doneTests.stream().forEach((d) -> {
-//                List<Question> tempQ = new ArrayList();
-//
-//                questions.stream().forEach((que) -> {
-//
-//                    if (que.getTest().getName().equalsIgnoreCase(test.getName())) {
-//                        tempQ.add(que);
-//                    }
-//                });
-//                d.setQuestions(tempQ);
-//
-//            });
+            
+            List<Question> tempQ = new ArrayList();
+            
+            for(int j = 0; j < doneTests.size(); j++){
+               
+               if (doneTests.get(j).getTestName().equalsIgnoreCase(test.getName())) {
+                        tempQ = doneTests.get(j).getQuestions();
+                        break;
+                }
+            }
+            
+            doneTests.get(i).setQuestions(tempQ);
+            
            
         }// });
         session.close();
