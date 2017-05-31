@@ -76,7 +76,7 @@ public class TeacherStartPageController implements Initializable
             
             for(int j = 0; j < temp.get(i).getQuestions().size(); j++){
                 List<propertymodels.Question> tempQ = new ArrayList();
-                propertymodels.Question q = new propertymodels.Question())
+                propertymodels.Question q = new propertymodels.Question();
             }
 //tempProp.setQuestions(temp.get(i).getQuestions());
             
