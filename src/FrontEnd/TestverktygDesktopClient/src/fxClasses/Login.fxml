@@ -6,6 +6,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.LoginController">
-    
-</AnchorPane>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.LoginController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="lblUserName" text="Username: " />
+                  <TextField fx:id="txtUserName" promptText="Username" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="lblPassword" text="Password: " />
+                  <PasswordField fx:id="txtPassword" promptText="Password" />
+               </children>
+            </HBox>
+            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnLoginClicked" text="Log In" />
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Rubrik" />
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

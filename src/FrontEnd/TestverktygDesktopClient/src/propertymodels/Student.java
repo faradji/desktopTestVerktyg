@@ -12,8 +12,8 @@ public class Student extends Participant implements Serializable {
         super();
     }
 
-    public Student(int id, String name, String password, List<Test> tests) {
-        super(id, name, password);
+    public Student(int id, String name, String password, String dtype, List<Test> tests) {
+        super(id, name, password, dtype);
         this.tests = tests;
     }
 

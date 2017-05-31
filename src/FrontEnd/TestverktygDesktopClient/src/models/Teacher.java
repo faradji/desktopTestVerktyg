@@ -13,8 +13,8 @@ public class Teacher extends Participant implements Serializable {
         super();
     }
 
-    public Teacher(int id, String name, String password, String subject) {
-        super(id, name, password);
+    public Teacher(int id, String name, String password, String subject, String dtype) {
+        super(id, name, password, dtype);
         this.subject = subject;
     }
 

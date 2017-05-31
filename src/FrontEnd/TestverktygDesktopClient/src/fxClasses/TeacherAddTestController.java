@@ -145,8 +145,8 @@ public class TeacherAddTestController implements Initializable
 
     public void setLabelsOfTeacher()
     {
-        labelTeacherName.setText(LoginController.currentTeacher.getName());
-        labelSubject.setText(LoginController.currentTeacher.getSubject());
+//        labelTeacherName.setText(LoginController.currentTeacher.getName());
+//        labelSubject.setText(LoginController.currentTeacher.getSubject());
     }
 
     @FXML
