@@ -1,8 +1,6 @@
 package com.mycompany.testverktygdesktop.resources;
 
 import com.mycompany.testverktygdesktop.models.Participant;
-import com.mycompany.testverktygdesktop.models.Student;
-import com.mycompany.testverktygdesktop.repositories.StudentRepository;
 import com.mycompany.testverktygdesktop.repositories.ParticipantRepository;
 import java.util.List;
 import javax.ws.rs.DELETE;
