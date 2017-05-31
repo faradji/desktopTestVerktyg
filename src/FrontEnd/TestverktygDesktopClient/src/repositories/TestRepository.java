@@ -1,5 +1,9 @@
 package repositories;
 
+import javafx.collections.ObservableList;
+import models.Test;
+import propertymodels.StudentAnswer;
+
 public class TestRepository {
 
     public TestRepository() {
@@ -33,5 +37,14 @@ public class TestRepository {
 //
 //    public List<Test> getTeacherTests(int participantId) {
 //         }
+
+    public ObservableList<Test> getTests()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ObservableList<StudentAnswer> getStudentAnswers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

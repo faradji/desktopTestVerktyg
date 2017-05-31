@@ -1,16 +1,11 @@
-package com.mycompany.testverktygdesktop.models;
+package propertymodels;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import models.*;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 
-@Entity
 public class Student extends Participant implements Serializable {
 
-    @ManyToMany
-    @JsonIgnore
     List<Test> tests;
 
     public Student() {

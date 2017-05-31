@@ -8,20 +8,19 @@ package fxClasses;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import models.Teacher;
+import propertymodels.Student;
 
-/**
- * FXML Controller class
- *
- * @author Ali
- */
-public class LoginController implements Initializable {
+public class LoginController implements Initializable
+{
 
-    /**
-     * Initializes the controller class.
-     */
+    static Teacher currentTeacher;
+    static Student currentStudent;
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
-    }    
-    
+    }
+
 }

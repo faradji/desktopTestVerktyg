@@ -1,18 +1,10 @@
-package com.mycompany.testverktygdesktop.models;
+package propertymodels;
 
+import models.*;
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Participant implements Serializable {
 
-    @Id
-    @GeneratedValue
     int id;
     String name;
     String password;
