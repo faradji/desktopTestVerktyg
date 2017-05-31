@@ -8,6 +8,8 @@ package propertymodels;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -28,11 +30,11 @@ public class DoneTest {
     public DoneTest(){}
     
     public DoneTest(int studentid, String studentName, String course, String testName, String givenAnswer) {
-        this.studentid.set(studentid);
-        this.studentName.set(studentName);
-        this.course.set(course);
-        this.testName.set(testName);
-        this.givenAnswer.set(givenAnswer);
+        this.studentid = new SimpleIntegerProperty(studentid);
+        this.studentName = new SimpleStringProperty(studentName);
+        this.course = new SimpleStringProperty(course);
+        this.testName = new SimpleStringProperty(testName);
+        this.givenAnswer = new SimpleStringProperty(givenAnswer);
     }
 
     public int getStudentid() {

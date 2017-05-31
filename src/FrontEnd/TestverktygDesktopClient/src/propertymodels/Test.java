@@ -1,17 +1,19 @@
 package propertymodels;
 
-import models.*;
-import java.io.Serializable;
 import java.util.List;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 
-public class Test implements Serializable {
+public class Test{
 
-    int id;
-    String name;
-    String subject;
-    int autoCorrectedTest;
-    int totalTime;
+    IntegerProperty id;
+    StringProperty name;
+    StringProperty subject;
+    IntegerProperty autoCorrectedTest;
+    IntegerProperty totalTime;
     List<Question> questions;
 
     List<Student> students;
@@ -23,35 +25,35 @@ public class Test implements Serializable {
 
     public Test(int id, String name, String subject, int autoCorrectedTest, int totalTime) {
         System.out.println("new user");
-        this.id = id;
-        this.name = name;
-        this.subject = subject;
-        this.autoCorrectedTest = autoCorrectedTest;
-        this.totalTime = totalTime;
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.subject = new SimpleStringProperty(subject);
+        this.autoCorrectedTest = new SimpleIntegerProperty(autoCorrectedTest);
+        this.totalTime = new SimpleIntegerProperty(totalTime);
     }
 
     public int getId() {
-        return id;
+        return id.get();
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id.set(id);
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     public String getSubject() {
-        return subject;
+        return subject.get();
     }
 
     public void setSubject(String subject) {
-        this.subject = subject;
+        this.subject.set(subject);
     }
 
     public List<Question> getQuestions() {
@@ -59,11 +61,11 @@ public class Test implements Serializable {
     }
 
     public int getAutoCorrectedTest() {
-        return autoCorrectedTest;
+        return autoCorrectedTest.get();
     }
 
     public void setAutoCorrectedTest(int autoCorrectedTest) {
-        this.autoCorrectedTest = autoCorrectedTest;
+        this.autoCorrectedTest.set(autoCorrectedTest);
     }
 
     public void setQuestions(List<Question> questions) {
@@ -73,19 +75,18 @@ public class Test implements Serializable {
     public List<Student> getStudents() {
         return students;
     }
-    
-    
+       
 //
 //    public void setStudents(List<Student> students) {
 //        this.students = students;
 //    }
 
     public int getTotalTime() {
-        return totalTime;
+        return totalTime.get();
     }
 
     public void setTotalTime(int totalTime) {
-        this.totalTime = totalTime;
+        this.totalTime.set(totalTime);
     }
 
 }
