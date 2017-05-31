@@ -1,14 +1,16 @@
 package propertymodels;
 
-import models.*;
-import java.io.Serializable;
 import java.util.ArrayList;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-public class Question implements Serializable {
+public class Question{
 
-    int id;
-    String qText;
-    int correctAnswer;
+    IntegerProperty id;
+    StringProperty qText;
+    IntegerProperty correctAnswer;
 
     private ArrayList<String> answers;
 
@@ -18,34 +20,34 @@ public class Question implements Serializable {
     }
 
     public Question(int id, String qText, int correctAnswer, ArrayList answers) {
-        this.id = id;
-        this.qText = qText;
-        this.correctAnswer = correctAnswer;
+        this.id = new SimpleIntegerProperty(id);
+        this.qText = new SimpleStringProperty(qText);
+        this.correctAnswer = new SimpleIntegerProperty(correctAnswer);
         this.answers = answers;
     }
 
     public int getId() {
-        return id;
+        return id.get();
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id.set(id);
     }
 
     public String getqText() {
-        return qText;
+        return qText.get();
     }
 
     public void setqText(String qText) {
-        this.qText = qText;
+        this.qText.set(qText);
     }
 
     public int getCorrectAnswer() {
-        return correctAnswer;
+        return correctAnswer.get();
     }
 
     public void setCorrectAnswer(int correctAnswer) {
-        this.correctAnswer = correctAnswer;
+        this.correctAnswer.set(correctAnswer);
     }
 
     public ArrayList getAnswers() {
@@ -56,9 +58,9 @@ public class Question implements Serializable {
         this.answers = answers;
     }
 
-//    public Test getTest() {
-//        return test;
-//    }
+    public Test getTest() {
+        return test;
+    }
     public void setTest(Test test) {
         this.test = test;
     }

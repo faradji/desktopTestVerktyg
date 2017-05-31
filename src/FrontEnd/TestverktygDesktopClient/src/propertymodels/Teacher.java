@@ -3,10 +3,12 @@ package propertymodels;
 import models.*;
 import java.io.Serializable;
 import java.util.List;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-public class Teacher extends Participant implements Serializable {
+public class Teacher extends Participant {
 
-    String subject;
+    StringProperty subject;
 
     List<Test> tests;
 
@@ -16,15 +18,15 @@ public class Teacher extends Participant implements Serializable {
 
     public Teacher(int id, String name, String password, String subject) {
         super(id, name, password);
-        this.subject = subject;
+        this.subject = new SimpleStringProperty(subject);
     }
 
     public String getSubject() {
-        return subject;
+        return subject.get();
     }
 
     public void setSubject(String subject) {
-        this.subject = subject;
+        this.subject.set(subject);
     }
 
     public List<Test> getTests() {

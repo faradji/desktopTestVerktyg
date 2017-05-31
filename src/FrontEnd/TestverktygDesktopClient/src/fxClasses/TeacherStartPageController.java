@@ -65,9 +65,12 @@ public class TeacherStartPageController implements Initializable
         
         List<models.DoneTest> temp = doneTestRepo.getDoneTests();
         ObservableList<propertymodels.DoneTest> doneTests = FXCollections.observableArrayList();
+        System.out.println("utanför for loopen" + temp.get(0).getCourse());
+        propertymodels.DoneTest tempProp = new propertymodels.DoneTest();
         
         for(int i = 0; i < temp.size(); i++){
-            propertymodels.DoneTest tempProp = new propertymodels.DoneTest();
+            
+            System.out.println("i for loopen" + temp.get(i).getCourse());
             tempProp.setCourse(temp.get(i).getCourse());
             tempProp.setGivenAnswer(temp.get(i).getGivenAnswer());
             tempProp.setStudentName(temp.get(i).getStudentName());
@@ -77,6 +80,12 @@ public class TeacherStartPageController implements Initializable
             for(int j = 0; j < temp.get(i).getQuestions().size(); j++){
                 List<propertymodels.Question> tempQ = new ArrayList();
                 propertymodels.Question q = new propertymodels.Question();
+                propertymodels.Test tempTest = new propertymodels.Test();
+                
+                q.setAnswers(temp.get(i).getQuestions().get(j).getAnswers());
+                q.setCorrectAnswer(temp.get(i).getQuestions().get(j).getCorrectAnswer());
+                q.setId(temp.get(i).getQuestions().get(j).getId());
+                //q.setTest(temp.get(i).getQuestions().get(j).getTest());
             }
 //tempProp.setQuestions(temp.get(i).getQuestions());
             
