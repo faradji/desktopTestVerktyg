@@ -6,6 +6,7 @@
 package fxClasses;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -77,9 +78,31 @@ public class StudentStartPageController implements Initializable
         //tableCourse.getColumns().add(columnCourseName);
 
         columnCourseName.setCellValueFactory(new PropertyValueFactory<Test, String>("subject"));
-
+        tests.setAll(getNoDuplicates(tests));
         tableCourse.setItems(tests);
 
+    }
+
+    public List<propertymodels.Test> getNoDuplicates(List<propertymodels.Test> tests)
+    {
+        List<propertymodels.Test> noDupeList = new ArrayList<>();
+        int noDupeCounter = 0;
+        noDupeList.add(tests.get(0));
+
+        for (int i = 0; i < tests.size(); i++)
+        {
+            if (!tests.get(i).getSubject().equals(noDupeList.get(noDupeCounter).getSubject()))
+            {
+                noDupeList.add(tests.get(i));
+                noDupeCounter += 1;
+
+            }
+        }
+        for (int i = 0; i < noDupeList.size(); i++)
+        {
+            System.out.println("noDupeList--------------------subject" + noDupeList.get(i).getSubject());
+        }
+        return noDupeList;
     }
 
     @FXML
