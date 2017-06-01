@@ -36,7 +36,9 @@ public class QuestionRepository {
 
     public List<Question> getQuestions() {
         Session session = sessionFactory.openSession();
+        
         List<Question> questions =session.createCriteria(Question.class).list();
+
         session.close();
         return questions;
 
@@ -46,7 +48,7 @@ public class QuestionRepository {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Test test = (Test) session.get(Test.class, testId);
-        question.setTest(test);
+        question.setTest_Id(test.getId());
         session.update(question);
 
         session.getTransaction().commit();
@@ -58,7 +60,7 @@ public class QuestionRepository {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Test test = (Test) session.get(Test.class, testId);
-        question.setTest(test);
+        question.setTest_Id(test.getId());
         session.save(question);
         session.getTransaction().commit();
         session.close();

@@ -51,7 +51,7 @@ public class DoneTestsRepository {
             //hämta frågan som finns på plats "i"
             Question q = (Question) sessionGetQ.get(Question.class, studentAnswers.get(i).getQuestion_Id());
             //hämta test från DBn som q finns i
-            Test test = (Test) sessionGetTest.get(Test.class, q.getTest().getId());
+            Test test = (Test) sessionGetTest.get(Test.class, q.getTest_Id());
 
                 
             List<Question> questions = sessionGetQuestions.createCriteria(Question.class).list();

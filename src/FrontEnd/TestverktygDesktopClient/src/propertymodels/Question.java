@@ -1,14 +1,18 @@
 package propertymodels;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-public class Question implements Serializable {
+public class Question{
 
-    int id;
-    String qText;
-    int correctAnswer;
     String imageURL;
+    IntegerProperty id;
+    StringProperty qText;
+    IntegerProperty correctAnswer;
+    IntegerProperty test_Id;
 
     private ArrayList<String> answers;
 
@@ -17,36 +21,36 @@ public class Question implements Serializable {
     public Question() {
     }
 
-    public Question(int id, String qText, int correctAnswer,String imageURL, ArrayList answers) {
-        this.id = id;
-        this.qText = qText;
-        this.correctAnswer = correctAnswer;
-        this.imageURL = imageURL;
+    public Question(int id, String qText, int correctAnswer, ArrayList answers, int test_Id) {
+        this.id = new SimpleIntegerProperty(id);
+        this.qText = new SimpleStringProperty(qText);
+        this.correctAnswer = new SimpleIntegerProperty(correctAnswer);
         this.answers = answers;
+        this.test_Id = new SimpleIntegerProperty(test_Id);
     }
 
     public int getId() {
-        return id;
+        return id.get();
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id.set(id);
     }
 
     public String getqText() {
-        return qText;
+        return qText.get();
     }
 
     public void setqText(String qText) {
-        this.qText = qText;
+        this.qText.set(qText);
     }
 
     public int getCorrectAnswer() {
-        return correctAnswer;
+        return correctAnswer.get();
     }
 
     public void setCorrectAnswer(int correctAnswer) {
-        this.correctAnswer = correctAnswer;
+        this.correctAnswer.set(correctAnswer);
     }
 
     public String getImageURL() {
@@ -65,9 +69,16 @@ public class Question implements Serializable {
         this.answers = answers;
     }
 
-//    public Test getTest() {
-//        return test;
-//    }
+    public int getTest_Id() {
+        return test_Id.get();
+    }
+    public void setTest_Id(int test_Id) {
+        this.test_Id.set(test_Id);
+    }
+    
+    public Test getTest() {
+        return test;
+    }
     public void setTest(Test test) {
         this.test = test;
     }

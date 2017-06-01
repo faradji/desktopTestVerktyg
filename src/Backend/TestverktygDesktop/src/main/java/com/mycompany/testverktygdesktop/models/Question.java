@@ -22,6 +22,7 @@ public class Question implements Serializable {
     String qText;
     int correctAnswer;
     String imageURL;
+    int test_Id;
 
     
     @Type(type="com.mycompany.testverktygdesktop.services.QuestionService")
@@ -36,12 +37,13 @@ public class Question implements Serializable {
     public Question() {
     }
 
-    public Question(int id, String qText, int correctAnswer, ArrayList answers, String imageURL) {
+    public Question(int id, String qText, int correctAnswer, ArrayList answers, String imageURL, int test_Id) {
         this.id = id;
         this.qText = qText;
         this.correctAnswer = correctAnswer;
         this.answers = answers;
         this.imageURL = imageURL;
+        this.test_Id = test_Id;
     }
 
     public int getId() {
@@ -75,13 +77,14 @@ public class Question implements Serializable {
     public void setAnswers(ArrayList answers) {
         this.answers = answers;
     }
-
-    public Test getTest() {
-        return test;
+    
+    public int getTest_Id(){
+        return test_Id;
     }
-//    public void setTest(Test test) {
-//        this.test = test;
-//    }
+    
+    public void setTest_Id(int test_Id){
+        this.test_Id = test_Id;
+    }
     
     public String getImageURL()
     {
