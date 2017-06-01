@@ -8,7 +8,7 @@ import javafx.beans.property.StringProperty;
 
 public class Question{
 
-    String imageURL;
+    StringProperty imageURL;
     IntegerProperty id;
     StringProperty qText;
     IntegerProperty correctAnswer;
@@ -21,10 +21,11 @@ public class Question{
     public Question() {
     }
 
-    public Question(int id, String qText, int correctAnswer, ArrayList answers, int test_Id) {
+    public Question(int id, String qText, int correctAnswer,String imageURL, ArrayList answers, int test_Id) {
         this.id = new SimpleIntegerProperty(id);
         this.qText = new SimpleStringProperty(qText);
         this.correctAnswer = new SimpleIntegerProperty(correctAnswer);
+        this.imageURL = new SimpleStringProperty(imageURL);
         this.answers = answers;
         this.test_Id = new SimpleIntegerProperty(test_Id);
     }
@@ -54,11 +55,11 @@ public class Question{
     }
 
     public String getImageURL() {
-        return imageURL;
+        return imageURL.get();
     }
 
     public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+        this.imageURL.set(imageURL);
     }
 
     public ArrayList getAnswers() {
@@ -82,5 +83,12 @@ public class Question{
     public void setTest(Test test) {
         this.test = test;
     }
+
+    @Override
+    public String toString() {
+        return qText.get();
+    }
+    
+    
 
 }

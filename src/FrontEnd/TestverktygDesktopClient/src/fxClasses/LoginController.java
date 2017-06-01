@@ -17,7 +17,7 @@ public class LoginController implements Initializable
 
     static Teacher currentTeacher;
     static Student currentStudent;
-    static Test currentTest;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
