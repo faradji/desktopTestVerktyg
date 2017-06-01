@@ -1,6 +1,5 @@
 package propertymodels;
 
-import models.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -9,6 +8,7 @@ public class Question implements Serializable {
     int id;
     String qText;
     int correctAnswer;
+    String imageURL;
 
     private ArrayList<String> answers;
 
@@ -17,10 +17,11 @@ public class Question implements Serializable {
     public Question() {
     }
 
-    public Question(int id, String qText, int correctAnswer, ArrayList answers) {
+    public Question(int id, String qText, int correctAnswer,String imageURL, ArrayList answers) {
         this.id = id;
         this.qText = qText;
         this.correctAnswer = correctAnswer;
+        this.imageURL = imageURL;
         this.answers = answers;
     }
 
@@ -46,6 +47,14 @@ public class Question implements Serializable {
 
     public void setCorrectAnswer(int correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public ArrayList getAnswers() {

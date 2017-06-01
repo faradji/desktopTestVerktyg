@@ -8,6 +8,7 @@ package fxClasses;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import models.Test;
 
 /**
  * FXML Controller class
@@ -15,7 +16,7 @@ import javafx.fxml.Initializable;
  * @author Ali
  */
 public class StudentStartPageController implements Initializable {
-
+static Test currentTest;
     /**
      * Initializes the controller class.
      */

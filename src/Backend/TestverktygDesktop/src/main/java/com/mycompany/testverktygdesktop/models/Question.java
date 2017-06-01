@@ -79,9 +79,9 @@ public class Question implements Serializable {
     public Test getTest() {
         return test;
     }
-    public void setTest(Test test) {
-        this.test = test;
-    }
+//    public void setTest(Test test) {
+//        this.test = test;
+//    }
     
     public String getImageURL()
     {

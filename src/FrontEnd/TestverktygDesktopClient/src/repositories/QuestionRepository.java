@@ -1,5 +1,9 @@
 package repositories;
 
+import java.util.ArrayList;
+import java.util.List;
+import models.Question;
+
 public class QuestionRepository {
 
     public QuestionRepository() {
@@ -26,12 +30,12 @@ public class QuestionRepository {
 //        return question;
 //    }
 
-//    public List<Question> getQuestions() {
-//
-//        return questions;
-//
-//    }
-//
+    public List<Question> getQuestions() {
+        List<Question> questions = new ArrayList();
+        return questions;
+
+    }
+
 //    public Question updateQuestion(int testId, Question question) {
 //       
 //        return question;

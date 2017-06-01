@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import models.Teacher;
+import models.Test;
 import propertymodels.Student;
 
 public class LoginController implements Initializable
@@ -16,6 +17,7 @@ public class LoginController implements Initializable
 
     static Teacher currentTeacher;
     static Student currentStudent;
+    static Test currentTest;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
