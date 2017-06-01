@@ -37,7 +37,7 @@ public class TestRepository {
         for (int i = 0; i < tests.size(); i++) {
             tests.get(i).getQuestions().size();
         }
-        
+        System.out.println("testlistans storlek: -------------------------------"+tests.size());
 //        tests.stream().forEach((t)->{
 //            t.getQuestions().size();});
 
