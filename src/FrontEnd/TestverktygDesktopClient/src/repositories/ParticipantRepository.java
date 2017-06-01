@@ -1,18 +1,32 @@
 package repositories;
 
+import java.util.List;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import models.Participant;
 import propertymodels.Student;
 
 public class ParticipantRepository {
-
+    Client client;
     public ParticipantRepository() {
        
     }
-//
-//    public Participant getParticipant(int participantId) {
-//      
-//        return participant;
-//    }
-//
+    public List<Participant> getParticipants() {
+        
+        client = ClientBuilder.newClient();
+        
+        List <Participant> participants;
+        participants = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants/participantlist")
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<List<Participant>>(){});
+        
+        client.close();
+
+        return participants;
+    }
+    
 //    public List<Participant> getParticipants() {
 //       
 //        return participants;

@@ -1,3 +1,4 @@
+package fxClasses;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,11 +23,11 @@ import models.Teacher;
 import propertymodels.Student;
 import repositories.ParticipantRepository;
 
-
 public class LoginController implements Initializable {
 
     static Teacher currentTeacher;
     static Student currentStudent;
+    
     ParticipantRepository pr = new ParticipantRepository();
 
     Participant currentParticipant = new Participant();
@@ -130,13 +131,4 @@ public class LoginController implements Initializable {
         });
 
     }
-
-}
-
-@Override
-        public void initialize(URL url, ResourceBundle rb)
-    {
-        // TODO
-    }
-
 }

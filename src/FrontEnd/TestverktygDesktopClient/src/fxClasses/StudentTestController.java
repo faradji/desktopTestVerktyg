@@ -1,6 +1,6 @@
 package fxClasses;
 
-import static fxClasses.LoginController.currentStudent;
+//import static fxClasses.LoginController.currentStudent;
 import java.io.IOException;
 
 import java.net.URL;
@@ -143,7 +143,7 @@ public class StudentTestController implements Initializable {
         StudentAnswer answer = new StudentAnswer();
         answer.setDate(Date.valueOf(LocalDate.MAX));
         answer.setGivenAnswer(currentQ.getAnswers().get(chosenCheckBoxId).toString());
-        answer.setParticipant_Id(currentStudent.getId());
+//        answer.setParticipant_Id(currentStudent.getId());
         answer.setQuestion_Id(currentQ.getId());
         answers.stream().forEach((a) -> {
             if (answer.getQuestion_Id() != a.getQuestion_Id()) {
