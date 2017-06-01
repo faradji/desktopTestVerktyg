@@ -46,12 +46,11 @@ public class StudentStartPageController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        populateTableTests();
+        populateTableCourse();
     }
 
-    public void populateTableTests()
+    public void populateTableCourse()
     {
-
         List<models.Test> temp = testRepo.getTests();
         ObservableList<propertymodels.Test> tests = FXCollections.observableArrayList();
         System.out.println("TEmp storlek -----------------------" + temp.size());
@@ -95,7 +94,6 @@ public class StudentStartPageController implements Initializable
             {
                 noDupeList.add(tests.get(i));
                 noDupeCounter += 1;
-
             }
         }
         for (int i = 0; i < noDupeList.size(); i++)
