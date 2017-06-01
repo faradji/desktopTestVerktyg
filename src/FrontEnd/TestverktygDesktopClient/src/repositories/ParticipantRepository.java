@@ -1,5 +1,7 @@
 package repositories;
 
+import propertymodels.Student;
+
 public class ParticipantRepository {
 
     public ParticipantRepository() {
@@ -29,5 +31,9 @@ public class ParticipantRepository {
 //    public void deleteParticipant(int participantId) {
 //       
 //    }
+
+    public Student getParticipant(int participant_Id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

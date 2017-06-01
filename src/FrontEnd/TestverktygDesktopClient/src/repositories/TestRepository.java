@@ -1,37 +1,34 @@
 package repositories;
 
-public class TestRepository {
+import java.util.List;
+import javafx.collections.ObservableList;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import models.DoneTest;
+import models.Test;
+import propertymodels.StudentAnswer;
 
-    public TestRepository() {
-    
+public class TestRepository {
+    Client client;
+    public TestRepository() {}
+
+    public List<Test> getTests()
+    {
+        client = ClientBuilder.newClient();
+        
+        List <Test> tests;
+        tests = client.target("http://localhost:8080/TestverktygDesktop/webapi/tests")
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<List<Test>>(){});
+        
+        client.close();
+        return tests;
     }
-//
-//    public Test addTest(Test test) {
-//    
-//        return test;
-//    }
-//
-//    public Test getTest(int testId) {
-//      
-//        return test;
-//    }
-//
-//    public List<Test> getTests() {
-//        
-//        return tests;
-//
-//    }
-//
-//    public Test updateTest(Test test) {
-//      
-//        return test;
-//    }
-//
-//    public void deleteTest(int testId) {
-//      
-//    }
-//
-//    public List<Test> getTeacherTests(int participantId) {
-//         }
+
+    public ObservableList<StudentAnswer> getStudentAnswers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

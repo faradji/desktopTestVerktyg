@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.StudentStartPageController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.StudentStartPageController">
+   <children>
+      <Label layoutX="31.0" layoutY="21.0" text="Välkommen!" />
+      <Label fx:id="labelStudentName" layoutX="28.0" layoutY="50.0" text="Studentnamn" />
+      <TableView fx:id="tableCourse" layoutX="200.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="columnCourseName" prefWidth="199.0" text="C1" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tableTest" layoutX="200.0" layoutY="244.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="columnTestName" prefWidth="199.0" text="C1" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnGoToTest" layoutX="508.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToTest" text="Gå till test" />
+   </children>
 </AnchorPane>
