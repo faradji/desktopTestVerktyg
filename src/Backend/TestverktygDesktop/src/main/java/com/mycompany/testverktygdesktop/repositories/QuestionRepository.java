@@ -38,7 +38,6 @@ public class QuestionRepository {
         Session session = sessionFactory.openSession();
         
         List<Question> questions =session.createCriteria(Question.class).list();
-        System.out.println("frågelistans storlek: ----------------------------------"+ questions.size());
 
         session.close();
         return questions;

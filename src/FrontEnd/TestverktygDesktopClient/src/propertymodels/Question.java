@@ -11,6 +11,7 @@ public class Question{
     IntegerProperty id;
     StringProperty qText;
     IntegerProperty correctAnswer;
+    IntegerProperty test_Id;
 
     private ArrayList<String> answers;
 
@@ -19,11 +20,12 @@ public class Question{
     public Question() {
     }
 
-    public Question(int id, String qText, int correctAnswer, ArrayList answers) {
+    public Question(int id, String qText, int correctAnswer, ArrayList answers, int test_Id) {
         this.id = new SimpleIntegerProperty(id);
         this.qText = new SimpleStringProperty(qText);
         this.correctAnswer = new SimpleIntegerProperty(correctAnswer);
         this.answers = answers;
+        this.test_Id = new SimpleIntegerProperty(test_Id);
     }
 
     public int getId() {
@@ -58,6 +60,13 @@ public class Question{
         this.answers = answers;
     }
 
+    public int getTest_Id() {
+        return test_Id.get();
+    }
+    public void setTest_Id(int test_Id) {
+        this.test_Id.set(test_Id);
+    }
+    
     public Test getTest() {
         return test;
     }

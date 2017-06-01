@@ -40,14 +40,15 @@ public class StudentStartPageController implements Initializable
     private TableColumn columnTestName;
 
     TestRepository testRepo = new TestRepository();
+    public static Test currentTest;//fyll den med det test som studenten väljer
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        populateTableDoneTests();
+        populateTableTests();
     }
 
-    public void populateTableDoneTests()
+    public void populateTableTests()
     {
 
         List<models.Test> temp = testRepo.getTests();
