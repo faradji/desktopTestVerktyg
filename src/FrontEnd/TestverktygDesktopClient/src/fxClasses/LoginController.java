@@ -19,18 +19,17 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Participant;
-import models.Teacher;
-import propertymodels.Student;
+
 import repositories.ParticipantRepository;
 
 public class LoginController implements Initializable {
 
-    static Teacher currentTeacher;
-    static Student currentStudent;
-    
+    static propertymodels.Teacher currentTeacher;
+    static propertymodels.Student currentStudent;
+
     ParticipantRepository pr = new ParticipantRepository();
 
-    Participant currentParticipant = new Participant();
+    propertymodels.Participant currentParticipant = new propertymodels.Participant();
 
     @FXML
     Button btnLogin;
@@ -46,13 +45,26 @@ public class LoginController implements Initializable {
 
     @FXML
     private void btnLoginClicked(ActionEvent event) throws IOException {
+        if (currentParticipant instanceof propertymodels.Teacher) {
+            if (txtPassword.getText().equals(currentParticipant.getPassword())) {
 
-        if (txtPassword.getText().equals(currentParticipant.getPassword())) {
+                //System.out.println("Subject: "+currentParticipant.getSubject());
+                System.out.println("Påväg till TeacherStartPage");
 
-            //System.out.println("Subject: "+currentParticipant.getSubject());
-            System.out.println("Påväg till TeacherStartPage");
+                Parent p = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
 
-            Parent p = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
+                Scene s = new Scene(p);
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                stage.setScene(s);
+
+                stage.show();
+
+            }
+        } else {
+            //student
+            Parent p = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
 
             Scene s = new Scene(p);
 
@@ -81,42 +93,15 @@ public class LoginController implements Initializable {
                     Runnable r = ()
                             -> {
 
-//                        TeacherRepository tRepo=new TeacherRepository();
-//                        List<Teacher> teacherList;
-//                        teacherList = tRepo.getTeachers();
-//                        System.out.println("Lista på studenter: "+teacherList);
-                        List<Participant> participantList;
+                        Participant p = pr.getParticipant(txtUserName.getText());
 
-                        participantList = pr.getParticipants();
+                        if (p.getName().equalsIgnoreCase(txtUserName.getText())) {
 
-                        System.out.println("participantList värde: " + participantList);
-
-                        for (int i = 0; i < participantList.size(); i++) {
-
-                            Participant loopParticipant = participantList.get(i);
-
-                            if (loopParticipant.getName().equals(txtUserName.getText())) {
-
-//                                Class tempTeacher = new Class();
-//
-//                                
-//
-//                                if(loopParticipant.getClass().asSubclass(tempTeacher)){
-//
-//                                    
-//
-//                                }
-                                currentParticipant.setId(loopParticipant.getId());
-
-                                currentParticipant.setName(loopParticipant.getName());
-
-                                currentParticipant.setPassword(loopParticipant.getPassword());
-
-                                System.out.println(currentParticipant.getName());
-
-                            }
-
+                            currentParticipant.setId(p.getId());
+                            currentParticipant.setName(p.getName());
+                            currentParticipant.setPassword(p.getPassword());
                         }
+                        System.out.println(currentParticipant.getName());
 
                     };
 
