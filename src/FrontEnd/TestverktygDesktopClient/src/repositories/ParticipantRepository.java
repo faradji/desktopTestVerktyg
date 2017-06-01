@@ -5,7 +5,6 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import models.DoneTest;
 import models.Participant;
 
 public class ParticipantRepository {

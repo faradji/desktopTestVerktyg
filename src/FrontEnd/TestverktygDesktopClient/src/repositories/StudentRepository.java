@@ -1,23 +1,43 @@
 
 package repositories;
 
+import java.util.List;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import models.Student;
+
 
 public class StudentRepository
 {
 
-   
+   Client client;
 
     public StudentRepository()
     {
 
     }
-//
-//    public Student getStudent(int studentId)
+    public List<Student> getStudents() {
+        
+        client = ClientBuilder.newClient();
+        
+        List<Student> students;
+        students = client.target("http://localhost:8080/TestverktygDesktop/webapi/students/studentlist")
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<List<Student>>(){});
+        
+        System.out.println("Studentlist: " + students);
+        
+        client.close();
+
+        return students;
+    }
+//    public List<Student> getStudents(int studentId)
 //    {
-//     
-//        return student;
+//         return students;
 //    }
-//
+
 //    public List<Student> getStudents()
 //    {
 //      

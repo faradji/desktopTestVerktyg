@@ -21,16 +21,20 @@ public class TeacherResource {
     @GET
     @Path("/{participantId}")
     public Teacher getTeacher(@PathParam("participantId") int participantId) {
+        
         return t.getTeacher(participantId);
     }
 
     @GET
+//    @Path("/teacherlist")
     public List<Teacher> getTeachers() {
+        System.out.println(t.getTeachers().size());
         return t.getTeachers();
     }
     
     @Path("/{participantId}/tests")
     public TestResource getTeacherTests(){
+        
         return new TestResource();
     }
     

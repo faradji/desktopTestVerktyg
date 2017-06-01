@@ -10,9 +10,8 @@
 package fxClasses;
 
 import java.io.IOException;
+import java.lang.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -32,14 +31,13 @@ import javafx.stage.Stage;
 import models.Participant;
 import repositories.ParticipantRepository;
 import models.Teacher;
-import propertymodels.Student;
 
 public class LoginController implements Initializable {
 
     ParticipantRepository pr = new ParticipantRepository();
 
     Participant currentParticipant = new Participant();
-
+    
     @FXML Button btnLogin;
     @FXML TextField txtUserName;
     @FXML PasswordField txtPassword;
@@ -49,12 +47,15 @@ public class LoginController implements Initializable {
     {        
         if (txtPassword.getText().equals(currentParticipant.getPassword()))
         {
-            System.out.println("Dtype: " + currentParticipant.getDtype());
-            Parent p = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
-            Scene s = new Scene(p);
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(s);
-            stage.show();
+            //System.out.println("Subject: "+currentParticipant.getSubject());
+                System.out.println("Påväg till TeacherStartPage");
+                Parent p = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
+                Scene s = new Scene(p);
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                stage.setScene(s);
+                stage.show();
+ 
+
         }
 
     }
@@ -73,6 +74,10 @@ public class LoginController implements Initializable {
                 {
                     Runnable r = ()-> 
                     {
+//                        TeacherRepository tRepo=new TeacherRepository();
+//                        List<Teacher> teacherList;
+//                        teacherList = tRepo.getTeachers();
+//                        System.out.println("Lista på studenter: "+teacherList);
                         List<Participant> participantList;
                         participantList = pr.getParticipants();
                         System.out.println("participantList värde: " + participantList);
@@ -82,6 +87,11 @@ public class LoginController implements Initializable {
                             Participant loopParticipant = participantList.get(i);
                             if (loopParticipant.getName().equals(txtUserName.getText()))
                             {
+                                Class tempTeacher = new Class();
+                                
+                                if(loopParticipant.getClass().asSubclass(tempTeacher)){
+                                    
+                                }
                                 currentParticipant.setId(loopParticipant.getId());
                                 currentParticipant.setName(loopParticipant.getName());
                                 currentParticipant.setPassword(loopParticipant.getPassword());
