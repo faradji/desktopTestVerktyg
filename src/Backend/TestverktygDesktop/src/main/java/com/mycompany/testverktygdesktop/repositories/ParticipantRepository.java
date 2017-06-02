@@ -16,7 +16,7 @@ public class ParticipantRepository {
     public Participant getParticipant(int participantId) {
         Session session = sessionFactory.openSession();
         Participant participant = (Participant) session.get(Participant.class, participantId);
-
+        
         session.close();
         System.out.println("repo");
         return participant;

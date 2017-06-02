@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Student extends Participant implements Serializable {
-
+    
     List<Test> tests;
-
+    
     public Student() {
         super();
     }

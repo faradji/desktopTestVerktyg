@@ -16,7 +16,7 @@ import javax.ws.rs.PathParam;
  */
 @Path("/participants")
 public class ParticipantResource {
-        ParticipantRepository sr = new ParticipantRepository();
+    ParticipantRepository sr = new ParticipantRepository();
 
     @GET
     @Path("/{participantId}")
@@ -27,6 +27,7 @@ public class ParticipantResource {
     }
 
     @GET
+    @Path("/participantlist")
     public List<Participant> getParticipants()
     {
         System.out.println("resource");

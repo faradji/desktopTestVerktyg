@@ -3,8 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Ali/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/repositories/ParticipantRepository.java</file>
             <file>file:/C:/Users/Ali/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/fxClasses/LoginController.java</file>
+=======
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/repositories/DoneTestRepository.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/repositories/ParticipantRepository.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/fxClasses/LoginController.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/models/Participant.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/propertymodels/Student.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/fxClasses/TeacherAddTestController.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/fxClasses/TestverktygDesktopClient.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/propertymodels/Teacher.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/propertymodels/Participant.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/models/Teacher.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/repositories/StudentRepository.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/repositories/QuestionRepository.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/fxClasses/Login.fxml</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/models/Question.java</file>
+            <file>file:/C:/Users/Henrik%20Rosqvist/Desktop/desktopTestVerktyg/src/FrontEnd/TestverktygDesktopClient/src/models/Student.java</file>
+>>>>>>> henrik2
         </group>
     </open-files>
 </project-private>

@@ -8,10 +8,25 @@ import javax.ws.rs.core.MediaType;
 import models.Participant;
 
 public class ParticipantRepository {
+<<<<<<< HEAD
     Client client;
     public ParticipantRepository() {
        
     }
+=======
+
+    Client client;
+    
+    public ParticipantRepository() {
+       
+    }
+//
+//    public Participant getParticipant(int participantId) {
+//      
+//        return participant;
+//    }
+//
+>>>>>>> henrik2
     public List<Participant> getParticipants() {
         
         client = ClientBuilder.newClient();
@@ -25,6 +40,7 @@ public class ParticipantRepository {
 
         return participants;
     }
+<<<<<<< HEAD
     
     public Participant getParticipant(String name) {
         
@@ -39,6 +55,8 @@ public class ParticipantRepository {
 
         return participant;
     }
+=======
+>>>>>>> henrik2
 //
 //    public Participant addParticipant(Participant participant) {
 //       
@@ -53,5 +71,12 @@ public class ParticipantRepository {
 //    public void deleteParticipant(int participantId) {
 //       
 //    }
+<<<<<<< HEAD
+=======
+//
+//    public Student getParticipant(String participantName) {
+//        return 
+//    }
+>>>>>>> henrik2
 
 }

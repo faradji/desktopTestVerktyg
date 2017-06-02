@@ -88,6 +88,12 @@
             <version>2.4</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.extras</groupId>
+            <artifactId>glassfish-embedded-web</artifactId>
+            <version>3.1.1</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <jersey.version>2.26-b03</jersey.version>
