@@ -7,8 +7,10 @@ import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -22,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -48,19 +51,13 @@ public class StudentTestController implements Initializable {
     int chosenCheckBoxId = 0;
 
     @FXML
-    private Label lblTestSubject;
+    private Label lblTestSubject,lblTimeLeft,lblTeacherSubject,lblcurrentQuestionNR,lblQuestionText;
     @FXML
-    private Label lblTeacherSubject;
-    @FXML
-    private Label lblTimeLeft;
+    private Label quealternativ1,quealternativ2,quealternativ3,quealternativ4;
     @FXML
     private ListView lvQuestionsNR;
     @FXML
     private ListView lvCorrectedQuestion;
-    @FXML
-    private Label lblcurrentQuestionNR;
-    @FXML
-    private Label lblQuestionText;
     @FXML
     private CheckBox chbxalternativ1;
     @FXML
@@ -71,6 +68,7 @@ public class StudentTestController implements Initializable {
     private CheckBox chbxalternativ2;
     @FXML
     private ImageView ivImage;
+    @FXML private Button btnSaveTest;
 
     public void populateListView() {
         //populate listview
@@ -85,54 +83,64 @@ public class StudentTestController implements Initializable {
 
         lvQuestionsNR.setItems(observableQuestions);
     }
-
+    
+    @FXML private void btnSaveTestAction()
+    {
+        System.out.println("btnSaveTestAction");
+        chbxalternativ1.setDisable(true);
+        chbxalternativ2.setDisable(true);
+        chbxalternativ3.setDisable(true);
+        chbxalternativ4.setDisable(true);
+        
+    }
+    
     @FXML
     public void checkBoxHandler(MouseEvent event) {
         String source1 = event.getSource().toString().substring(12, 27);
         System.out.println(source1);
         switch (source1) {
-            case "checkBxQuestionAlt1": {
+            case "chbxalternativ1": {
                 System.out.println("tklasdlkj");
-                chbxalternativ1.setSelected(true);
+                chbxalternativ1.selectedProperty().set(true);
 
-                chbxalternativ2.setSelected(false);
-                chbxalternativ3.setSelected(false);
-                chbxalternativ4.setSelected(false);
+                chbxalternativ2.selectedProperty().set(false);
+                chbxalternativ3.selectedProperty().set(false);
+                chbxalternativ4.selectedProperty().set(false);
                 chosenCheckBoxId = 0;
                 saveDoneQuestion(event);
                 break;
             }
 
-            case "checkBxQuestionAlt2": {
-                chbxalternativ2.setSelected(true);
+            case "chbxalternativ2": {
+                chbxalternativ2.selectedProperty().set(true);
 
-                chbxalternativ1.setSelected(false);
-                chbxalternativ3.setSelected(false);
-                chbxalternativ4.setSelected(false);
+                chbxalternativ1.selectedProperty().set(false);
+                chbxalternativ3.selectedProperty().set(false);
+                chbxalternativ4.selectedProperty().set(false);
                 chosenCheckBoxId = 1;
-                saveDoneQuestion(event);
+                //saveDoneQuestion(event);
                 break;
             }
 
-            case "checkBxQuestionAlt3": {
-                chbxalternativ3.setSelected(true);
+            case "chbxalternativ3": {
+                chbxalternativ3.selectedProperty().set(true);
 
-                chbxalternativ1.setSelected(false);
-                chbxalternativ2.setSelected(false);
-                chbxalternativ4.setSelected(false);
+                chbxalternativ1.selectedProperty().set(false);
+                chbxalternativ2.selectedProperty().set(false);
+                chbxalternativ4.selectedProperty().set(false);
                 chosenCheckBoxId = 2;
-                saveDoneQuestion(event);
+                //saveDoneQuestion(event);
                 break;
             }
 
-            case "checkBxQuestionAlt4": {
-                chbxalternativ4.setSelected(true);
+            case "chbxalternativ4": {
+                chbxalternativ4.selectedProperty().set(true);
 
-                chbxalternativ1.setSelected(false);
-                chbxalternativ2.setSelected(false);
-                chbxalternativ3.setSelected(false);
+                chbxalternativ1.selectedProperty().set(false);
+                chbxalternativ2.selectedProperty().set(false);
+                chbxalternativ3.selectedProperty().set(false);
                 chosenCheckBoxId = 3;
-                saveDoneQuestion(event);
+                //saveDoneQuestion(event);
                 break;
             }
 
@@ -142,15 +150,18 @@ public class StudentTestController implements Initializable {
     public void saveDoneQuestion(MouseEvent event) {
         StudentAnswer answer = new StudentAnswer();
         answer.setDate(Date.valueOf(LocalDate.MAX));
-        answer.setGivenAnswer(currentQ.getAnswers().get(chosenCheckBoxId).toString());
+        System.out.println(chosenCheckBoxId);
+        answer.setGivenAnswer(chosenCheckBoxId);
 //        answer.setParticipant_Id(currentStudent.getId());
-        answer.setQuestion_Id(currentQ.getId());
-        answers.stream().forEach((a) -> {
-            if (answer.getQuestion_Id() != a.getQuestion_Id()) {
-                answers.add(answer);
-            }
 
-        });
+        System.out.println(currentQ.getId());
+        //answer.setQuestion_Id(currentQ.getId());
+//        answers.stream().forEach((a) -> {
+//            if (answer.getQuestion_Id() != a.getQuestion_Id()) {
+//                answers.add(answer);
+//            }
+//
+//        });
         if (answers.size() == observableQuestions.size()) {
             //byt till startpage för student
             try {
@@ -170,32 +181,42 @@ public class StudentTestController implements Initializable {
         }
 
     }
-
+    @FXML
+    public void lvQuestionsNRSelected(){
+        lblcurrentQuestionNR.setText("Question: "+String.valueOf(lvQuestionsNR.getSelectionModel().getSelectedIndex()+1));
+        currentQuestion();
+    }
+    
     public void currentQuestion() {
 
         // hålla reda på current question
-        lblcurrentQuestionNR.setText(String.valueOf(lvQuestionsNR.getSelectionModel().getSelectedIndex()));
         currentQ = (Question) lvQuestionsNR.getSelectionModel().getSelectedItem();
-        Image image = null;
+        Image image;
         if (currentQ != null) {
             lblQuestionText.setText(currentQ.getqText());
+            
+            if (currentQ.getImageURL()== null){
+                currentQ.setImageURL("http://www.jennybeaumont.com/wp-content/uploads/2015/03/placeholder-800x423.gif");
+            }
             image = new Image(currentQ.getImageURL());
-
             ivImage.setImage(image);
             for (int i = 0; i < currentQ.getAnswers().size(); i++) {
-
+                
+                String currentQue = currentQ.getAnswers().get(i).toString().substring(20);
+                currentQue = currentQue.substring(0, currentQue.length()-1);
+             
                 switch (i) {
                     case 0:
-                        chbxalternativ1.setText(currentQ.getAnswers().get(i).toString());
+                        quealternativ1.setText(currentQue);
                         break;
                     case 1:
-                        chbxalternativ2.setText(currentQ.getAnswers().get(i).toString());
+                        quealternativ2.setText(currentQue);
                         break;
                     case 2:
-                        chbxalternativ3.setText(currentQ.getAnswers().get(i).toString());
+                        quealternativ3.setText(currentQue);
                         break;
                     case 3:
-                        chbxalternativ4.setText(currentQ.getAnswers().get(i).toString());
+                        quealternativ4.setText(currentQue);
                         break;
 
                 }
@@ -222,6 +243,9 @@ public class StudentTestController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         startTimer();
         populateListView();
+        currentQuestion();
+        
+        lvQuestionsNR.getSelectionModel().select(0);
         currentQuestion();
 
         //populate labels med info

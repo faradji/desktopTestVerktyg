@@ -16,15 +16,11 @@ public class Teacher extends Participant {
         super();
     }
 
-<<<<<<< HEAD
+
     public Teacher(int id, String name, String password, String subject) {
         super(id, name, password);
         this.subject = new SimpleStringProperty(subject);
-=======
-    public Teacher(int id, String name, String password, String dtype, String subject) {
-        super(id, name, password, dtype);
-        this.subject = subject;
->>>>>>> henrik2
+
     }
 
     public String getSubject() {

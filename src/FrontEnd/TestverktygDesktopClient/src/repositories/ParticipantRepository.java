@@ -8,13 +8,6 @@ import javax.ws.rs.core.MediaType;
 import models.Participant;
 
 public class ParticipantRepository {
-<<<<<<< HEAD
-    Client client;
-    public ParticipantRepository() {
-       
-    }
-=======
-
     Client client;
     
     public ParticipantRepository() {
@@ -26,7 +19,6 @@ public class ParticipantRepository {
 //        return participant;
 //    }
 //
->>>>>>> henrik2
     public List<Participant> getParticipants() {
         
         client = ClientBuilder.newClient();
@@ -40,23 +32,7 @@ public class ParticipantRepository {
 
         return participants;
     }
-<<<<<<< HEAD
-    
-    public Participant getParticipant(String name) {
-        
-        client = ClientBuilder.newClient();
-        
-        Participant participant;
-        participant = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants/participantlist")
-                .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<Participant>(){});
-        
-        client.close();
 
-        return participant;
-    }
-=======
->>>>>>> henrik2
 //
 //    public Participant addParticipant(Participant participant) {
 //       
@@ -71,12 +47,15 @@ public class ParticipantRepository {
 //    public void deleteParticipant(int participantId) {
 //       
 //    }
-<<<<<<< HEAD
-=======
+
 //
 //    public Student getParticipant(String participantName) {
 //        return 
 //    }
->>>>>>> henrik2
+
+    public Participant getParticipant(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }
