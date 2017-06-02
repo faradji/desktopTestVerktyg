@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.TeacherAddTestController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.TeacherAddTestController">
    <children>
       <Label fx:id="labelTeacherName" layoutX="50.0" layoutY="22.0" text="name_teacher" />
       <Label fx:id="labelResponseAlt" layoutX="50.0" layoutY="174.0" text="Svarsalternativ" />
@@ -21,8 +17,8 @@
       <Label fx:id="labelQuestionNr" layoutX="50.0" layoutY="144.0" text="Fråga nr" />
       <Label fx:id="labelCheckBoxCorrect" layoutX="47.0" layoutY="200.0" text="checboxa rätt svar" />
       <Label fx:id="labelAddPic" layoutX="31.0" layoutY="258.0" text="lägg till bild" />
-      <CheckBox fx:id="chckBxYes" layoutX="227.0" layoutY="76.0" mnemonicParsing="false" text="Ja" />
-      <CheckBox fx:id="chckBxNo" layoutX="329.0" layoutY="76.0" mnemonicParsing="false" text="Nej" />
+      <CheckBox fx:id="chckBxYes" layoutX="227.0" layoutY="76.0" mnemonicParsing="false" onMouseClicked="#checkBoxHandlerAutoCorrectedTest" text="Ja" />
+      <CheckBox fx:id="chckBxNo" layoutX="329.0" layoutY="76.0" mnemonicParsing="false" onMouseClicked="#checkBoxHandlerAutoCorrectedTest" onMouseReleased="#checkBoxHandlerAutoCorrectedTest" text="Nej" />
       <TextField fx:id="textFieldTimeLeft" layoutX="200.0" layoutY="97.0" />
       <TextField fx:id="textFieldQuestionText" layoutX="200.0" layoutY="140.0" prefHeight="25.0" prefWidth="360.0" />
       <TextField fx:id="textFieldQuestionAlt1" layoutX="200.0" layoutY="170.0" prefHeight="25.0" prefWidth="96.0" />
@@ -37,5 +33,7 @@
       <TextField fx:id="textFieldImageUrl" layoutX="200.0" layoutY="246.0" prefHeight="25.0" prefWidth="169.0" />
       <Button fx:id="btnSave" layoutX="73.0" layoutY="315.0" mnemonicParsing="false" onAction="#btnSaveAction" text="Spara och skapa ny" />
       <Button fx:id="btnDone" layoutX="201.0" layoutY="315.0" mnemonicParsing="false" onAction="#btnDoneAction" text="Test klart" />
+      <TextField fx:id="textFieldTestName" layoutX="200.0" layoutY="38.0" />
+      <Label layoutX="261.0" layoutY="22.0" text="Provnamn" />
    </children>
 </AnchorPane>
