@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fxClasses;
 
+import static fxClasses.LoginController.currentTeacher;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
@@ -145,8 +141,8 @@ public class TeacherAddTestController implements Initializable
 
     public void setLabelsOfTeacher()
     {
-        labelTeacherName.setText(LoginController.currentTeacher.getName());
-        labelSubject.setText(LoginController.currentTeacher.getSubject());
+        labelTeacherName.setText(currentTeacher.getName());
+        labelSubject.setText(currentTeacher.getSubject());
     }
 
     @FXML
