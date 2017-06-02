@@ -1,8 +1,10 @@
 package com.mycompany.testverktygdesktop.repositories;
 
+import com.mycompany.testverktygdesktop.models.Participant;
 import com.mycompany.testverktygdesktop.models.Teacher;
 import com.mycompany.testverktygdesktop.models.Test;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -20,6 +22,15 @@ public class TeacherRepository {
         return t;
     }
     
+    
+    public Teacher getTeacherByName(String TeacherName) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Teacher where name = :name ");
+        query.setParameter("name", TeacherName);
+        Teacher t = (Teacher) query.uniqueResult();
+        session.close();
+        return t;
+    }
 
     public List<Teacher> getTeachers() {
         Session session = sessionFactory.openSession();

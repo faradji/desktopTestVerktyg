@@ -1,5 +1,6 @@
 package com.mycompany.testverktygdesktop.resources;
 
+import com.mycompany.testverktygdesktop.models.Student;
 import com.mycompany.testverktygdesktop.models.Teacher;
 import com.mycompany.testverktygdesktop.models.Test;
 import com.mycompany.testverktygdesktop.repositories.TeacherRepository;
@@ -18,12 +19,17 @@ public class TeacherResource {
 
     TeacherRepository t = new TeacherRepository();
     
-    @GET
-    @Path("/{participantId}")
-    public Teacher getTeacher(@PathParam("participantId") int participantId) {
-        return t.getTeacher(participantId);
+//    @GET
+//    @Path("/{participantId}")
+//    public Teacher getTeacher(@PathParam("participantId") int participantId) {
+//        return t.getTeacher(participantId);
+//    }
+            @GET
+    @Path("/{teacherName}")
+    public Teacher getTeacherByName(@PathParam("teacherName") String teacherName)
+    {
+        return t.getTeacherByName(teacherName);
     }
-
     @GET
     public List<Teacher> getTeachers() {
         return t.getTeachers();
