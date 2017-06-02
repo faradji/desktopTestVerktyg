@@ -26,6 +26,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import models.Question;
 import models.Test;
+import repositories.TestRepository;
 
 /**
  * FXML Controller class
@@ -34,7 +35,7 @@ import models.Test;
  */
 public class TeacherAddTestController implements Initializable
 {
-
+    TestRepository tr = new TestRepository();
     @FXML
     private Label labelTeacherName;
     @FXML
@@ -86,32 +87,36 @@ public class TeacherAddTestController implements Initializable
     @FXML
     private Button btnDone;
 
-    List<Question> newQuestions = new ArrayList();
+    List<models.Question> newQuestions = new ArrayList();
+    ArrayList<String> tempAnswers = new ArrayList<>();
 
     int chosenCheckBoxId = 0;
     int questionNumCount = 1;
 
     int isAutoCorrected;
 
-    Client client;
-
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        labelQuestionNr.setText("Fråga nummer " + questionNumCount);
+        
         chckBxYes.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue){
                 chckBxNo.setSelected(false);
+                isAutoCorrected = 1;
+                
             }
         });
         
         chckBxNo.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue){
                 chckBxYes.setSelected(false);
+                isAutoCorrected = 0;
             }
         });
         //setLabelsOfTeacher();
-        client = ClientBuilder.newClient();
-        labelQuestionNr.setText("Fråga nummer " + questionNumCount);
+        
+        
 
     }
 
@@ -179,10 +184,9 @@ public class TeacherAddTestController implements Initializable
     @FXML
     private void btnSaveAction(ActionEvent event)
     {
-        Question q = new Question();
+        models.Question q = new Question();
 
         q.setqText(textFieldQuestionText.getText());
-        ArrayList<String> tempAnswers = new ArrayList<>();
         tempAnswers.add(textFieldQuestionAlt1.getText());
         tempAnswers.add(textFieldQuestionAlt2.getText());
         tempAnswers.add(textFieldQuestionAlt3.getText());
@@ -192,7 +196,7 @@ public class TeacherAddTestController implements Initializable
 
         if (chosenCheckBoxId > 0)
         {
-            q.setCorrectAnswer(chosenCheckBoxId-0);//om denna variabel ska visa vart i arrayen som svaret finns så måste det bli ett minus 1?
+            q.setCorrectAnswer(chosenCheckBoxId - 0);//om denna variabel ska visa vart i arrayen som svaret finns så måste det bli ett minus 1?
             
             newQuestions.add(q);
 
@@ -216,32 +220,6 @@ public class TeacherAddTestController implements Initializable
     }
 
     @FXML
-    private void checkBoxHandlerAutoCorrectedTest(MouseEvent event)
-    {
-        String source1 = event.getSource().toString();
-        System.out.println("Event source---------->>>>>><<<<<<<----------" + source1);
-        switch (source1)
-        {
-            case "CheckBox[id=chckBxYes, styleClass=check-box]'Ja'":
-            {
-                chckBxYes.selectedProperty().set(true);
-                chckBxNo.selectedProperty().set(false);
-                isAutoCorrected = 1;
-                break;
-            }
-
-            case "CheckBox[id=chckBxNo, styleClass=check-box]'Nej'":
-            {
-                chckBxNo.selectedProperty().set(true);
-                chckBxYes.selectedProperty().set(false);
-                isAutoCorrected = 0;
-                break;
-            }
-        }
-
-    }
-
-    @FXML
     private void btnDoneAction(ActionEvent event)
     {
         models.Test t = new models.Test();
@@ -250,12 +228,10 @@ public class TeacherAddTestController implements Initializable
         t.setSubject("Magnus testSubject");
         //t.setSubject(LoginController.currentTeacher.getSubject());
         t.setTotalTime(Integer.parseInt(textFieldTimeLeft.getText()));
-        t.setQuestions(newTest);
-
-        Test taSK = client.target("http://localhost:8080/TestverktygDesktop/webapi/tests/")                
-                .request(MediaType.APPLICATION_JSON)
-                .post(Entity.json(t), Test.class);
-
+        t.setQuestions(newQuestions);
+        
+        tr.addTest(t);
+        
     }
 
 }

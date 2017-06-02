@@ -17,8 +17,8 @@
       <Label fx:id="labelQuestionNr" layoutX="50.0" layoutY="144.0" text="Fråga nr" />
       <Label fx:id="labelCheckBoxCorrect" layoutX="47.0" layoutY="200.0" text="checboxa rätt svar" />
       <Label fx:id="labelAddPic" layoutX="31.0" layoutY="258.0" text="lägg till bild" />
-      <CheckBox fx:id="chckBxYes" layoutX="227.0" layoutY="76.0" mnemonicParsing="false" onMouseClicked="#checkBoxHandlerAutoCorrectedTest" text="Ja" />
-      <CheckBox fx:id="chckBxNo" layoutX="329.0" layoutY="76.0" mnemonicParsing="false" onMouseClicked="#checkBoxHandlerAutoCorrectedTest" onMouseReleased="#checkBoxHandlerAutoCorrectedTest" text="Nej" />
+      <CheckBox fx:id="chckBxYes" layoutX="227.0" layoutY="76.0" mnemonicParsing="false" text="Ja" />
+      <CheckBox fx:id="chckBxNo" layoutX="329.0" layoutY="76.0" mnemonicParsing="false" text="Nej" />
       <TextField fx:id="textFieldTimeLeft" layoutX="200.0" layoutY="97.0" />
       <TextField fx:id="textFieldQuestionText" layoutX="200.0" layoutY="140.0" prefHeight="25.0" prefWidth="360.0" />
       <TextField fx:id="textFieldQuestionAlt1" layoutX="200.0" layoutY="170.0" prefHeight="25.0" prefWidth="96.0" />

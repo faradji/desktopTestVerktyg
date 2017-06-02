@@ -4,6 +4,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import models.DoneTest;
@@ -12,6 +13,7 @@ import propertymodels.StudentAnswer;
 
 public class TestRepository {
     Client client;
+    
     public TestRepository() {}
 
     public List<Test> getTests()
@@ -29,6 +31,15 @@ public class TestRepository {
 
     public ObservableList<StudentAnswer> getStudentAnswers() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void addTest(Test newTest){
+        System.out.println("Testnamn ------------------------------------" + newTest.getName());
+        client = ClientBuilder.newClient();
+        client.target("http://localhost:8080/TestverktygDesktop/webapi/tests")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.json(newTest), Test.class);
+        
     }
 
 }
