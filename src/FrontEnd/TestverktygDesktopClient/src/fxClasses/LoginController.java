@@ -105,6 +105,8 @@ public class LoginController implements Initializable {
                 stage.setScene(s);
 
                 stage.show();
+            }else{
+                System.out.println("användare finns inte");
             }
 
         } catch (IOException ex) {
