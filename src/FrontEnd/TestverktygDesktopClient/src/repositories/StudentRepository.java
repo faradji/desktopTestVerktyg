@@ -1,29 +1,67 @@
 
 package repositories;
 
+import java.util.List;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+
 
 public class StudentRepository
 {
 
-   
+    Client client;
 
-    public StudentRepository()
-    {
+    public StudentRepository() {
 
     }
-//
-//    public Student getStudent(int studentId)
-//    {
-//     
-//        return student;
-//    }
-//
-//    public List<Student> getStudents()
-//    {
-//      
-//        return students;
-//    }
-//
+
+    public List<models.Student> getStudents() {
+
+        client = ClientBuilder.newClient();
+
+        List<models.Student> Students;
+        Students = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants")
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<List<models.Student>>() {
+                });
+
+        client.close();
+
+        return Students;
+    }
+
+    public models.Student getStudent(int id) {
+
+        client = ClientBuilder.newClient();
+
+        models.Student Student;
+        Student = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants")
+                .path(String.valueOf(id))
+                .request(MediaType.APPLICATION_JSON)
+                .get(models.Student.class);
+
+        client.close();
+
+        return Student;
+    }
+    
+    
+    public models.Student getStudentByName(String name) {
+
+        client = ClientBuilder.newClient();
+
+        models.Student Student;
+        Student = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants")
+                .path(name)
+                .request(MediaType.APPLICATION_JSON)
+                .get(models.Student.class);
+
+        client.close();
+
+        return Student;
+    }
 //    public Student addStudent(Student student)
 //    {
 //        Session session = sessionFactory.openSession();

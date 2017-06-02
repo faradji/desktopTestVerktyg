@@ -1,9 +1,11 @@
 package fxClasses;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -18,9 +20,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import models.Participant;
+import propertymodels.Participant;
 
 import repositories.ParticipantRepository;
+import repositories.StudentRepository;
+import repositories.TeacherRepository;
 
 public class LoginController implements Initializable {
 
@@ -29,7 +33,7 @@ public class LoginController implements Initializable {
 
     ParticipantRepository pr = new ParticipantRepository();
 
-    propertymodels.Participant currentParticipant = new propertymodels.Participant();
+    propertymodels.Participant currentParticipant;//= new propertymodels.Participant();
 
     @FXML
     Button btnLogin;
@@ -44,16 +48,43 @@ public class LoginController implements Initializable {
     Label lblUserName, lblPassword;
 
     @FXML
-    private void btnLoginClicked(ActionEvent event) throws IOException {
-        if (currentParticipant instanceof propertymodels.Teacher) {
-            if (txtPassword.getText().equals(currentParticipant.getPassword())) {
+    private void btnLoginClicked(ActionEvent event) {
+//         Runnable r = ()
+//                            -> {
+        TeacherRepository tr = new TeacherRepository();
+        StudentRepository sr = new StudentRepository();
+        
+            models.Teacher teacher = tr.getTeacherByName(txtUserName.getText());
+            
+            propertymodels.Teacher propertyT = new propertymodels.Teacher(teacher.getId(), teacher.getName(), teacher.getPassword(), teacher.getSubject());
+           
+                currentTeacher = new propertymodels.Teacher(propertyT.getId(), propertyT.getName(),
+                        propertyT.getPassword(), propertyT.getSubject());
+
+            models.Student student = sr.getStudentByName(txtUserName.getText());
+            
+            propertymodels.Student propertyS = new propertymodels.Student(student.getId(), student.getName(), student.getPassword());
+
+                currentStudent = new propertymodels.Student(propertyS.getId(), propertyS.getName(),
+                        propertyS.getPassword());
+            
+        
+
+//                    };
+//
+//                    Thread thread = new Thread(r);
+//
+//                    thread.start();
+        try {
+            if(currentTeacher.getSubject() != null){
+                if (txtPassword.getText().equals(currentTeacher.getPassword())) {
 
                 //System.out.println("Subject: "+currentParticipant.getSubject());
                 System.out.println("Påväg till TeacherStartPage");
 
-                Parent p = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
+                Parent participant = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
 
-                Scene s = new Scene(p);
+                Scene s = new Scene(participant);
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -62,18 +93,22 @@ public class LoginController implements Initializable {
                 stage.show();
 
             }
-        } else if(currentParticipant instanceof propertymodels.Student){
-            //student
-            Parent p = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
+            }else if (txtPassword.getText().equals(currentStudent.getPassword())) {
 
-            Scene s = new Scene(p);
+                //student
+                Parent p = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene s = new Scene(p);
 
-            stage.setScene(s);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.show();
+                stage.setScene(s);
 
+                stage.show();
+            }
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
 
     }
@@ -89,25 +124,6 @@ public class LoginController implements Initializable {
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
 
                 if (newPropertyValue) {
-
-                    Runnable r = ()
-                            -> {
-
-                        Participant p = pr.getParticipant(txtUserName.getText());
-
-                        if (p.getName().equalsIgnoreCase(txtUserName.getText())) {
-
-                            currentParticipant.setId(p.getId());
-                            currentParticipant.setName(p.getName());
-                            currentParticipant.setPassword(p.getPassword());
-                        }
-                        System.out.println(currentParticipant.getName());
-
-                    };
-
-                    Thread thread = new Thread(r);
-
-                    thread.start();
 
                 }
 

@@ -5,36 +5,40 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import models.Participant;
 
 public class ParticipantRepository {
+
     Client client;
+
     public ParticipantRepository() {
-       
+
     }
-    public List<Participant> getParticipants() {
-        
+
+    public List<models.Participant> getParticipants() {
+
         client = ClientBuilder.newClient();
-        
-        List <Participant> participants;
-        participants = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants/participantlist")
+
+        List<models.Participant> participants;
+        participants = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants")
                 .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<List<Participant>>(){});
-        
+                .get(new GenericType<List<models.Participant>>() {
+                });
+
         client.close();
 
         return participants;
     }
-    
-    public Participant getParticipant(String name) {
-        
+
+    public models.Participant getParticipant(String name) {
+
         client = ClientBuilder.newClient();
-        
-        Participant participant;
-        participant = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants/participantlist")
+
+        models.Participant participant;
+        participant = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants")
+                .path(name)
                 .request(MediaType.APPLICATION_JSON)
-                .get(new GenericType<Participant>(){});
-        
+                .get(models.Participant.class);
+
         client.close();
 
         return participant;
