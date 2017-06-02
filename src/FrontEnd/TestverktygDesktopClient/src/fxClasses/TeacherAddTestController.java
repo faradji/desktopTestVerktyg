@@ -79,15 +79,13 @@ public class TeacherAddTestController implements Initializable
     @FXML
     private Button btnDone;
 
-    List<Question> newTest = new ArrayList();
+    List<Question> newQuestions = new ArrayList();
 
     int chosenCheckBoxId = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        //chckBxYes.selectedProperty().bindBidirectional(chckBxNo.selectedProperty().not());
-        
         chckBxYes.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue){
                 chckBxNo.setSelected(false);
@@ -100,7 +98,6 @@ public class TeacherAddTestController implements Initializable
             }
         });
         //setLabelsOfTeacher();
-
     }
 
     @FXML
@@ -180,9 +177,9 @@ public class TeacherAddTestController implements Initializable
 
         if (chosenCheckBoxId > 0)
         {
-            q.setCorrectAnswer(chosenCheckBoxId);
+            q.setCorrectAnswer(chosenCheckBoxId-0);//om denna variabel ska visa vart i arrayen som svaret finns så måste det bli ett minus 1?
             
-            newTest.add(q);
+            newQuestions.add(q);
 
             textFieldQuestionText.clear();
             textFieldQuestionAlt1.clear();
