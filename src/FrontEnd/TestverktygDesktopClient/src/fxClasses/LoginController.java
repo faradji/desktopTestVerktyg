@@ -62,7 +62,7 @@ public class LoginController implements Initializable {
                 stage.show();
 
             }
-        } else {
+        } else if(currentParticipant instanceof propertymodels.Student){
             //student
             Parent p = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
 
