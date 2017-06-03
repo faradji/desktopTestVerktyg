@@ -14,7 +14,7 @@ public class TestRepository {
     }
 
     public Test addTest(Test test) {
-        Session session = sessionFactory.openSession();
+        Session session = myHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(test);
         session.getTransaction().commit();

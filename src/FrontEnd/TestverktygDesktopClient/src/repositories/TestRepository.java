@@ -34,7 +34,7 @@ public class TestRepository {
     }
     
     public void addTest(Test newTest){
-        System.out.println("Testnamn ------------------------------------" + newTest.getName());
+        
         client = ClientBuilder.newClient();
         client.target("http://localhost:8080/TestverktygDesktop/webapi/tests")
                 .request(MediaType.APPLICATION_JSON)

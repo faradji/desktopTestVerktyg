@@ -26,6 +26,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import models.Question;
 import models.Test;
+import repositories.QuestionRepository;
 import repositories.TestRepository;
 
 /**
@@ -89,6 +90,7 @@ public class TeacherAddTestController implements Initializable
 
     List<models.Question> newQuestions = new ArrayList();
     ArrayList<String> tempAnswers = new ArrayList<>();
+    int idOfLastTestInList;
 
     int chosenCheckBoxId = 0;
     int questionNumCount = 1;
@@ -114,6 +116,7 @@ public class TeacherAddTestController implements Initializable
                 isAutoCorrected = 0;
             }
         });
+        
         //setLabelsOfTeacher();
         
         
@@ -222,15 +225,36 @@ public class TeacherAddTestController implements Initializable
     @FXML
     private void btnDoneAction(ActionEvent event)
     {
+        QuestionRepository qr = new QuestionRepository();
+        
         models.Test t = new models.Test();
         t.setName(textFieldTestName.getText());
         t.setAutoCorrectedTest(isAutoCorrected);
         t.setSubject("Magnus testSubject");
         //t.setSubject(LoginController.currentTeacher.getSubject());
         t.setTotalTime(Integer.parseInt(textFieldTimeLeft.getText()));
-        t.setQuestions(newQuestions);
         
         tr.addTest(t);
+        List<models.Test> listToCheckIdOfLastTest = tr.getTests();
+        int sizeOflistToCheckIdOfLastTest = listToCheckIdOfLastTest.size();
+        idOfLastTestInList = listToCheckIdOfLastTest.get(sizeOflistToCheckIdOfLastTest).getId();
+        
+        //t.setQuestions(newQuestions);
+        for(int i = 0; i < newQuestions.size(); i++)
+        {
+            models.Question q = new models.Question();
+            q.setqText(newQuestions.get(i).getqText());
+            q.setAnswers(newQuestions.get(i).getAnswers());
+            q.setImageURL(newQuestions.get(i).getImageURL());
+            q.setCorrectAnswer(newQuestions.get(i).getCorrectAnswer());
+            
+            qr.addQuestion(idOfLastTestInList, q);
+            
+        }
+        
+        
+        
+        
         
     }
 
