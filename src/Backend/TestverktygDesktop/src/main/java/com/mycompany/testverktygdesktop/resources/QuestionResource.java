@@ -39,6 +39,7 @@ public class QuestionResource {
     }
 
     @POST
+    @Path("/{testId}")
     public Question addQuestion(@PathParam("testId") int testId, Question question) {
         return qr.addQuestion(testId, question);
     }

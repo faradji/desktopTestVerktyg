@@ -19,7 +19,7 @@ public class TeacherRepository {
         client = ClientBuilder.newClient();
 
         List<models.Teacher> Teachers;
-        Teachers = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants")
+        Teachers = client.target("http://localhost:8080/TestverktygDesktop/webapi/teachers")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<List<models.Teacher>>() {
                 });
@@ -34,7 +34,7 @@ public class TeacherRepository {
         client = ClientBuilder.newClient();
 
         models.Teacher Teacher;
-        Teacher = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants")
+        Teacher = client.target("http://localhost:8080/TestverktygDesktop/webapi/teachers")
                 .path(String.valueOf(id))
                 .request(MediaType.APPLICATION_JSON)
                 .get(models.Teacher.class);
@@ -49,8 +49,9 @@ public class TeacherRepository {
         client = ClientBuilder.newClient();
 
         models.Teacher teacher;
-        teacher = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants")
-                .path(name)
+        teacher = client.target("http://localhost:8080/TestverktygDesktop/webapi/teachers")
+                .queryParam("name", name)
+//                .path(name)
                 .request(MediaType.APPLICATION_JSON)
                 .get(models.Teacher.class);
 

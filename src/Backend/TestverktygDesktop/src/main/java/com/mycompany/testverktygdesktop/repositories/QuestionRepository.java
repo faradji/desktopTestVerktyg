@@ -59,9 +59,11 @@ public class QuestionRepository {
     public Question addQuestion(int testId, Question question) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Test test = (Test) session.get(Test.class, testId);
-        question.setTest_Id(test.getId());
-        session.save(question);
+       // Test test = (Test) session.get(Test.class, testId);
+       Question q = new Question(question.getId(), question.getqText(), question.getCorrectAnswer(),
+               question.getAnswers(), question.getImageURL(),
+               testId);
+        session.save(q);
         session.getTransaction().commit();
         session.close();
         return question;

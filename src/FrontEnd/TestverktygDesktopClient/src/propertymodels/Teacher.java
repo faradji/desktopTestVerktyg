@@ -1,7 +1,5 @@
 package propertymodels;
 
-import models.*;
-import java.io.Serializable;
 import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -16,8 +14,8 @@ public class Teacher extends Participant {
         super();
     }
 
-    public Teacher(int id, String name, String password, String subject) {
-        super(id, name, password);
+    public Teacher(int id, String name, String password, String DTYPE, String subject) {
+        super(id, name, password, DTYPE);
         this.subject = new SimpleStringProperty(subject);
     }
 
@@ -32,5 +30,14 @@ public class Teacher extends Participant {
     public List<Test> getTests() {
         return tests;
     }
-    
+
+    @Override
+    public String getDTYPE() {
+        return DTYPE.get();
+    }
+
+    @Override
+    public void setDTYPE(String DTYPE) {
+        this.DTYPE.set(DTYPE);
+    }
 }

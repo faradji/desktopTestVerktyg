@@ -22,7 +22,7 @@ public class StudentRepository
         client = ClientBuilder.newClient();
 
         List<models.Student> Students;
-        Students = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants")
+        Students = client.target("http://localhost:8080/TestverktygDesktop/webapi/students")
                 .request(MediaType.APPLICATION_JSON)
                 .get(new GenericType<List<models.Student>>() {
                 });
@@ -37,7 +37,7 @@ public class StudentRepository
         client = ClientBuilder.newClient();
 
         models.Student Student;
-        Student = client.target("http://localhost:8080/TestverktygDesktop/webapi/participants")
+        Student = client.target("http://localhost:8080/TestverktygDesktop/webapi/students")
                 .path(String.valueOf(id))
                 .request(MediaType.APPLICATION_JSON)
                 .get(models.Student.class);

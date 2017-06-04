@@ -1,13 +1,8 @@
 package fxClasses;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import propertymodels.Participant;
 
 import repositories.ParticipantRepository;
 import repositories.StudentRepository;
@@ -49,68 +43,54 @@ public class LoginController implements Initializable {
 
     @FXML
     private void btnLoginClicked(ActionEvent event) {
-//         Runnable r = ()
-//                            -> {
         TeacherRepository tr = new TeacherRepository();
         StudentRepository sr = new StudentRepository();
-        
-            models.Teacher teacher = tr.getTeacherByName(txtUserName.getText());
-            
-            propertymodels.Teacher propertyT = new propertymodels.Teacher(teacher.getId(), teacher.getName(), teacher.getPassword(), teacher.getSubject());
-           
-                currentTeacher = new propertymodels.Teacher(propertyT.getId(), propertyT.getName(),
-                        propertyT.getPassword(), propertyT.getSubject());
+        models.Participant p = pr.getParticipant(txtUserName.getText());
 
-            models.Student student = sr.getStudentByName(txtUserName.getText());
-            
-            propertymodels.Student propertyS = new propertymodels.Student(student.getId(), student.getName(), student.getPassword());
+        if (p.getDTYPE().equalsIgnoreCase("Teacher")) {
+            try {
+                models.Teacher teacher = tr.getTeacher(p.getId());
+                
+                propertymodels.Teacher propertyT = new propertymodels.Teacher(teacher.getId(), teacher.getName(),
+                        teacher.getPassword(), teacher.getSubject(), teacher.getDTYPE());
+                
+                currentTeacher = propertyT;
 
-                currentStudent = new propertymodels.Student(propertyS.getId(), propertyS.getName(),
-                        propertyS.getPassword());
-            
-        
+                Parent teacherScene = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
 
-//                    };
-//
-//                    Thread thread = new Thread(r);
-//
-//                    thread.start();
-        try {
-            if(currentTeacher.getSubject() != null){
-                if (txtPassword.getText().equals(currentTeacher.getPassword())) {
-
-                //System.out.println("Subject: "+currentParticipant.getSubject());
-                System.out.println("Påväg till TeacherStartPage");
-
-                Parent participant = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
-
-                Scene s = new Scene(participant);
+                Scene s = new Scene(teacherScene);
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                 stage.setScene(s);
 
                 stage.show();
-
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
             }
-            }else if (txtPassword.getText().equals(currentStudent.getPassword())) {
+        } else if (p.getDTYPE().equalsIgnoreCase("Student")) {
+            try {
+                models.Student student = sr.getStudent(p.getId());
 
-                //student
-                Parent p = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
+                propertymodels.Student propertyS = new propertymodels.Student(student.getId(), student.getName(),
+                        student.getPassword(), student.getDTYPE());
 
-                Scene s = new Scene(p);
+                currentStudent = propertyS;
+
+                Parent studentScene = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
+
+                Scene s = new Scene(studentScene);
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                 stage.setScene(s);
 
                 stage.show();
-            }else{
-                System.out.println("användare finns inte");
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
             }
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        } else {
+            System.out.println("användare finns inte");
         }
 
     }
@@ -118,20 +98,6 @@ public class LoginController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-
-        txtPassword.focusedProperty().addListener(new ChangeListener<Boolean>() {
-
-            @Override
-
-            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) {
-
-                if (newPropertyValue) {
-
-                }
-
-            }
-
-        });
 
     }
 }
