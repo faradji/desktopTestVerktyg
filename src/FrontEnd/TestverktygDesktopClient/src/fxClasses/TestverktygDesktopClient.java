@@ -19,7 +19,7 @@ public class TestverktygDesktopClient extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("TeacherAddTest.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
         
         Scene scene = new Scene(root);
         
