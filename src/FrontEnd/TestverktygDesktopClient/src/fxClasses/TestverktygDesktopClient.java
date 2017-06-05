@@ -41,7 +41,7 @@ public class TestverktygDesktopClient extends Application {
 
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("StudentTest.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
 
         
 

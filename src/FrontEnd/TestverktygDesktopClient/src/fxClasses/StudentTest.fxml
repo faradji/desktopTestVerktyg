@@ -26,7 +26,8 @@
       <Label fx:id="quealternativ3" layoutX="349.0" layoutY="287.0" text="Alt3" />
       <Label fx:id="quealternativ4" layoutX="349.0" layoutY="336.0" text="Alt4" />
       <Label fx:id="lblQuestionText" layoutX="340.0" layoutY="124.0" text="Fråga" />
-      <Label layoutX="20.0" layoutY="378.0" text="Poäng: 10/10" />
+      <Label fx:id="lblCorrectAnswers" layoutX="20.0" layoutY="378.0" text="Poäng: 10/10" />
       <Button fx:id="btnSaveTest" layoutX="166.0" layoutY="374.0" mnemonicParsing="false" onAction="#btnSaveTestAction" text="Skicka in test" />
+      <Button fx:id="btnDone" layoutX="20.0" layoutY="423.0" mnemonicParsing="false" onAction="#btnDoneClicked" text="Klar" visible="false" />
    </children>
 </AnchorPane>
