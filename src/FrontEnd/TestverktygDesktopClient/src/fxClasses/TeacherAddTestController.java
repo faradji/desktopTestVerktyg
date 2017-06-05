@@ -234,10 +234,12 @@ public class TeacherAddTestController implements Initializable
         //t.setSubject(LoginController.currentTeacher.getSubject());
         t.setTotalTime(Integer.parseInt(textFieldTimeLeft.getText()));
         
-        tr.addTest(t);
-        List<models.Test> listToCheckIdOfLastTest = tr.getTests();
-        int sizeOflistToCheckIdOfLastTest = listToCheckIdOfLastTest.size();
-        idOfLastTestInList = listToCheckIdOfLastTest.get(sizeOflistToCheckIdOfLastTest).getId();
+        models.Test newTest = tr.addTest(t);
+        
+        
+//        List<models.Test> listToCheckIdOfLastTest = tr.getTests();
+//        int sizeOflistToCheckIdOfLastTest = listToCheckIdOfLastTest.size();
+//        idOfLastTestInList = listToCheckIdOfLastTest.get(sizeOflistToCheckIdOfLastTest).getId();
         
         //t.setQuestions(newQuestions);
         for(int i = 0; i < newQuestions.size(); i++)
@@ -248,13 +250,9 @@ public class TeacherAddTestController implements Initializable
             q.setImageURL(newQuestions.get(i).getImageURL());
             q.setCorrectAnswer(newQuestions.get(i).getCorrectAnswer());
             
-            qr.addQuestion(idOfLastTestInList, q);
+            qr.addQuestion(newTest.getId(), q);
             
         }
-        
-        
-        
-        
         
     }
 

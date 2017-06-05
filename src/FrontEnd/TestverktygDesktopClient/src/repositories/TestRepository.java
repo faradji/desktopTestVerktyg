@@ -33,12 +33,14 @@ public class TestRepository {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public void addTest(Test newTest){
+    public models.Test addTest(Test newTest){
         
         client = ClientBuilder.newClient();
         client.target("http://localhost:8080/TestverktygDesktop/webapi/tests")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(newTest), Test.class);
+        
+        return newTest;
         
     }
 

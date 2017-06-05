@@ -14,9 +14,11 @@ public class QuestionRepository {
     public QuestionRepository() {}
         
     public void addQuestion(int testId, Question newQuestion){
-        
+        String testIdPath = Integer.toString(testId);
         client = ClientBuilder.newClient();
-        client.target("http://localhost:8080/TestverktygDesktop/webapi/tests/questions{/testId}")
+        client.target("http://localhost:8080/TestverktygDesktop/webapi/tests")
+                .path(testIdPath)
+                .path("/questions")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(newQuestion), Question.class);
       

@@ -24,8 +24,8 @@ public class Question implements Serializable {
     int correctAnswer;
     String imageURL;
     
-//    @Transient
-    int testId;
+    @Transient
+    int test_Id;
 
     
     @Type(type="com.mycompany.testverktygdesktop.services.QuestionService")
@@ -82,12 +82,12 @@ public class Question implements Serializable {
     }
     
     public int getTest_Id(){
-        return testId;
+        return test_Id;
     }
     
-//    public void setTest_Id(int test_Id){
-//        this.test_Id = test_Id;
-//    }
+    public void setTest_Id(int testId){
+        this.test_Id = testId;
+    }
     
     public void setTest(Test test){
         this.test = test;
