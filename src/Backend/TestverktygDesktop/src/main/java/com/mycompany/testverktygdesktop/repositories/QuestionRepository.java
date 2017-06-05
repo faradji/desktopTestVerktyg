@@ -70,7 +70,7 @@ public class QuestionRepository {
 //        test.getQuestions().size();
 //        test.getQuestions().add(question);
         
-        session.save(test);
+        session.save(question);
         
         session.getTransaction().commit();
         session.close();

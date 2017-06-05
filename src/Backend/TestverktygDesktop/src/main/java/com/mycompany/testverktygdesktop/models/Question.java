@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -22,7 +23,9 @@ public class Question implements Serializable {
     String qText;
     int correctAnswer;
     String imageURL;
-    int test_Id;
+    
+//    @Transient
+    int testId;
 
     
     @Type(type="com.mycompany.testverktygdesktop.services.QuestionService")
@@ -79,7 +82,7 @@ public class Question implements Serializable {
     }
     
     public int getTest_Id(){
-        return test_Id;
+        return testId;
     }
     
 //    public void setTest_Id(int test_Id){
