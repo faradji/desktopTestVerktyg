@@ -237,11 +237,6 @@ public class TeacherAddTestController implements Initializable
         models.Test newTest = tr.addTest(t);
         
         
-//        List<models.Test> listToCheckIdOfLastTest = tr.getTests();
-//        int sizeOflistToCheckIdOfLastTest = listToCheckIdOfLastTest.size();
-//        idOfLastTestInList = listToCheckIdOfLastTest.get(sizeOflistToCheckIdOfLastTest).getId();
-        
-        //t.setQuestions(newQuestions);
         for(int i = 0; i < newQuestions.size(); i++)
         {
             models.Question q = new models.Question();
@@ -249,6 +244,7 @@ public class TeacherAddTestController implements Initializable
             q.setAnswers(newQuestions.get(i).getAnswers());
             q.setImageURL(newQuestions.get(i).getImageURL());
             q.setCorrectAnswer(newQuestions.get(i).getCorrectAnswer());
+            q.setTest_Id(newTest.getId());
             
             qr.addQuestion(newTest.getId(), q);
             

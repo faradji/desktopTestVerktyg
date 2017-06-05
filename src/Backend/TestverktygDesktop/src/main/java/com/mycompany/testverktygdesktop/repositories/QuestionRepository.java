@@ -66,28 +66,14 @@ public class QuestionRepository {
         
         
         question.setTest(test);
-        
-//        test.getQuestions().size();
-//        test.getQuestions().add(question);
+        question.setTest_Id(test.getId());
         
         session.save(question);
         
         session.getTransaction().commit();
         session.close();
         return question;
-        
-//        Test test = (Test) session.get(Test.class, testId);
-//        Question q = new Question();
-//        q.setTest(test);
-//        
-//        List<String> answers = question.getAnswers();
-//        q.setAnswers((ArrayList) answers);
-//        
-//        q.setCorrectAnswer(question.getCorrectAnswer());
-//        q.setqText(question.getqText());
-//        q.setImageURL(question.getImageURL());
-        
-        
+               
     }
 
     public void deleteQuestion(int questionId) {

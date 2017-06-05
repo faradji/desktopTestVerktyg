@@ -36,11 +36,11 @@ public class TestRepository {
     public models.Test addTest(Test newTest){
         
         client = ClientBuilder.newClient();
-        client.target("http://localhost:8080/TestverktygDesktop/webapi/tests")
+        models.Test testFromDatabase = client.target("http://localhost:8080/TestverktygDesktop/webapi/tests")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(newTest), Test.class);
         
-        return newTest;
+        return testFromDatabase;
         
     }
 
