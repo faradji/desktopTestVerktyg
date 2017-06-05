@@ -8,6 +8,8 @@ package fxClasses;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -35,7 +37,7 @@ public class TeacherStartPageController implements Initializable {
 
     DoneTestRepository doneTestRepo = new DoneTestRepository();
     ObservableList<propertymodels.DoneTest> doneTests = FXCollections.observableArrayList();
-
+     ObservableList<propertymodels.DoneTest> searchBarList = FXCollections.observableArrayList();
     public void addTest(ActionEvent event) {
 
         //todo
@@ -78,47 +80,48 @@ public class TeacherStartPageController implements Initializable {
 
     }
 public void searchBar(){
-//     searchBar.textProperty().addListener(new ChangeListener() {
+//
+//        searchBar.textProperty().addListener(new ChangeListener() {
 //            @Override
 //            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-//                
-//                if (oldValue !=newValue) {
-//                for (int i = 0; i < doneTests.size(); i++) {
-//                    if (searchBar.getText().equalsIgnoreCase(doneTests.get(i).getStudentName())) {
-//                        propertymodels.DoneTest temp = doneTests.get(i);
-//                        doneTests.clear();
-//                        doneTests.add(temp);
-//                        tableDoneTest.setItems(doneTests);
-//                    }
+//                if(newValue !=null){
+//                      doneTests.stream().forEach((d)->{
+//                    
+//                        if(searchBar.getText().equalsIgnoreCase(d.getStudentName())){
+//                            searchBarList.add(d);
+//                        }
+//                    
+//                    });
+//                    doneTests.clear();
+//                    tableDoneTest.setItems(searchBarList);
+//                }else{
+//                    searchBarList.clear();
+//                    populateTableDoneTests();
 //                }
-//            } else {
-//                doneTests.clear();
-//                populateTableDoneTests();
-//            }
-//          }
+//                
+//             }
+//
+//           
+//
 //        });
-    FilteredList<propertymodels.DoneTest> filteredData = new FilteredList<>(doneTests, p -> true);
+
+  FilteredList<propertymodels.DoneTest> filteredData = new FilteredList<>(doneTests, p -> true);
 
         // 2. Set the filter Predicate whenever the filter changes.
         searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(doneTests -> {
+            filteredData.setPredicate(doneTest -> {
                 // If filter text is empty, display all persons.
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
-                // Compare first name and last name field in your object with filter.
+                // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (String.valueOf(doneTests.getStudentName()).toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                    // Filter matches first name.
-
-                } else{
-                     return false; // Does not match.
-                }
-
-               
+                if (doneTest.getStudentName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                } 
+                return false; // Does not match.
             });
         });
 
@@ -127,12 +130,15 @@ public void searchBar(){
 
         // 4. Bind the SortedList comparator to the TableView comparator.
         sortedData.comparatorProperty().bind(tableDoneTest.comparatorProperty());
+
         // 5. Add sorted (and filtered) data to the table.
         tableDoneTest.setItems(sortedData);
+
 }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         populateTableDoneTests();
+        searchBar();
        
 
     }
