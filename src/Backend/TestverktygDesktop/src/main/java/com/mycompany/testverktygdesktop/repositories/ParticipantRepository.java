@@ -2,6 +2,7 @@ package com.mycompany.testverktygdesktop.repositories;
 
 import com.mycompany.testverktygdesktop.models.Participant;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -20,6 +21,15 @@ public class ParticipantRepository {
         session.close();
         System.out.println("repo");
         return participant;
+    }
+
+    public Participant getParticipantByName(String participantName) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Participant where name = :name ");
+        query.setParameter("name", participantName);
+        Participant p = (Participant) query.uniqueResult();
+        session.close();
+        return p;
     }
 
     public List<Participant> getParticipants() {

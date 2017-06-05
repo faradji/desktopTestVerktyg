@@ -18,14 +18,20 @@ import javax.ws.rs.PathParam;
 public class ParticipantResource {
         ParticipantRepository sr = new ParticipantRepository();
 
-    @GET
-    @Path("/{participantId}")
-    public Participant getParticipant(@PathParam("participantId") int participantId)
-    {
-        System.out.println("resource");
-        return sr.getParticipant(participantId);
-    }
+//    @GET
+//    @Path("/{participantId}")
+//    public Participant getParticipant(@PathParam("participantId") int participantId)
+//    {
+//        System.out.println("resource");
+//        return sr.getParticipant(participantId);
+//    }
 
+        @GET
+    @Path("/{participantName}")
+    public Participant getParticipantByName(@PathParam("participantName") String participantName)
+    {
+        return sr.getParticipantByName(participantName);
+    }
     @GET
     public List<Participant> getParticipants()
     {

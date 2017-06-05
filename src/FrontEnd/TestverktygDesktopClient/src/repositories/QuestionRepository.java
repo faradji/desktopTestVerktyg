@@ -44,12 +44,21 @@ public class QuestionRepository {
 //        return question;
 //    }
 
-//    public List<Question> getQuestions() {
-//
-//        return questions;
-//
-//    }
-//
+    public List<Question> getQuestions() {
+        List<Question> questions;
+        
+        Client client = ClientBuilder.newClient();
+
+        questions = client.target("http://localhost:8080/TestverktygDesktop/webapi/questions")
+                .request(MediaType.APPLICATION_JSON)
+                .get(new GenericType<List<Question>>() {
+                });
+
+        client.close();
+        return questions;
+
+    }
+
 //    public Question updateQuestion(int testId, Question question) {
 //       
 //        return question;

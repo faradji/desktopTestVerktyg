@@ -1,9 +1,7 @@
 package com.mycompany.testverktygdesktop.resources;
 
 import com.mycompany.testverktygdesktop.models.Student;
-import com.mycompany.testverktygdesktop.models.Test;
 import com.mycompany.testverktygdesktop.repositories.StudentRepository;
-import com.mycompany.testverktygdesktop.repositories.TestRepository;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -16,22 +14,20 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
-public class StudentResource
-{
+public class StudentResource {
 
     StudentRepository sr = new StudentRepository();
 
     @GET
-    @Path("/{studentId}")
-    public Student getStudent(@PathParam("studentId") int studentId)
-    {
+    @Path("/{participantId}")
+    public Student getStudent(@PathParam("participantId") int participantId) {
         System.out.println("resource");
-        return sr.getStudent(studentId);
+        return sr.getStudent(participantId);
     }
+    
 
     @GET
-    public List<Student> getStudents()
-    {
+    public List<Student> getStudents() {
         System.out.println("resource");
         return sr.getStudents();
     }

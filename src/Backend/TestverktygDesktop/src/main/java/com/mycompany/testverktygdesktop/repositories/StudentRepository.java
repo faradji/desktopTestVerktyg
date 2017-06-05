@@ -3,7 +3,6 @@ package com.mycompany.testverktygdesktop.repositories;
 
 
 import com.mycompany.testverktygdesktop.models.Student;
-import com.mycompany.testverktygdesktop.models.Test;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,11 +21,10 @@ public class StudentRepository
         sessionFactory = myHibernateUtil.getSessionFactory();
     }
 
-    public Student getStudent(int studentId)
+    public Student getStudent(int participantId)
     {
         Session session = sessionFactory.openSession();
-        Student student = (Student) session.get(Student.class, studentId);
-        student.getTests();
+        Student student = (Student) session.get(Student.class, participantId);
         session.close();
         System.out.println("repo");
         return student;

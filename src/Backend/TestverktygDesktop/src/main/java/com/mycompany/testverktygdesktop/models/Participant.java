@@ -1,6 +1,7 @@
 package com.mycompany.testverktygdesktop.models;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,14 +17,17 @@ public class Participant implements Serializable {
     int id;
     String name;
     String password;
+    @Column(insertable = false, updatable = false) private String DTYPE;
+
 
     public Participant() {
     }
 
-    public Participant(int id, String name, String password) {
+    public Participant(int id, String name, String password, String DTYPE) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.DTYPE = DTYPE;
     }
 
     public int getId() {
@@ -48,6 +52,14 @@ public class Participant implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDTYPE() {
+        return DTYPE;
+    }
+
+    public void setDTYPE(String DTYPE) {
+        this.DTYPE = DTYPE;
     }
 
 }
