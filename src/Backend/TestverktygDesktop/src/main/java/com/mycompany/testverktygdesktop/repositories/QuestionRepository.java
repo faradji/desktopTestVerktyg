@@ -2,6 +2,7 @@ package com.mycompany.testverktygdesktop.repositories;
 
 import com.mycompany.testverktygdesktop.models.Question;
 import com.mycompany.testverktygdesktop.models.Test;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,6 +10,7 @@ import org.hibernate.SessionFactory;
 public class QuestionRepository {
 
     SessionFactory sessionFactory;
+    TestRepository testRepo = new TestRepository();
 
     public QuestionRepository() {
         sessionFactory = myHibernateUtil.getSessionFactory();
@@ -48,7 +50,7 @@ public class QuestionRepository {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Test test = (Test) session.get(Test.class, testId);
-        question.setTest_Id(test.getId());
+        question.setTest(test);
         session.update(question);
 
         session.getTransaction().commit();
@@ -57,16 +59,21 @@ public class QuestionRepository {
     }
 
     public Question addQuestion(int testId, Question question) {
-        Session session = sessionFactory.openSession();
+        Session session = myHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-       // Test test = (Test) session.get(Test.class, testId);
-       Question q = new Question(question.getId(), question.getqText(), question.getCorrectAnswer(),
-               question.getAnswers(), question.getImageURL(),
-               testId);
-        session.save(q);
+        
+        Test test = (Test) session.get(Test.class, testId);
+        
+        
+        question.setTest(test);
+        question.setTest_Id(test.getId());
+        
+        session.save(question);
+        
         session.getTransaction().commit();
         session.close();
         return question;
+               
     }
 
     public void deleteQuestion(int questionId) {

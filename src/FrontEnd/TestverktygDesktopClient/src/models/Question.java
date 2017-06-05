@@ -24,7 +24,7 @@ public class Question implements Serializable {
         this.correctAnswer = correctAnswer;
         this.answers = answers;
         this.imageURL = imageURL;
-        this.test_Id = test_Id;
+        //this.test_Id = test_Id;
         
     }
 
@@ -64,8 +64,8 @@ public class Question implements Serializable {
         return test_Id;
     }
     
-    public void setTest_Id(int test_Id){
-        this.test_Id = test_Id;
+    public void setTest_Id(int testId){
+        this.test_Id = testId;
     }
 //    public Test getTest() {
 //        return test;
