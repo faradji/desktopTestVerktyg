@@ -1,15 +1,26 @@
 package repositories;
 
-import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.GenericType;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import models.Question;
+import models.Test;
 
 public class QuestionRepository {
-
-    public QuestionRepository() {
+    
+    Client client;
+    
+    public QuestionRepository() {}
+        
+    public void addQuestion(int testId, Question newQuestion){
+        String testIdPath = Integer.toString(testId);
+        client = ClientBuilder.newClient();
+        client.target("http://localhost:8080/TestverktygDesktop/webapi/tests/")
+                .path(testIdPath)
+                .path("/questions")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.json(newQuestion), Question.class);
       
     }
 
@@ -50,11 +61,6 @@ public class QuestionRepository {
 
 //    public Question updateQuestion(int testId, Question question) {
 //       
-//        return question;
-//    }
-//
-//    public Question addQuestion(int testId, Question question) {
-//      
 //        return question;
 //    }
 //

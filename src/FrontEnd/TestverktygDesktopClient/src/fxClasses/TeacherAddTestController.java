@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +16,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
 import models.Question;
+import models.Test;
+import repositories.QuestionRepository;
+import repositories.TestRepository;
 
 /**
  * FXML Controller class
@@ -23,7 +32,7 @@ import models.Question;
  */
 public class TeacherAddTestController implements Initializable
 {
-
+    TestRepository tr = new TestRepository();
     @FXML
     private Label labelTeacherName;
     @FXML
@@ -46,6 +55,8 @@ public class TeacherAddTestController implements Initializable
     private CheckBox chckBxNo;
     @FXML
     private TextField textFieldTimeLeft;
+    @FXML
+    private TextField textFieldTestName;
     @FXML
     private TextField textFieldQuestionText;
     @FXML
@@ -73,14 +84,38 @@ public class TeacherAddTestController implements Initializable
     @FXML
     private Button btnDone;
 
-    List<Question> newTest = new ArrayList();
+    List<models.Question> newQuestions = new ArrayList();
+    ArrayList<String> tempAnswers = new ArrayList<>();
+    int idOfLastTestInList;
 
     int chosenCheckBoxId = 0;
+    int questionNumCount = 1;
+
+    int isAutoCorrected;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        labelQuestionNr.setText("Fråga nummer " + questionNumCount);
+        
+        chckBxYes.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue){
+                chckBxNo.setSelected(false);
+                isAutoCorrected = 1;
+                
+            }
+        });
+        
+        chckBxNo.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue){
+                chckBxYes.setSelected(false);
+                isAutoCorrected = 0;
+            }
+        });
+        
         //setLabelsOfTeacher();
+        
+        
 
     }
 
@@ -148,10 +183,9 @@ public class TeacherAddTestController implements Initializable
     @FXML
     private void btnSaveAction(ActionEvent event)
     {
-        Question q = new Question();
+        models.Question q = new Question();
 
         q.setqText(textFieldQuestionText.getText());
-        ArrayList<String> tempAnswers = new ArrayList<>();
         tempAnswers.add(textFieldQuestionAlt1.getText());
         tempAnswers.add(textFieldQuestionAlt2.getText());
         tempAnswers.add(textFieldQuestionAlt3.getText());
@@ -161,9 +195,9 @@ public class TeacherAddTestController implements Initializable
 
         if (chosenCheckBoxId > 0)
         {
-            q.setCorrectAnswer(chosenCheckBoxId);
+            q.setCorrectAnswer(chosenCheckBoxId - 0);//om denna variabel ska visa vart i arrayen som svaret finns så måste det bli ett minus 1?
             
-            newTest.add(q);
+            newQuestions.add(q);
 
             textFieldQuestionText.clear();
             textFieldQuestionAlt1.clear();
@@ -180,11 +214,37 @@ public class TeacherAddTestController implements Initializable
             System.out.println("Felmeddelande i GUI");
         }
 
+        questionNumCount++;
+
     }
 
     @FXML
     private void btnDoneAction(ActionEvent event)
     {
+        QuestionRepository qr = new QuestionRepository();
+        
+        models.Test t = new models.Test();
+        t.setName(textFieldTestName.getText());
+        t.setAutoCorrectedTest(isAutoCorrected);
+        t.setSubject("Magnus testSubject");
+        //t.setSubject(LoginController.currentTeacher.getSubject());
+        t.setTotalTime(Integer.parseInt(textFieldTimeLeft.getText()));
+        
+        models.Test newTest = tr.addTest(t);
+        
+        
+        for(int i = 0; i < newQuestions.size(); i++)
+        {
+            models.Question q = new models.Question();
+            q.setqText(newQuestions.get(i).getqText());
+            q.setAnswers(newQuestions.get(i).getAnswers());
+            q.setImageURL(newQuestions.get(i).getImageURL());
+            q.setCorrectAnswer(newQuestions.get(i).getCorrectAnswer());
+            q.setTest_Id(newTest.getId());
+            
+            qr.addQuestion(newTest.getId(), q);
+            
+        }
         
     }
 

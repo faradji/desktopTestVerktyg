@@ -43,6 +43,9 @@ public class DoneTestsRepository {
         List<StudentAnswer> studentAnswers = session.createCriteria(StudentAnswer.class).list();
         System.out.println("studentAnswer" + studentAnswers.size());
 
+        List<Question> questions = sessionGetQuestions.createCriteria(Question.class).list();
+        List<Question> tempQ = new ArrayList();
+        
         // studentAnswer.stream().forEach((StudentAnswer s) -> {
         for (int i =0;i<studentAnswers.size();i++) {
             //hämta studenten som finns i listan på plats "i"
@@ -53,21 +56,17 @@ public class DoneTestsRepository {
             //hämta test från DBn som q finns i
             Test test = (Test) sessionGetTest.get(Test.class, q.getTest_Id());
 
-                
-            List<Question> questions = sessionGetQuestions.createCriteria(Question.class).list();
-
-
             doneTests.add(new DoneTest(student.getId(), student.getName(), test.getSubject(), studentAnswers.get(i).getGivenAnswer(), test.getName()));
-            
-            List<Question> tempQ = new ArrayList();
             
             for(int j = 0; j < doneTests.size(); j++){
                
                if (doneTests.get(j).getTestName().equalsIgnoreCase(test.getName())) {
                         tempQ = doneTests.get(j).getQuestions();
+                        
                         break;
                 }
             }
+            System.out.println("storlek på frågelistan: --------------------------" + tempQ.size());
             
             doneTests.get(i).setQuestions(tempQ);
             
