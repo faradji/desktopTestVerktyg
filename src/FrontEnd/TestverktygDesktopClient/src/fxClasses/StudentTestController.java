@@ -2,7 +2,6 @@ package fxClasses;
 
 //import static fxClasses.LoginController.currentStudent;
 import java.io.IOException;
-
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -32,6 +31,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import models.Student;
 import propertymodels.Question;
 import propertymodels.StudentAnswer;
 import propertymodels.Test;
@@ -40,6 +40,7 @@ import repositories.StudentAnswerRepository;
 
 public class StudentTestController implements Initializable {
 
+    //Objekt
     QuestionRepository qr = new QuestionRepository();
     ObservableList<Question> observableQuestions = FXCollections.observableArrayList();
     List<StudentAnswer> answers = new ArrayList();
@@ -47,18 +48,20 @@ public class StudentTestController implements Initializable {
     Question currentQ;
     Timeline timeline = null;
     Test currentTest;
+    Student currentStudent;
 
+    //Variabler
     Integer startTime;
     IntegerProperty timeSeconds;
     int chosenCheckBoxId;
     String emptyUrl = "http://www.jennybeaumont.com/wp-content/uploads/2015/03/placeholder-800x423.gif";
 
+    //FXML-fält
     @FXML private Label lblTestSubject, lblTimeLeft, lblTeacherSubject, lblcurrentQuestionNR, lblQuestionText;
     @FXML private Label quealternativ1, quealternativ2, quealternativ3, quealternativ4;
     @FXML private Label lblCorrectAnswers;
     
     @FXML private ListView lvQuestionsNR;
-    @FXML private ListView lvCorrectedQuestion;
     
     @FXML private CheckBox chbxalternativ1;
     @FXML private CheckBox chbxalternativ3;
@@ -68,6 +71,7 @@ public class StudentTestController implements Initializable {
     @FXML private ImageView ivImage;
     @FXML private Button btnSaveTest, btnDone;
 
+    //Anropas i initialize, visar frågorna på provet i en listview
     private void populateListView()
     {
         //populate listview
@@ -85,10 +89,9 @@ public class StudentTestController implements Initializable {
         lvQuestionsNR.setItems(observableQuestions);
     }
 
-    @FXML
-    private void btnSaveTestAction()
+    //Metoden är länkad till knappen som ska spara provet
+    @FXML private void btnSaveTestAction()
     {
-        System.out.println("btnSaveTestAction");
         chbxalternativ1.setDisable(true);
         chbxalternativ2.setDisable(true);
         chbxalternativ3.setDisable(true);
@@ -98,7 +101,7 @@ public class StudentTestController implements Initializable {
         
         int correctAnswers = 0;
         
-        if (currentTest.getAutoCorrectedTest() >= 1)
+        if (currentTest.getAutoCorrectedTest() >= 1) //Rättar provet om det är självrättande
         {
             for (int i = 0; i < questions.size(); i++)
             {
@@ -118,11 +121,12 @@ public class StudentTestController implements Initializable {
         lblCorrectAnswers.setText("Points: " + correctAnswers + "/" + questions.size());
     }
     
-    @FXML
-    private void btnDoneClicked(ActionEvent event) throws IOException
+    //Metoden är länkad till knappen som dyker upp när provet är slut
+    //Ska spara i databasen och gå tillbaka till föregående scen
+    @FXML private void btnDoneClicked(ActionEvent event) throws IOException
     {
         StudentAnswerRepository saRepo = new StudentAnswerRepository();
-        
+        //Skriv metoderna som sparar i databasen här
         
         //Stänger scenen och går tillbaka
         Parent studentTestParent = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
@@ -134,11 +138,11 @@ public class StudentTestController implements Initializable {
     
     }
     
-    @FXML
-    private void checkBoxHandler(MouseEvent event)
+    //Metoden är länkad till checkboxarna för alternativen
+    @FXML private void checkBoxHandler(MouseEvent event)
     {
-        String source1 = event.getSource().toString().substring(12, 27);
-        System.out.println(source1);
+        String source1 = event.getSource().toString().substring(12, 27); //Får ut namnet på checkboxen
+        
         switch (source1)
         {
             case "chbxalternativ1":
@@ -180,22 +184,18 @@ public class StudentTestController implements Initializable {
                 emptyCheckBoxes(true);
                 break;
             }
-
         }
+        fillCheckBox(); //Anropas för att fylla i checkbox på nästa fråga, om den är besvarad
     }
 
+    //Metoden anropas när man klickar på en checkbox
+    //Sätter svaret till det alternativ man valt för frågan
+    //INTE KLAR
     private void saveDoneQuestion()
     {
-        System.out.println("CurrentQuestion: " + currentQ.getId());
-        StudentAnswer answer = new StudentAnswer(3, currentQ.getId(), chosenCheckBoxId, Date.valueOf(LocalDate.MAX));
-        //answer.setDate(Date.valueOf(LocalDate.MAX));
-
-        //answer.setGivenAnswer(chosenCheckBoxId);
-        System.out.println("Rätt svar: " + currentQ.getCorrectAnswer());
-        System.out.println("Givet svar: " + chosenCheckBoxId);
+        StudentAnswer answer = new StudentAnswer(currentStudent.getId(), currentQ.getId(),
+                chosenCheckBoxId, Date.valueOf(LocalDate.MAX));
         
-        //answer.setParticipant_Id(3);
-        //answer.setQuestion_Id(currentQ.getId());
         if (answers.isEmpty())
         {
             answers.add(answer);
@@ -204,8 +204,6 @@ public class StudentTestController implements Initializable {
         {
             for (int i = 0; i < answers.size(); i++)
             {
-                System.out.println("Answer.getQuestion_Id(): " + answer.getQuestion_Id());
-                System.out.println("answers.get(i).getQuestion_Id(): " + answers.get(i).getQuestion_Id());
                 if (answer.getQuestion_Id() == answers.get(i).getQuestion_Id())
                 {
                     answers.set(i, answer);
@@ -223,26 +221,16 @@ public class StudentTestController implements Initializable {
             }
         }
 
-//        answers.stream().forEach((a) -> {
-//            if (answer.getQuestion_Id() == a.getQuestion_Id() && answers != null) {
-//                answers.remove(a);
-//                answers.add(answer);
-//                System.out.println("Answer replaced");
-//            }
-//            else
-//            {
-//                answers.add(answer);
-//                System.out.println("Answer added");
-//            }
-//        });
+        //if-satsen är sann när alla frågor besvarats
         if (answers.size() == observableQuestions.size()) 
         {
+            emptyCheckBoxes(false);
             btnSaveTestAction();
         }
     }
 
-    @FXML
-    private void lvQuestionsNRSelected()
+    //Metoden är kopplad till listviewn med frågor
+    @FXML private void lvQuestionsNRSelected()
     {
         emptyCheckBoxes(false);
         currentQuestion();
@@ -250,6 +238,7 @@ public class StudentTestController implements Initializable {
         fillCheckBox();
     }
 
+    //Metoden uppdaterar den fråga som är aktiv
     private void currentQuestion()
     {
         // hålla reda på current question
@@ -263,7 +252,7 @@ public class StudentTestController implements Initializable {
 
             if (currentQ.getImageURL() == null)
             {
-                currentQ.setImageURL(emptyUrl); //emptyIrl finns definierad längst upp
+                currentQ.setImageURL(emptyUrl); //emptyUrl finns definierad längst upp
             }
             
             image = new Image(currentQ.getImageURL());
@@ -292,21 +281,10 @@ public class StudentTestController implements Initializable {
 
                 }
             }
-            
-            for (int i = 0; i < answers.size(); i++)
-            {
-                System.out.println("For-loop startad");
-                System.out.println("currentQ.getId(): " + currentQ.getId());
-                System.out.println("answers.get(i).getQuestion_Id(): " + answers.get(i).getQuestion_Id());
-                System.out.println("currentQ.getText(): " + currentQ.getqText());
-                if (currentQ.getId() == answers.get(i).getQuestion_Id())
-                {
-                    fillCheckBox();
-                }
-            }
         }
     }
 
+    //Metoden anropas i initialize, sköter timern för provet
     private void startTimer()
     {
         //timer for time left
@@ -316,7 +294,7 @@ public class StudentTestController implements Initializable {
         {
             timeline.stop();
         }
-        timeSeconds.set(startTime);
+        //timeSeconds.set(startTime);
         timeline = new Timeline();
         timeline.getKeyFrames().add(
                 new KeyFrame(Duration.seconds(startTime + 1),
@@ -325,12 +303,15 @@ public class StudentTestController implements Initializable {
         
         timeline.setOnFinished((event) -> 
         {
-            //Tiden för testet ska gå ut
-            System.out.println("Tiden för testet har gått ut");
+            //Tiden för provet ska gå ut
+            System.out.println("Tiden för provet har gått ut");
+            timeline.playFromStart();
             btnSaveTestAction();
         });
     }
 
+    //Metoden avbokar alla checkboxar
+    //Anropa med true om du vill gå vidare till nästa fråga 
     private void emptyCheckBoxes(boolean goToNextQuestion)
     {
         if (goToNextQuestion)
@@ -345,22 +326,22 @@ public class StudentTestController implements Initializable {
         chbxalternativ4.selectedProperty().set(false);
     }
     
+    //Metoden anropas i initialize, filtrerar frågorna för provet
     private List<models.Question> loadQuestions()
     {
         List<models.Question> allQuestions = qr.getQuestions();
         List<models.Question> filteredQuestions = new ArrayList();
         
-        for (models.Question q : allQuestions)
+        allQuestions.stream().filter((q) -> (currentTest.getId() == q.getTest_Id())).forEach((q) ->
         {
-            if (currentTest.getId() == q.getTest_Id())
-            {
-                filteredQuestions.add(q);
-            }
-        }
+            filteredQuestions.add(q);
+        });
         
         return filteredQuestions;
     }
     
+    //Metoden fyller checkboxen med det svaret man angav på frågan om man redan svarat
+    //Är en metod eftersom det anropas två gånger
     private void fillCheckBox()
     {
         for (int i = 0; i < answers.size(); i++)
@@ -405,23 +386,27 @@ public class StudentTestController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb)
+    @Override public void initialize(URL url, ResourceBundle rb)
     {
+        //Objekt
         currentTest = StudentStartPageController.currentTest;
         startTime = currentTest.getTotalTime();
+        questions = loadQuestions();
+        currentStudent = new Student(); //byt ut mot studenten man får från föregående scen
+        currentStudent.setId(3); //används bara för tester, ta bort sen
+        
+        //Variabler
         timeSeconds = new SimpleIntegerProperty(startTime);
         chosenCheckBoxId = 0;
         
+        //Metoder som startar direkt
         startTimer();
-        questions = loadQuestions();
         populateListView();
-
         lvQuestionsNR.getSelectionModel().select(0);
         currentQuestion();
 
         //populate labels med info
-        //lblTeacherSubject.setText(currentTest.getSubject());
+        lblTeacherSubject.setText(currentTest.getName()); //borde ge namnet på läraren som skapade provet 
         lblTestSubject.setText("Subject: " + currentTest.getSubject());
     }
 
