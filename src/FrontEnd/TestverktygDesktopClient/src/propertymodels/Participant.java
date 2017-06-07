@@ -13,6 +13,7 @@ public class Participant{
     StringProperty password;
     StringProperty DTYPE;
 
+
     public Participant() {
     }
 

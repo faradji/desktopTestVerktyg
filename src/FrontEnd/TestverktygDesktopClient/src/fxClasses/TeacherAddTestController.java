@@ -171,6 +171,7 @@ public class TeacherAddTestController implements Initializable
     {
         labelTeacherName.setText(currentTeacher.getName());
         labelSubject.setText(currentTeacher.getSubject());
+
     }
 
     @FXML

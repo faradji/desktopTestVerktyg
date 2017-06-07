@@ -41,8 +41,6 @@ public class ParticipantRepository {
 
         client.close();
 
-        return participant;
-    }
 //
 //    public Participant addParticipant(Participant participant) {
 //       
@@ -57,5 +55,15 @@ public class ParticipantRepository {
 //    public void deleteParticipant(int participantId) {
 //       
 //    }
+
+//
+//    public Student getParticipant(String participantName) {
+//        return 
+//    }
+
+    public Participant getParticipant(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }

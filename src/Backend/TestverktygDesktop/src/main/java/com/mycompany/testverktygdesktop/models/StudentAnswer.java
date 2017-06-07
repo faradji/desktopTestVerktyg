@@ -19,14 +19,14 @@ public class StudentAnswer implements Serializable {
     int id;
     int participant_Id;
     int question_Id;
-    String givenAnswer;
+    int givenAnswer;
     Date date;
 
     public StudentAnswer() {
 
     }
 
-    public StudentAnswer(int id,int participant_Id, int question_Id, String givenAnswer, Date date) {
+    public StudentAnswer(int id,int participant_Id, int question_Id, int givenAnswer, Date date) {
         this.id = id;
         this.participant_Id = participant_Id;
         this.question_Id = question_Id;
@@ -50,11 +50,11 @@ public class StudentAnswer implements Serializable {
         this.question_Id = question_Id;
     }
 
-    public String getGivenAnswer() {
+    public int getGivenAnswer() {
         return givenAnswer;
     }
 
-    public void setGivenAnswer(String givenAnswer) {
+    public void setGivenAnswer(int givenAnswer) {
         this.givenAnswer = givenAnswer;
     }
 

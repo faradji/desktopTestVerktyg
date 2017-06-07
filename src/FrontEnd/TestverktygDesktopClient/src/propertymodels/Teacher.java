@@ -17,6 +17,7 @@ public class Teacher extends Participant {
     public Teacher(int id, String name, String password, String DTYPE, String subject) {
         super(id, name, password, DTYPE);
         this.subject = new SimpleStringProperty(subject);
+
     }
 
     public String getSubject() {
