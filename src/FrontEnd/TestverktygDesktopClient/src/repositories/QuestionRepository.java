@@ -1,8 +1,10 @@
 package repositories;
 
+import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import models.Question;
 import models.Test;
@@ -47,7 +49,7 @@ public class QuestionRepository {
     public List<Question> getQuestions() {
         List<Question> questions;
         
-        Client client = ClientBuilder.newClient();
+         client = ClientBuilder.newClient();
 
         questions = client.target("http://localhost:8080/TestverktygDesktop/webapi/questions")
                 .request(MediaType.APPLICATION_JSON)
