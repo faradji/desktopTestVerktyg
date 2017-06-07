@@ -5,6 +5,7 @@
  */
 package fxClasses;
 
+import static fxClasses.LoginController.currentTeacher;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -80,30 +81,6 @@ public class TeacherStartPageController implements Initializable {
 
     }
 public void searchBar(){
-//
-//        searchBar.textProperty().addListener(new ChangeListener() {
-//            @Override
-//            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-//                if(newValue !=null){
-//                      doneTests.stream().forEach((d)->{
-//                    
-//                        if(searchBar.getText().equalsIgnoreCase(d.getStudentName())){
-//                            searchBarList.add(d);
-//                        }
-//                    
-//                    });
-//                    doneTests.clear();
-//                    tableDoneTest.setItems(searchBarList);
-//                }else{
-//                    searchBarList.clear();
-//                    populateTableDoneTests();
-//                }
-//                
-//             }
-//
-//           
-//
-//        });
 
   FilteredList<propertymodels.DoneTest> filteredData = new FilteredList<>(doneTests, p -> true);
 
@@ -137,6 +114,7 @@ public void searchBar(){
 }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        teacherName.setText(currentTeacher.getName());
         populateTableDoneTests();
         searchBar();
        

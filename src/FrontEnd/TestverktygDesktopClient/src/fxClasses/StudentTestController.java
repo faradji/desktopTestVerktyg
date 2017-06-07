@@ -41,9 +41,10 @@ public class StudentTestController implements Initializable {
 
     //Objekt
     QuestionRepository qr = new QuestionRepository();
+
     ObservableList<Question> observableQuestions = FXCollections.observableArrayList();
     List<StudentAnswer> answers = new ArrayList();
-    List<models.Question> questions;
+    List<propertymodels.Question> questions;
     Question currentQ;
     Timeline timeline = null;
     Test currentTest = StudentStartPageController.currentTest;
@@ -56,7 +57,7 @@ public class StudentTestController implements Initializable {
 
     //FXML-fält
     @FXML
-    private Label lblTestSubject, lblTimeLeft, lblTeacherSubject, lblcurrentQuestionNR, lblQuestionText;
+    private Label lblTestSubject, lblTimeLeft, lblcurrentQuestionNR, lblQuestionText;
     @FXML
     private Label quealternativ1, quealternativ2, quealternativ3, quealternativ4;
     @FXML
@@ -84,11 +85,11 @@ public class StudentTestController implements Initializable {
         //populate listview
         System.out.println("Antalet frågor i provet: " + questions.size());
         for (int i = 0; i < questions.size(); i++) {
-            if (currentTest.getId() == questions.get(i).getTest_Id()) {
-                models.Question q = questions.get(i);
-                observableQuestions.add(new Question(q.getId(), q.getqText(), q.getCorrectAnswer(),
-                        q.getImageURL(), q.getAnswers(), q.getTest_Id()));
-            }
+//            if (currentTest.getId() == questions.get(i).getTest_Id()) {
+            propertymodels.Question q = questions.get(i);
+            observableQuestions.add(new Question(q.getId(), q.getqText(), q.getCorrectAnswer(),
+                    q.getImageURL(), q.getAnswers(), q.getTest_Id()));
+//            }
         }
 
         lvQuestionsNR.setItems(observableQuestions);
@@ -121,19 +122,16 @@ public class StudentTestController implements Initializable {
 
         lblCorrectAnswers.setText("Points: " + correctAnswers + "/" + questions.size());
         StudentAnswerRepository sr = new StudentAnswerRepository();
-        for(int i = 0; i < answers.size(); i++)
-        {
+        for (int i = 0; i < answers.size(); i++) {
             models.StudentAnswer sa = new models.StudentAnswer();
-           sa.setDate(Date.valueOf(LocalDate.MAX));
-           sa.setGivenAnswer(answers.get(i).getGivenAnswer());
-           sa.setParticipant_Id(answers.get(i).getParticipant_Id());
-           sa.setQuestion_Id(answers.get(i).getQuestion_Id());
-            
+            sa.setDate(Date.valueOf(LocalDate.MAX));
+            sa.setGivenAnswer(answers.get(i).getGivenAnswer());
+            sa.setParticipant_Id(answers.get(i).getParticipant_Id());
+            sa.setQuestion_Id(answers.get(i).getQuestion_Id());
+
             sr.addStudentAnswer(sa);
         }
-        
-        
-        
+
     }
 
     //Metoden är länkad till knappen som dyker upp när provet är slut
@@ -214,12 +212,10 @@ public class StudentTestController implements Initializable {
                     answers.set(i, answer);
                     System.out.println("Answer replaced");
                     break;
-                } else {
-                    if (i == answers.size() - 1) {
-                        answers.add(answer);
-                        System.out.println("Answer added to existing array");
-                        break;
-                    }
+                } else if (i == answers.size() - 1) {
+                    answers.add(answer);
+                    System.out.println("Answer added to existing array");
+                    break;
                 }
             }
         }
@@ -249,10 +245,10 @@ public class StudentTestController implements Initializable {
         if (currentQ != null) {
             lblQuestionText.setText(currentQ.getqText());
 
-            if (currentQ.getImageURL() == null) {
+            if (currentQ.getImageURL().isEmpty()) {
                 currentQ.setImageURL(emptyUrl); //emptyUrl finns definierad längst upp
             }
-
+            
             image = new Image(currentQ.getImageURL());
             ivImage.setImage(image);
 
@@ -320,18 +316,6 @@ public class StudentTestController implements Initializable {
     }
 
     //Metoden anropas i initialize, filtrerar frågorna för provet
-    private List<models.Question> loadQuestions() {
-        List<models.Question> allQuestions = qr.getQuestions();
-        List<models.Question> filteredQuestions = new ArrayList();
-
-        allQuestions.stream().filter((q) -> (currentTest.getId() == q.getTest_Id())).forEach((q)
-                -> {
-            filteredQuestions.add(q);
-        });
-
-        return filteredQuestions;
-    }
-
     //Metoden fyller checkboxen med det svaret man angav på frågan om man redan svarat
     //Är en metod eftersom det anropas två gånger
     private void fillCheckBox() {
@@ -379,7 +363,13 @@ public class StudentTestController implements Initializable {
         //Objekt
 
         startTime = currentTest.getTotalTime();
-        questions = loadQuestions();
+        questions = currentTest.getQuestions();
+//        for (int i = 0; i < currentTest.getQuestions().size(); i++) {
+//            if (currentTest.getQuestions().get(i).getTest_Id() == currentTest.getId()) {
+//                questions.add(currentTest.getQuestions().get(i));
+//            }
+//        }
+        
 //        currentStudent = new Student(); //byt ut mot studenten man får från föregående scen
 //        currentStudent.setId(3); //används bara för tester, ta bort sen
 
@@ -394,7 +384,6 @@ public class StudentTestController implements Initializable {
         currentQuestion();
 
         //populate labels med info
-        lblTeacherSubject.setText(currentTest.getName()); //borde ge namnet på läraren som skapade provet 
         lblTestSubject.setText("Subject: " + currentTest.getSubject());
     }
 

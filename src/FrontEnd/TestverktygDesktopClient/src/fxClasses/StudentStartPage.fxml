@@ -1,25 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.StudentStartPageController">
+<VBox alignment="BOTTOM_CENTER" prefHeight="500.0" prefWidth="800.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.StudentStartPageController">
    <children>
-      <Label layoutX="31.0" layoutY="21.0" text="Välkommen!" />
-      <Label fx:id="labelStudentName" layoutX="28.0" layoutY="50.0" text="Studentnamn" />
-      <TableView fx:id="tableCourse" layoutX="200.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0">
-        <columns>
-          <TableColumn fx:id="columnCourseName" prefWidth="199.0" text="C1" />
-        </columns>
-      </TableView>
-      <TableView fx:id="tableTest" layoutX="200.0" layoutY="244.0" prefHeight="200.0" prefWidth="200.0">
-        <columns>
-          <TableColumn fx:id="columnTestName" prefWidth="199.0" text="C1" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnGoToTest" layoutX="508.0" layoutY="403.0" mnemonicParsing="false" onAction="#goToTest" text="Gå till test" />
+      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="800.0" styleClass="btn" stylesheets="@../style/style.css" text="Newton testverktyg">
+         <VBox.margin>
+            <Insets bottom="40.0" />
+         </VBox.margin>
+      </Button>
+      <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="31.0" layoutY="21.0" text="Welcome" />
+            <Label fx:id="labelStudentName" layoutX="105.0" layoutY="21.0" text="Studentname" />
+            <TableView fx:id="tableCourse" layoutX="146.0" layoutY="65.0" prefHeight="250.0" prefWidth="280.0">
+              <columns>
+                <TableColumn fx:id="columnCourseName" prefWidth="199.0" text="Subjects" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TableView fx:id="tableTest" layoutX="445.0" layoutY="65.0" prefHeight="250.0" prefWidth="280.0">
+              <columns>
+                <TableColumn fx:id="columnTestName" prefWidth="199.0" text="Tests" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Button fx:id="btnGoToTest" layoutX="643.0" layoutY="340.0" mnemonicParsing="false" onAction="#goToTest" prefHeight="23.0" prefWidth="85.0" styleClass="btn" text="Go to test" />
+         </children>
+      </AnchorPane>
+      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="800.0" styleClass="btn" stylesheets="@../style/style.css" text="Grupp fem" />
    </children>
-</AnchorPane>
+</VBox>
