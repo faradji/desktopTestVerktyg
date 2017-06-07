@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
         StudentRepository sr = new StudentRepository();
 
         models.Participant p = pr.getParticipant(txtUserName.getText());
-
+        if(p != null){
         if (p.getDTYPE().equalsIgnoreCase("Teacher")) {
 
             try {
@@ -116,9 +116,10 @@ public class LoginController implements Initializable {
                 System.out.println(ex.getMessage());
             }
 
-        } else {
-
-            System.out.println("användare finns inte");
+        }} else {
+            JOptionPane.showMessageDialog(null, "User doesnt exist.", "Inane error", JOptionPane.ERROR_MESSAGE);
+            txtUserName.setText("");
+            txtPassword.setText("");
 
         }
 
