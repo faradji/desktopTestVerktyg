@@ -40,30 +40,7 @@ public class ParticipantRepository {
                 .get(models.Participant.class);
 
         client.close();
-
-//
-//    public Participant addParticipant(Participant participant) {
-//       
-//        return participant;
-//    }
-//
-//    public Participant updateParticipant(Participant participant) {
-//      
-//        return participant;
-//    }
-//
-//    public void deleteParticipant(int participantId) {
-//       
-//    }
-
-//
-//    public Student getParticipant(String participantName) {
-//        return 
-//    }
-
-    public Participant getParticipant(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return participant;
+    
     }
-
-
 }

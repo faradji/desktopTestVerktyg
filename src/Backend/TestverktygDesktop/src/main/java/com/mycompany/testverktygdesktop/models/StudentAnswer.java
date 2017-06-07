@@ -34,6 +34,14 @@ public class StudentAnswer implements Serializable {
         this.date = date;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getParticipant_Id() {
         return participant_Id;
     }
@@ -65,5 +73,6 @@ public class StudentAnswer implements Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
+
 
 }
