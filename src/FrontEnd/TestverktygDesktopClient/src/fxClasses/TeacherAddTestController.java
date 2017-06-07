@@ -1,6 +1,7 @@
 package fxClasses;
 
 import static fxClasses.LoginController.currentTeacher;
+import java.io.IOException;
 
 import javafx.scene.input.MouseEvent;
 
@@ -11,12 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
 
@@ -27,6 +35,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import repositories.QuestionRepository;
 
@@ -41,7 +50,9 @@ import repositories.TestRepository;
  * @author Allan
  *
  */
-public class TeacherAddTestController implements Initializable {
+public class TeacherAddTestController implements Initializable
+{
+    
 
     TestRepository tr = new TestRepository();
 
@@ -90,7 +101,8 @@ public class TeacherAddTestController implements Initializable {
     private TextField textFieldTimeLeft;
 
     @FXML
-    private TextField textFieldNameOfTest; 
+
+    private TextField textFieldTestName;
 
     @FXML
 
@@ -158,31 +170,55 @@ public class TeacherAddTestController implements Initializable {
 
     @Override
 
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         setLabelsOfTeacher();
-        labelQuestionNr.setText("Fråga nummer " + questionNumCount);
+        textFieldTimeLeft.lengthProperty().addListener(new ChangeListener<Number>()
+        {
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue)
+            {
+                if (newValue.intValue() > oldValue.intValue())
+                {
+                    char ch = textFieldTimeLeft.getText().charAt(oldValue.intValue());
 
-        chckBxYes.selectedProperty().addListener((observable, oldValue, newValue) -> {
-
-            if (newValue) {
-
-                chckBxNo.setSelected(false);
-
-                isAutoCorrected = 1;
-
+                    if (!(ch >= '0' && ch <= '9'))
+                    {
+                        textFieldTimeLeft.setText(textFieldTimeLeft.getText().substring(0, textFieldTimeLeft.getText().length() - 1));
+                    }
+                }
             }
 
         });
 
-        chckBxNo.selectedProperty().addListener((observable, oldValue, newValue) -> {
+        labelQuestionNr.setText("Fråga nummer " + questionNumCount);
 
-            if (newValue) {
+        chckBxYes.selectedProperty().addListener((observable, oldValue, newValue)
+                -> 
+                {
 
-                chckBxYes.setSelected(false);
+                    if (newValue)
+                    {
 
-                isAutoCorrected = 0;
+                        chckBxNo.setSelected(false);
 
-            }
+                        isAutoCorrected = 1;
+
+                    }
+
+        });
+
+        chckBxNo.selectedProperty().addListener((observable, oldValue, newValue)
+                -> 
+                {
+
+                    if (newValue)
+                    {
+
+                        chckBxYes.setSelected(false);
+
+                        isAutoCorrected = 0;
+
+                    }
 
         });
 
@@ -191,13 +227,16 @@ public class TeacherAddTestController implements Initializable {
 
     @FXML
 
-    private void checkBoxHandler(MouseEvent event) {
+    private void checkBoxHandler(MouseEvent event)
+    {
 
         String source1 = event.getSource().toString().substring(12, 31);
 
-        switch (source1) {
+        switch (source1)
+        {
 
-            case "checkBxQuestionAlt1": {
+            case "checkBxQuestionAlt1":
+            {
 
                 checkBxQuestionAlt1.selectedProperty().set(true);
 
@@ -213,7 +252,8 @@ public class TeacherAddTestController implements Initializable {
 
             }
 
-            case "checkBxQuestionAlt2": {
+            case "checkBxQuestionAlt2":
+            {
 
                 checkBxQuestionAlt2.selectedProperty().set(true);
 
@@ -229,7 +269,8 @@ public class TeacherAddTestController implements Initializable {
 
             }
 
-            case "checkBxQuestionAlt3": {
+            case "checkBxQuestionAlt3":
+            {
 
                 checkBxQuestionAlt3.selectedProperty().set(true);
 
@@ -245,7 +286,8 @@ public class TeacherAddTestController implements Initializable {
 
             }
 
-            case "checkBxQuestionAlt4": {
+            case "checkBxQuestionAlt4":
+            {
 
                 checkBxQuestionAlt4.selectedProperty().set(true);
 
@@ -267,7 +309,8 @@ public class TeacherAddTestController implements Initializable {
 
     }
 
-    public void setLabelsOfTeacher() {
+    public void setLabelsOfTeacher()
+    {
 
         labelTeacherName.setText(currentTeacher.getName());
 
@@ -277,7 +320,8 @@ public class TeacherAddTestController implements Initializable {
 
     @FXML
 
-    private void btnSaveAction(ActionEvent event) {
+    private void btnSaveAction(ActionEvent event)
+    {
 
         models.Question q = new models.Question();
 
@@ -295,7 +339,8 @@ public class TeacherAddTestController implements Initializable {
 
         q.setAnswers(tempAnswers);
 
-        if (chosenCheckBoxId > 0) {
+        if (chosenCheckBoxId > 0)
+        {
 
             q.setCorrectAnswer(chosenCheckBoxId - 0);//om denna variabel ska visa vart i arrayen som svaret finns så måste det bli ett minus 1?
 
@@ -319,7 +364,8 @@ public class TeacherAddTestController implements Initializable {
 
             checkBxQuestionAlt4.selectedProperty().set(false);
 
-        } else {
+        } else
+        {
 
             System.out.println("Felmeddelande i GUI");
 
@@ -331,26 +377,41 @@ public class TeacherAddTestController implements Initializable {
 
     @FXML
 
-    private void btnDoneAction(ActionEvent event) {
+    private void btnDoneAction(ActionEvent event) throws InterruptedException
+    {
 
         QuestionRepository qr = new QuestionRepository();
+        int time;
+        if (textFieldTimeLeft.getText().isEmpty())
+        {
+            time = 10;
+        } else
+        {
+            int totalTime = Integer.parseInt(textFieldTimeLeft.getText());
 
-        models.Test t = new models.Test();
-        t.setName(textFieldNameOfTest.getText());
+            totalTime = totalTime * 60;
 
-        t.setAutoCorrectedTest(isAutoCorrected);
+            time = totalTime;
+        }
 
-        t.setSubject(LoginController.currentTeacher.getSubject());
-
-        int totalTime = Integer.parseInt(textFieldTimeLeft.getText());
-
-        totalTime = totalTime * 60;
-
-        t.setTotalTime(totalTime);
-
+        models.Test t = new models.Test(
+                1, 
+                textFieldTestName.getText(), 
+                LoginController.currentTeacher.getSubject(), 
+                isAutoCorrected, time, 
+                LoginController.currentTeacher.getId());
+       
+        
+//        models.Test t = new models.Test(
+//        t.setName(textFieldTestName.getText());
+//
+//        t.setAutoCorrectedTest(isAutoCorrected);
+//
+//        t.setSubject(LoginController.currentTeacher.getSubject());
         models.Test newTest = tr.addTest(currentTeacher.getId(), t);
-        System.out.println("test --------------------------------" + newTest.getId());
-        for (int i = 0; i < newQuestions.size(); i++) {
+
+        for (int i = 0; i < newQuestions.size(); i++)
+        {
 
             models.Question q = new models.Question();
 
@@ -363,11 +424,34 @@ public class TeacherAddTestController implements Initializable {
             q.setCorrectAnswer(newQuestions.get(i).getCorrectAnswer());
 
             q.setTest_Id(newTest.getId());
-
-            qr.addQuestion((newTest.getId()), q);
+            System.out.println("INNAN SLEEP ---------------------------------------");
+            TimeUnit.SECONDS.sleep(2);
+            System.out.println("EFTER SLEEP ---------------------------------------");
+            qr.addQuestion(newTest.getId(), q);
 
         }
 
+    }
+
+    @FXML
+    private void btnGoBackAction(ActionEvent event) throws IOException
+    {
+        Parent studentScene = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
+
+        System.out.println("jag vill inte debugga");
+
+        Scene scene = new Scene(studentScene);
+
+        System.out.println("jag vill inte debugga2");
+
+        //Scene scene = new Scene(studentScene);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        System.out.println("aliörshgäaorijgreag    ");
+
+        stage.setScene(scene);
+
+        stage.show();
     }
 
 }

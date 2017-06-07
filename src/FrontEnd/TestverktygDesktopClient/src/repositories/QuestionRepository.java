@@ -1,12 +1,15 @@
 package repositories;
 
+import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import models.Question;
 import java.util.List;
 import javax.ws.rs.core.GenericType;
+import models.Test;
 
 public class QuestionRepository {
     
@@ -15,9 +18,9 @@ public class QuestionRepository {
     public QuestionRepository() {}
         
     public void addQuestion(int testId, Question newQuestion){
-        String testIdPath = String.valueOf(testId);
+        String testIdPath = Integer.toString(testId);
         client = ClientBuilder.newClient();
-        client.target("http://localhost:8080/TestverktygDesktop/webapi/tests/")
+        client.target("http://localhost:8080/TestverktygDesktop/webapi/questions/")
                 .path(testIdPath)
 //                .path("/questions")
                 .request(MediaType.APPLICATION_JSON)

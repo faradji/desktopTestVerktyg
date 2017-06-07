@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -26,9 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 import repositories.DoneTestRepository;
 
 public class TeacherStartPageController implements Initializable {
@@ -44,22 +44,29 @@ public class TeacherStartPageController implements Initializable {
 
     DoneTestRepository doneTestRepo = new DoneTestRepository();
     ObservableList<propertymodels.DoneTest> doneTests = FXCollections.observableArrayList();
-    ObservableList<propertymodels.DoneTest> searchBarList = FXCollections.observableArrayList();
+     ObservableList<propertymodels.DoneTest> searchBarList = FXCollections.observableArrayList();
+    
+     public void addTest(ActionEvent event) throws IOException {
 
-    public void addTest(ActionEvent event) {
+        Parent studentScene = FXMLLoader.load(getClass().getResource("TeacherAddTest.fxml"));
 
-        try {
-            Parent studentScene = FXMLLoader.load(getClass().getResource("TeacherAddTest.fxml"));
-            
-            Scene scene = new Scene(studentScene);
-            //Scene scene = new Scene(studentScene);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+                System.out.println("jag vill inte debugga");
+
+                Scene scene = new Scene(studentScene);
+
+                System.out.println("jag vill inte debugga2");
+
+                //Scene scene = new Scene(studentScene);
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                System.out.println("aliörshgäaorijgreag    ");
+
+                stage.setScene(scene);
+
+
+
+                stage.show();
     }
 
     public void populateTableDoneTests() {
@@ -98,52 +105,44 @@ public class TeacherStartPageController implements Initializable {
         tableDoneTest.setItems(doneTests);
 
     }
+public void searchBar(){
 
-    public void searchBar() {
+  FilteredList<propertymodels.DoneTest> filteredData = new FilteredList<>(doneTests, p -> true);
 
-        FilteredList<propertymodels.DoneTest> filteredData = new FilteredList<>(doneTests, p -> true);
-
+        // 2. Set the filter Predicate whenever the filter changes.
         searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(doneTest -> {
-              
+                // If filter text is empty, display all persons.
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
-               
+                // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (doneTest.getStudentName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false; 
+                    return true; // Filter matches first name.
+                } 
+                return false; // Does not match.
             });
         });
 
-       
+        // 3. Wrap the FilteredList in a SortedList. 
         SortedList<propertymodels.DoneTest> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
         sortedData.comparatorProperty().bind(tableDoneTest.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
         tableDoneTest.setItems(sortedData);
 
-    }
-public void txtFieldValidation() {
-        searchBar.setOnKeyReleased((KeyEvent event) -> {
-            String regex = "[A-Za-z\\s]+";
-            if (!searchBar.getText().matches(regex)) {
-                JOptionPane.showMessageDialog(null, "Name can only contain letters.", "Inane error", JOptionPane.ERROR_MESSAGE);
-                searchBar.setText("");
-
-            }
-        });
-    }
-
+}
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         teacherName.setText(currentTeacher.getName());
         populateTableDoneTests();
         searchBar();
-        txtFieldValidation();
-        
+       
 
     }
 

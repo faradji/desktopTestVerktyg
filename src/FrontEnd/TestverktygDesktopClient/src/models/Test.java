@@ -21,13 +21,7 @@ public class Test implements Serializable {
 
     public Test() {
     }
-    public Test( String name, String subject, int autoCorrectedTest, int totalTime, int teacher_id) {
-        this.name = name;
-        this.subject = subject;
-        this.autoCorrectedTest = autoCorrectedTest;
-        this.totalTime = totalTime;
-        this.teacher_id = teacher_id;
-    }
+
     public Test(int id, String name, String subject, int autoCorrectedTest, int totalTime, int teacher_id) {
         System.out.println("new user");
         this.id = id;

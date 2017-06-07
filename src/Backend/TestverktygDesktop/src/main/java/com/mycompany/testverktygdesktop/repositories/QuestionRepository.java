@@ -60,12 +60,12 @@ public class QuestionRepository {
 
     public Question addQuestion(int testId, Question question) {
         Session session = myHibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        
-        Test test = (Test) session.get(Test.class, testId);
-        
-        
+        session.beginTransaction();        
+        Test test = (Test) session.get(Test.class, testId);     
+        System.out.println(":::::::::::::::::::::::::::::::::**************"+ test.getId());
         question.setTest(test);
+        System.out.println("??????????????????????????????????????**************"+ testId);
+        
         question.setTest_Id(test.getId());
         
         session.save(question);
