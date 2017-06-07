@@ -25,3 +25,5 @@ src/Backend/TestverktygDesktop/src/main/resources/hibernate\.cfg\.xml
 *.properties
 
 src/FrontEnd/TestverktygDesktopClient/nbproject/private/private\.xml
+
+src/FrontEnd/TestverktygDesktopClient/nbproject/

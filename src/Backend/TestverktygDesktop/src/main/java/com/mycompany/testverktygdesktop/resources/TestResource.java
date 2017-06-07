@@ -1,5 +1,6 @@
 package com.mycompany.testverktygdesktop.resources;
 
+import com.mycompany.testverktygdesktop.models.Question;
 import com.mycompany.testverktygdesktop.models.Test;
 import com.mycompany.testverktygdesktop.repositories.TestRepository;
 import javax.ws.rs.Consumes;
@@ -34,10 +35,10 @@ public class TestResource {
     public List<Test> getTests() {
         return tr.getTests();
     }
-
+   
     @POST
-    public Test addTest(Test test) {
-        return tr.addTest(test);
+    public Test addTest(@PathParam("participantId") int teacher_id, Test test) {
+        return tr.addTest(teacher_id, test);
     }
 
     @PUT
