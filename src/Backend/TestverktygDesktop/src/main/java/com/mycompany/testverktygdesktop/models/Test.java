@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Test implements Serializable {
@@ -19,8 +20,12 @@ public class Test implements Serializable {
     int id;
     String name;
     String subject;
-int autoCorrectedTest;
-int totalTime;
+    int autoCorrectedTest;
+    int totalTime;
+    
+    @Transient
+    int teacher_id;
+    
     @OneToMany(mappedBy = "test")
     @JsonBackReference
     List<Question> questions;
@@ -101,5 +106,19 @@ int totalTime;
     public void setTotalTime(int totalTime) {
         this.totalTime = totalTime;
     }
+
+    public int getTeacher_id() {
+        return teacher_id;
+    }
+
+    public void setTeacher_id(int teacher_id) {
+        this.teacher_id = teacher_id;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+    
+    
 
 }

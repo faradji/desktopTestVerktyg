@@ -55,7 +55,12 @@ public class DoneTestsRepository {
             Question q = (Question) sessionGetQ.get(Question.class, studentAnswers.get(i).getQuestion_Id());
             //hämta test från DBn som q finns i
             Test test = (Test) sessionGetTest.get(Test.class, q.getTest_Id());
-
+            System.out.println("studentid i studentanswers: -------------------------__" + student.getId());
+            System.out.println("studentnamn i studentanswers: -------------------------__" + student.getName());
+            System.out.println("testämne i test: -------------------------__" + test.getSubject());
+            System.out.println("givenanswer i studentanswers: -------------------------__" + studentAnswers.get(i).getGivenAnswer());
+            System.out.println("testnamn i test: -------------------------__" + test.getName());
+            
             doneTests.add(new DoneTest(student.getId(), student.getName(), test.getSubject(), studentAnswers.get(i).getGivenAnswer(), test.getName()));
             
             for(int j = 0; j < doneTests.size(); j++){

@@ -14,6 +14,7 @@ public class Test{
     StringProperty subject;
     IntegerProperty autoCorrectedTest;
     IntegerProperty totalTime;
+    IntegerProperty teacher_id;
     List<Question> questions;
 
     List<Student> students;
@@ -23,13 +24,14 @@ public class Test{
     public Test() {
     }
 
-    public Test(int id, String name, String subject, int autoCorrectedTest, int totalTime) {
+    public Test(int id, String name, String subject, int autoCorrectedTest, int totalTime, int teacher_id) {
         System.out.println("new user");
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.subject = new SimpleStringProperty(subject);
         this.autoCorrectedTest = new SimpleIntegerProperty(autoCorrectedTest);
         this.totalTime = new SimpleIntegerProperty(totalTime);
+        this.teacher_id = new SimpleIntegerProperty(teacher_id);
     }
 
     public int getId() {
@@ -87,6 +89,14 @@ public class Test{
 
     public void setTotalTime(int totalTime) {
         this.totalTime.set(totalTime);
+    }
+    
+    public int getTeacher_id() {
+        return teacher_id.get();
+    }
+
+    public void setTeacher_id(int teacher_id) {
+        this.teacher_id.set(teacher_id);
     }
 
 }

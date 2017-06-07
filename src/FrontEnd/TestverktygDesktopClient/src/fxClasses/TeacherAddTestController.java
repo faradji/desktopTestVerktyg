@@ -22,7 +22,9 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import models.Question;
 import models.Test;
+import propertymodels.Teacher;
 import repositories.QuestionRepository;
+import repositories.TeacherRepository;
 import repositories.TestRepository;
 
 /**
@@ -33,6 +35,7 @@ import repositories.TestRepository;
 public class TeacherAddTestController implements Initializable
 {
     TestRepository tr = new TestRepository();
+
     @FXML
     private Label labelTeacherName;
     @FXML
@@ -171,7 +174,7 @@ public class TeacherAddTestController implements Initializable
             }
 
         }
-        labelTeacherName.setText(source1);
+        //labelTeacherName.setText(source1);
     }
 
     public void setLabelsOfTeacher()
@@ -226,11 +229,12 @@ public class TeacherAddTestController implements Initializable
         models.Test t = new models.Test();
         t.setName(textFieldTestName.getText());
         t.setAutoCorrectedTest(isAutoCorrected);
-        t.setSubject("Magnus testSubject");
-        //t.setSubject(LoginController.currentTeacher.getSubject());
+        t.setSubject(currentTeacher.getSubject());
         t.setTotalTime(Integer.parseInt(textFieldTimeLeft.getText()));
+        t.setTeacher_id(currentTeacher.getId());
+        System.out.println(t.getTeacher_id() + "---------------------------");
         
-        models.Test newTest = tr.addTest(t);
+        models.Test newTest = tr.addTest(currentTeacher.getId(),t);
         
         
         for(int i = 0; i < newQuestions.size(); i++)
