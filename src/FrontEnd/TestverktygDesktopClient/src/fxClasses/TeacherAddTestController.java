@@ -220,9 +220,10 @@ public class TeacherAddTestController implements Initializable
         models.Test t = new models.Test();
         t.setName(textFieldTestName.getText());
         t.setAutoCorrectedTest(isAutoCorrected);
-        t.setSubject("Magnus testSubject");
-        //t.setSubject(LoginController.currentTeacher.getSubject());
-        t.setTotalTime(Integer.parseInt(textFieldTimeLeft.getText()));
+        t.setSubject(LoginController.currentTeacher.getSubject());
+        int totalTime = Integer.parseInt(textFieldTimeLeft.getText());
+        totalTime = totalTime *60;
+        t.setTotalTime(totalTime);
         
         models.Test newTest = tr.addTest(t);
         

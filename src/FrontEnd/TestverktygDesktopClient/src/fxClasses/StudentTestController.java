@@ -292,7 +292,7 @@ public class StudentTestController implements Initializable {
         //timeSeconds.set(startTime);
         timeline = new Timeline();
         timeline.getKeyFrames().add(
-                new KeyFrame(Duration.seconds(startTime + 1),
+                new KeyFrame(Duration.minutes(startTime + 1),
                         new KeyValue(timeSeconds, 0)));
         timeline.playFromStart();
 
