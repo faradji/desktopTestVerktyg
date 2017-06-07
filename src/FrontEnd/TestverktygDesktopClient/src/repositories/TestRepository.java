@@ -33,10 +33,14 @@ public class TestRepository {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public models.Test addTest(Test newTest){
+    public models.Test addTest(int teacher_id, Test newTest){
         
         client = ClientBuilder.newClient();
-        models.Test testFromDatabase = client.target("http://localhost:8080/TestverktygDesktop/webapi/tests")
+        String teacherIdPath = Integer.toString(teacher_id);
+        
+        models.Test testFromDatabase = client.target("http://localhost:8080/TestverktygDesktop/webapi/teachers")
+                .path(teacherIdPath)
+                .path("/tests")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(newTest), Test.class);
         

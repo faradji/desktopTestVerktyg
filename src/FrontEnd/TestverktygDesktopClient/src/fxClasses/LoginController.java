@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
         StudentRepository sr = new StudentRepository();
 
         models.Participant p = pr.getParticipant(txtUserName.getText());
-
+        System.out.println(p.getDTYPE() + "--------------------------------------------------");
         if (p.getDTYPE().equalsIgnoreCase("Teacher")) {
 
             try {
@@ -104,18 +104,18 @@ public class LoginController implements Initializable {
             try {
 
                 models.Student student = sr.getStudent(p.getId());
-
+                System.out.println("Blabla");
                 propertymodels.Student propertyS = new propertymodels.Student(student.getId(), student.getName(),
                         student.getPassword(), student.getDTYPE());
 
                 currentStudent = propertyS;
-
+                System.out.println("lasjglasrihgnioasrhg<arg");
                 Parent studentScene = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
 
                 Scene s = new Scene(studentScene);
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+                System.out.println("aliörshgäaorijgreag    ");
                 stage.setScene(s);
 
                 stage.show();
