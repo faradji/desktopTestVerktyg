@@ -15,7 +15,7 @@ public class DoneTest implements Serializable{
     String studentName;
     String course;
     String testName;
-    String givenAnswer;
+    int givenAnswer;
     List<Question> questions =new ArrayList();
     
     public DoneTest()
@@ -23,7 +23,7 @@ public class DoneTest implements Serializable{
 
     }
 
-    public DoneTest(int studentid, String studentName, String course,String givenAnswer, String testName) {
+    public DoneTest(int studentid, String studentName, String course, int givenAnswer, String testName) {
         this.studentid = studentid;
         this.studentName = studentName;
         this.course = course;
@@ -63,11 +63,11 @@ public class DoneTest implements Serializable{
         this.testName = testName;
     }
 
-    public String getGivenAnswer() {
+    public int getGivenAnswer() {
         return givenAnswer;
     }
 
-    public void setGivenAnswer(String givenAnswers) {
+    public void setGivenAnswer(int givenAnswers) {
         this.givenAnswer = givenAnswers;
     }
 

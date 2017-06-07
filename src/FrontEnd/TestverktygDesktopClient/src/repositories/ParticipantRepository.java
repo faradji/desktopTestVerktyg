@@ -40,22 +40,7 @@ public class ParticipantRepository {
                 .get(models.Participant.class);
 
         client.close();
-
         return participant;
+    
     }
-//
-//    public Participant addParticipant(Participant participant) {
-//       
-//        return participant;
-//    }
-//
-//    public Participant updateParticipant(Participant participant) {
-//      
-//        return participant;
-//    }
-//
-//    public void deleteParticipant(int participantId) {
-//       
-//    }
-
 }

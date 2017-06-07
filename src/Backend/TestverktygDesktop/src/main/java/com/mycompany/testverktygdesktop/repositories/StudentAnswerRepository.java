@@ -7,6 +7,7 @@ package com.mycompany.testverktygdesktop.repositories;
 
 import com.mycompany.testverktygdesktop.models.Student;
 import com.mycompany.testverktygdesktop.models.StudentAnswer;
+import com.mycompany.testverktygdesktop.models.Test;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -16,24 +17,32 @@ import org.hibernate.SessionFactory;
  *
  * @author Allan
  */
-public class StudentAnswerRepository
-{
+public class StudentAnswerRepository {
+
     SessionFactory sessionFactory;
 
     public StudentAnswerRepository() {
         sessionFactory = myHibernateUtil.getSessionFactory();
     }
-    
-                   
-    public List<StudentAnswer> getStudentAnswers()
-    {
+
+    public List<StudentAnswer> getStudentAnswers() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        
+
         List<StudentAnswer> studentAnswers = session.createCriteria(StudentAnswer.class).list();
-        
+
         session.close();
         return studentAnswers;
     }
-    
+
+    public void addStudentAnswer(StudentAnswer studentAnswer) {
+        Session session = myHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(studentAnswer);
+
+        session.getTransaction().commit();
+        session.close();
+
+    }
+
 }

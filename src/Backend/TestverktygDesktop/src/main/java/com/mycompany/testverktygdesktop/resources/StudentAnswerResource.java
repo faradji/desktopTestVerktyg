@@ -5,43 +5,34 @@
  */
 package com.mycompany.testverktygdesktop.resources;
 
-import com.mycompany.testverktygdesktop.models.Participant;
 import com.mycompany.testverktygdesktop.models.StudentAnswer;
 import com.mycompany.testverktygdesktop.repositories.StudentAnswerRepository;
 import java.util.List;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 
-/**
- *
- * @author Allan
- */
-public class StudentAnswerResource
-{
+@Path("/studentAnswer")
+public class StudentAnswerResource {
+
     StudentAnswerRepository sRepo = new StudentAnswerRepository();
-    
+
 //    @GET
 //    public StudentAnswer getStudentAnswer()
 //    {
 //        
 //    }
-
     @GET
-    public List<StudentAnswer> getStudentAnswers()
-    {
+    public List<StudentAnswer> getStudentAnswers() {
         System.out.println("resource");
         return sRepo.getStudentAnswers();
     }
 //
-//    @POST
-//    public StudentAnswer addParticipant(StudentAnswer studentAnswer)
-//    {
-//        return sRepo.addParticipant(participant);
-//    }
+
+    @POST
+    public void addStudentAnswers(StudentAnswer studentAnswer) {
+         sRepo.addStudentAnswer(studentAnswer);
+    }
 //
 //    @PUT
 //    public Participant updateParticipant(Participant participant)

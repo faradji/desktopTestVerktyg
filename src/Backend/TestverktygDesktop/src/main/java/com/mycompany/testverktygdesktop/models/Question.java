@@ -40,13 +40,13 @@ public class Question implements Serializable {
     public Question() {
     }
 
-    public Question(int id, String qText, int correctAnswer, ArrayList answers, String imageURL) {
+    public Question(int id, String qText,int test_Id, int correctAnswer, ArrayList answers, String imageURL) {
         this.id = id;
         this.qText = qText;
         this.correctAnswer = correctAnswer;
         this.answers = answers;
         this.imageURL = imageURL;
-        //this.test_Id = test_Id;
+        this.test_Id = test_Id;
     }
 
     public int getId() {
@@ -82,7 +82,7 @@ public class Question implements Serializable {
     }
     
     public int getTest_Id(){
-        return test_Id;
+        return test.getId();
     }
     
     public void setTest_Id(int testId){
