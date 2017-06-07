@@ -1,39 +1,231 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.TeacherAddTestController">
-   <children>
-      <Label fx:id="labelTeacherName" layoutX="50.0" layoutY="22.0" text="name_teacher" />
-      <Label fx:id="labelResponseAlt" layoutX="50.0" layoutY="174.0" text="Svarsalternativ" />
-      <Label fx:id="labelSubject" layoutX="50.0" layoutY="50.0" text="subject_teacher" />
-      <Label fx:id="labelSeeResult" layoutX="50.0" layoutY="76.0" text="Se resultat direkt" />
-      <Label fx:id="labelTimeLeft" layoutX="50.0" layoutY="101.0" text="tid eleven har kvar" />
-      <Label fx:id="labelQuestionNr" layoutX="50.0" layoutY="144.0" text="Fråga nr" />
-      <Label fx:id="labelCheckBoxCorrect" layoutX="47.0" layoutY="200.0" text="checboxa rätt svar" />
-      <Label fx:id="labelAddPic" layoutX="31.0" layoutY="258.0" text="lägg till bild" />
-      <CheckBox fx:id="chckBxYes" layoutX="227.0" layoutY="76.0" mnemonicParsing="false" text="Ja" />
-      <CheckBox fx:id="chckBxNo" layoutX="329.0" layoutY="76.0" mnemonicParsing="false" text="Nej" />
-      <TextField fx:id="textFieldTimeLeft" layoutX="200.0" layoutY="97.0" />
-      <TextField fx:id="textFieldQuestionText" layoutX="200.0" layoutY="140.0" prefHeight="25.0" prefWidth="360.0" />
-      <TextField fx:id="textFieldQuestionAlt1" layoutX="200.0" layoutY="170.0" prefHeight="25.0" prefWidth="96.0" />
-      <CheckBox id="checkBxQuestionAlt1" fx:id="checkBxQuestionAlt1" layoutX="300.0" layoutY="174.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
-      <TextField fx:id="textFieldQuestionAlt2" layoutX="349.0" layoutY="170.0" prefHeight="25.0" prefWidth="96.0" />
-      <CheckBox id="checkBxQuestionAlt2" fx:id="checkBxQuestionAlt2" layoutX="449.0" layoutY="174.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
-      <CheckBox id="checkBxQuestionAlt3" fx:id="checkBxQuestionAlt3" layoutX="300.0" layoutY="209.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
-      <TextField fx:id="textFieldQuestionAlt4" layoutX="349.0" layoutY="205.0" prefHeight="25.0" prefWidth="96.0" />
-      <CheckBox id="checkBxQuestionAlt4" fx:id="checkBxQuestionAlt4" layoutX="449.0" layoutY="209.0" mnemonicParsing="false" onMouseReleased="#checkBoxHandler" />
-      <TextField fx:id="textFieldQuestionAlt3" layoutX="200.0" layoutY="205.0" prefHeight="25.0" prefWidth="96.0" />
-      <ImageView fx:id="imageViewImage" fitHeight="142.0" fitWidth="169.0" layoutX="411.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="textFieldImageUrl" layoutX="200.0" layoutY="246.0" prefHeight="25.0" prefWidth="169.0" />
-      <Button fx:id="btnSave" layoutX="73.0" layoutY="315.0" mnemonicParsing="false" onAction="#btnSaveAction" text="Spara och skapa ny" />
-      <Button fx:id="btnDone" layoutX="201.0" layoutY="315.0" mnemonicParsing="false" onAction="#btnDoneAction" text="Test klart" />
-      <TextField fx:id="textFieldTestName" layoutX="200.0" layoutY="38.0" />
-      <Label layoutX="261.0" layoutY="22.0" text="Provnamn" />
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.TeacherAddTestController">
+    <children>
+        <VBox alignment="BOTTOM_CENTER" prefWidth="600.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="807.0" styleClass="btn" text="Newton testverktyg" />
+                <VBox blendMode="SRC_ATOP" prefHeight="436.0" prefWidth="800.0">
+                    <children>
+                        <HBox prefHeight="392.0" prefWidth="800.0" styleClass="scene">
+                            <children>
+                                <VBox prefHeight="380.0" prefWidth="178.0">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <HBox.margin>
+                                        <Insets right="10.0" top="20.0" />
+                                    </HBox.margin>
+                                    <padding>
+                                        <Insets left="10.0" />
+                                    </padding>
+                                    <children>
+                                        <VBox prefHeight="304.0" prefWidth="195.0">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                            <padding>
+                                                <Insets top="20.0" />
+                                            </padding>
+                                            <children>
+                                                <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <Label id="label" fx:id="labelTeacherName" text="name_teacher" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <Label fx:id="labelSubject" text="subject_teacher" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <Label fx:id="labelSeeResult" text="Result visible to student" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <Label fx:id="labelTimeLeft" text="Time limit" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <Label fx:id="labelQuestionNr" text="Question: " />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <Label fx:id="labelResponseAlt" text="Alternatives" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <Label fx:id="labelCheckBoxCorrect" text="Check correct answer" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <Label fx:id="labelAddPic" text="Add picture" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="158.0" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="372.0" prefWidth="353.0">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <padding>
+                                        <Insets left="10.0" />
+                                    </padding>
+                                    <children>
+                                        <VBox prefHeight="304.0" prefWidth="195.0">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                            <padding>
+                                                <Insets top="20.0" />
+                                            </padding>
+                                            <children>
+                                                <HBox prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <Label fx:id="labelTeacherName11" text="name_teacher" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <TextField fx:id="textFieldNameOfTest" prefHeight="27.0" prefWidth="334.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <HBox prefHeight="31.0" prefWidth="130.0">
+                                                            <children>
+                                                                <CheckBox fx:id="chckBxYes" mnemonicParsing="false" text="Yes">
+                                                                    <HBox.margin>
+                                                                        <Insets />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                                <CheckBox fx:id="chckBxNo" mnemonicParsing="false" text="No">
+                                                                    <HBox.margin>
+                                                                        <Insets left="5.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <TextField fx:id="textFieldTimeLeft" prefHeight="27.0" prefWidth="80.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <TextField fx:id="textFieldQuestionText" prefHeight="27.0" prefWidth="334.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="156.0">
+                                                    <children>
+                                                        <HBox prefHeight="32.0" prefWidth="340.0">
+                                                            <children>
+                                                                <TextField fx:id="textFieldQuestionAlt1" prefHeight="27.0" prefWidth="150.0">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="5.0" />
+                                                                    </HBox.margin>
+                                                                </TextField>
+                                                                <CheckBox id="checkBxQuestionAlt1" fx:id="checkBxQuestionAlt1" mnemonicParsing="false" onMouseReleased="#checkBoxHandler">
+                                                                    <HBox.margin>
+                                                                        <Insets left="5.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                                <TextField fx:id="textFieldQuestionAlt2" prefHeight="27.0" prefWidth="150.0">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="5.0" />
+                                                                    </HBox.margin>
+                                                                </TextField>
+                                                                <CheckBox id="checkBxQuestionAlt2" fx:id="checkBxQuestionAlt2" mnemonicParsing="false" onMouseReleased="#checkBoxHandler">
+                                                                    <HBox.margin>
+                                                                        <Insets left="5.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <HBox prefHeight="32.0" prefWidth="340.0">
+                                                            <children>
+                                                                <TextField fx:id="textFieldQuestionAlt3" prefHeight="27.0" prefWidth="150.0">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="5.0" />
+                                                                    </HBox.margin>
+                                                                </TextField>
+                                                                <CheckBox id="checkBxQuestionAlt3" fx:id="checkBxQuestionAlt3" mnemonicParsing="false" onMouseReleased="#checkBoxHandler">
+                                                                    <HBox.margin>
+                                                                        <Insets left="5.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                                <TextField fx:id="textFieldQuestionAlt4" prefHeight="27.0" prefWidth="150.0">
+                                                                    <HBox.margin>
+                                                                        <Insets bottom="5.0" />
+                                                                    </HBox.margin>
+                                                                </TextField>
+                                                                <CheckBox id="checkBxQuestionAlt4" fx:id="checkBxQuestionAlt4" mnemonicParsing="false" onMouseReleased="#checkBoxHandler">
+                                                                    <HBox.margin>
+                                                                        <Insets left="5.0" />
+                                                                    </HBox.margin>
+                                                                </CheckBox>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <TextField fx:id="textFieldImageUrl" prefHeight="27.0" prefWidth="334.0" />
+                                                    </children>
+                                                </HBox>
+                                                <HBox prefHeight="35.0" prefWidth="158.0">
+                                                    <children>
+                                                        <Button fx:id="btnSave" mnemonicParsing="false" onAction="#btnSaveAction" styleClass="btn" text="Save and create new">
+                                                            <HBox.margin>
+                                                                <Insets right="10.0" />
+                                                            </HBox.margin>
+                                                        </Button>
+                                                        <Button fx:id="btnDone" mnemonicParsing="false" onAction="#btnDoneAction" styleClass="btn" text="Save test" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets top="20.0" />
+                                    </HBox.margin>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="392.0" prefWidth="227.0">
+                                    <children>
+                                        <ImageView fx:id="imageViewImage" fitHeight="312.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="811.0" styleClass="btn" text="Grupp fem" />
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
