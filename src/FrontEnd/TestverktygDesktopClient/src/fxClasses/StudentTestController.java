@@ -227,7 +227,6 @@ public class StudentTestController implements Initializable {
         //if-satsen är sann när alla frågor besvarats
         if (answers.size() == observableQuestions.size()) {
             emptyCheckBoxes(false);
-            btnSaveTestAction();
         }
     }
 
@@ -259,8 +258,9 @@ public class StudentTestController implements Initializable {
 
             for (int i = 0; i < currentQ.getAnswers().size(); i++) {
                 //Dessa rader kommer alltid att få ut värdet på svaret i en sträng
-                String currentQue = currentQ.getAnswers().get(i).toString().substring(20);
-                currentQue = currentQue.substring(0, currentQue.length() - 1);
+                //String currentQue = currentQ.getAnswers().get(i).toString().substring(20);
+                String currentQue = currentQ.getAnswers().get(i).toString();
+                //currentQue = currentQue.substring(0, currentQue.length() - 1);
 
                 switch (i) {
                     case 0:
