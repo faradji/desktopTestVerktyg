@@ -7,11 +7,12 @@ public class Participant implements Serializable {
     int id;
     String name;
     String password;
-String DTYPE;
+    String DTYPE;
+
     public Participant() {
     }
 
-    public Participant(int id, String name,String DTYPE, String password) {
+    public Participant(int id, String name, String DTYPE, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
