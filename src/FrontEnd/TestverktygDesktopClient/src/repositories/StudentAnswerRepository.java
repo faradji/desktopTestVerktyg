@@ -24,7 +24,6 @@ public class StudentAnswerRepository {
     public void addStudentAnswer(models.StudentAnswer newAnswer) {
         client = ClientBuilder.newClient();
         client.target("http://localhost:8080/TestverktygDesktop/webapi/studentAnswer")
-                .path("/questions")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(newAnswer), models.StudentAnswer.class);
 
