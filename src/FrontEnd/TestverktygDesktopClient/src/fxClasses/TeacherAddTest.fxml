@@ -106,7 +106,7 @@
                                                 </HBox>
                                                 <HBox prefHeight="35.0" prefWidth="158.0">
                                                     <children>
-                                                        <TextField fx:id="textFieldNameOfTest" prefHeight="27.0" prefWidth="334.0" />
+                                                        <TextField fx:id="textFieldTestName" prefHeight="27.0" prefWidth="334.0" />
                                                     </children>
                                                 </HBox>
                                                 <HBox prefHeight="35.0" prefWidth="158.0">
@@ -202,11 +202,22 @@
                                                     <children>
                                                         <Button fx:id="btnSave" mnemonicParsing="false" onAction="#btnSaveAction" styleClass="btn" text="Save and create new">
                                                             <HBox.margin>
-                                                                <Insets right="10.0" />
+                                                                <Insets right="36.0" />
                                                             </HBox.margin>
                                                         </Button>
-                                                        <Button fx:id="btnDone" mnemonicParsing="false" onAction="#btnDoneAction" styleClass="btn" text="Save test" />
+                                                        <Button fx:id="btnDone" mnemonicParsing="false" onAction="#btnDoneAction" styleClass="btn" text="Save test">
+                                             <HBox.margin>
+                                                <Insets right="36.0" />
+                                             </HBox.margin></Button>
+                                          <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#btnGoBackAction" styleClass="btn" text="Go back">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Button>
                                                     </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
                                                 </HBox>
                                             </children>
                                         </VBox>
