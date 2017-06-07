@@ -28,7 +28,6 @@ import javafx.scene.control.TextField;
 
 import javafx.scene.image.ImageView;
 
-
 import repositories.QuestionRepository;
 
 import repositories.TestRepository;
@@ -351,7 +350,7 @@ public class TeacherAddTestController implements Initializable {
 
         t.setTotalTime(totalTime);
 
-        models.Test newTest = tr.addTest(currentTeacher.getId(),t);
+        models.Test newTest = tr.addTest(currentTeacher.getId(), t);
 
         for (int i = 0; i < newQuestions.size(); i++) {
 

@@ -112,11 +112,11 @@ public class LoginController implements Initializable {
                 System.out.println("lasjglasrihgnioasrhg<arg");
                 Parent studentScene = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
 
-                Scene s = new Scene(studentScene);
+                Scene scene = new Scene(studentScene);
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 System.out.println("aliörshgäaorijgreag    ");
-                stage.setScene(s);
+                stage.setScene(scene);
 
                 stage.show();
 
