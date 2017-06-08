@@ -27,9 +27,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 import javafx.stage.Stage;
-
+import javax.swing.JOptionPane;
 import repositories.ParticipantRepository;
 
 import repositories.StudentRepository;
@@ -63,7 +64,6 @@ public class LoginController implements Initializable {
     Label lblUserName, lblPassword;
 
     @FXML
-
     private void btnLoginClicked(ActionEvent event) {
 
         TeacherRepository tr = new TeacherRepository();
@@ -71,12 +71,14 @@ public class LoginController implements Initializable {
         StudentRepository sr = new StudentRepository();
 
         models.Participant p = pr.getParticipant(txtUserName.getText());
-        System.out.println(p.getDTYPE() + "--------------------------------------------------");
+        if(p != null){
         if (p.getDTYPE().equalsIgnoreCase("Teacher")) {
 
             try {
-
                 models.Teacher teacher = tr.getTeacher(p.getId());
+                if (txtPassword.getText().equals(teacher.getPassword())) {
+                    currentTeacher = new propertymodels.Teacher(teacher.getId(), teacher.getName(),
+                            teacher.getPassword(), teacher.getDTYPE(), teacher.getSubject());
 
                 propertymodels.Teacher propertyT = new propertymodels.Teacher(teacher.getId(), teacher.getName(),
                         teacher.getPassword(), teacher.getDTYPE(), teacher.getSubject());
@@ -95,9 +97,7 @@ public class LoginController implements Initializable {
                 stage.show();
 
             } catch (IOException ex) {
-
                 System.out.println(ex.getMessage());
-
             }
 
         } else if (p.getDTYPE().equalsIgnoreCase("Student")) {
@@ -109,37 +109,47 @@ public class LoginController implements Initializable {
                 propertymodels.Student propertyS = new propertymodels.Student(student.getId(), student.getName(), student.getDTYPE(),
                         student.getPassword());
 
-                currentStudent = propertyS;
-                System.out.println("lasjglasrihgnioasrhg<arg");
-                Parent studentScene = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
-                System.out.println("jag vill inte debugga");
-                Scene scene = new Scene(studentScene);
-                System.out.println("jag vill inte debugga2");
-
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                System.out.println("aliörshgäaorijgreag    ");
-                stage.setScene(scene);
-
-                stage.show();
-                
+                if (txtPassword.getText().equals(student.getPassword())) {
+                    System.out.println("student");
+                    currentStudent = new propertymodels.Student(student.getId(), student.getName(),
+                            student.getDTYPE(), student.getPassword());
+                    System.out.println("student");
+                    Parent studentScene = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
+                    System.out.println("student");
+                    Scene scene = new Scene(studentScene);
+                    System.out.println("student");
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    System.out.println("student");
+                    stage.setScene(scene);
+                    System.out.println("student");
+                    stage.show();
+                }
             } catch (IOException ex) {
-
                 System.out.println(ex.getMessage());
-
             }
 
-        } else {
-
-            System.out.println("användare finns inte");
+        }} else {
+            JOptionPane.showMessageDialog(null, "User doesnt exist.", "Inane error", JOptionPane.ERROR_MESSAGE);
+            txtUserName.setText("");
+            txtPassword.setText("");
 
         }
 
     }
 
-    @Override
+    public void userNamevalidation() {
+        txtUserName.setOnKeyReleased((KeyEvent event) -> {
+            String regex = "[A-Za-z\\s]+";
+            if (!txtUserName.getText().matches(regex)) {
+                JOptionPane.showMessageDialog(null, "Username can only contain letters.", "Inane error", JOptionPane.ERROR_MESSAGE);
+                txtUserName.setText("");
 
-    public void initialize(URL url, ResourceBundle rb) {
-
+            }
+        });
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        userNamevalidation();
+    }
 }
