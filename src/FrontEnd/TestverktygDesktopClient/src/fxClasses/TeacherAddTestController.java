@@ -263,7 +263,7 @@ public class TeacherAddTestController implements Initializable {
 
         }
 
-        labelTeacherName.setText(source1);
+     
 
     }
 

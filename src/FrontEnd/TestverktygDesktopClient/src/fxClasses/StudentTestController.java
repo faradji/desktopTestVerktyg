@@ -83,7 +83,6 @@ public class StudentTestController implements Initializable {
     //Anropas i initialize, visar frågorna på provet i en listview
     private void populateListView() {
         //populate listview
-        System.out.println("Antalet frågor i provet: " + questions.size());
         for (int i = 0; i < questions.size(); i++) {
 //            if (currentTest.getId() == questions.get(i).getTest_Id()) {
             propertymodels.Question q = questions.get(i);

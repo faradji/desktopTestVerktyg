@@ -29,10 +29,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import propertymodels.DoneTest;
+import propertymodels.Test;
 import repositories.DoneTestRepository;
 
 public class TeacherStartPageController implements Initializable {
-
+    static DoneTest test;
     @FXML
     TableView tableDoneTest;
     @FXML
@@ -46,6 +48,23 @@ public class TeacherStartPageController implements Initializable {
     ObservableList<propertymodels.DoneTest> doneTests = FXCollections.observableArrayList();
     ObservableList<propertymodels.DoneTest> searchBarList = FXCollections.observableArrayList();
 
+    public void goToTest(ActionEvent event){
+       try {
+            
+           test = (propertymodels.DoneTest) tableDoneTest.getSelectionModel().getSelectedItem();
+            Parent correctTest = FXMLLoader.load(getClass().getResource("TeacherCorrectTest.fxml"));
+            
+            Scene scene = new Scene(correctTest);
+            //Scene scene = new Scene(studentScene);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } 
+    }
+    
     public void addTest(ActionEvent event) {
 
         try {

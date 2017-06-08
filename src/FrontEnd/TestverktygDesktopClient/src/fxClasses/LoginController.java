@@ -78,7 +78,7 @@ public class LoginController implements Initializable {
                 models.Teacher teacher = tr.getTeacher(p.getId());
                 if (txtPassword.getText().equals(teacher.getPassword())) {
                     currentTeacher = new propertymodels.Teacher(teacher.getId(), teacher.getName(),
-                            teacher.getPassword(), teacher.getSubject(), teacher.getDTYPE());
+                            teacher.getPassword(), teacher.getDTYPE(), teacher.getSubject());
 
                     Parent teacherScene = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
                     Scene s = new Scene(teacherScene);
@@ -100,7 +100,7 @@ public class LoginController implements Initializable {
                 if (txtPassword.getText().equals(student.getPassword())) {
                     System.out.println("student");
                     currentStudent = new propertymodels.Student(student.getId(), student.getName(),
-                            student.getPassword(), student.getDTYPE());
+                            student.getDTYPE(), student.getPassword());
                     System.out.println("student");
                     Parent studentScene = FXMLLoader.load(getClass().getResource("StudentStartPage.fxml"));
                     System.out.println("student");
