@@ -1,5 +1,6 @@
 package com.mycompany.testverktygdesktop.repositories;
 
+import com.mycompany.testverktygdesktop.models.Teacher;
 import com.mycompany.testverktygdesktop.models.Test;
 import java.util.List;
 import org.hibernate.Session;
@@ -13,9 +14,17 @@ public class TestRepository {
         sessionFactory = myHibernateUtil.getSessionFactory();
     }
 
-    public Test addTest(Test test) {
+    public Test addTest(int teacher_id, Test test) {
         Session session = myHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
+        
+        Teacher teacher = (Teacher) session.get(Teacher.class, teacher_id);
+        
+        
+        test.setTeacher(teacher);
+        test.setTeacher_id(teacher.getId());
+        
+        
         session.save(test);
         session.getTransaction().commit();
         session.close();

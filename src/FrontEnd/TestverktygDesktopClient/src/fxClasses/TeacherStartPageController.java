@@ -5,6 +5,8 @@
  */
 package fxClasses;
 
+import static fxClasses.LoginController.currentTeacher;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -16,12 +18,17 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import repositories.DoneTestRepository;
 
 public class TeacherStartPageController implements Initializable {
@@ -38,9 +45,28 @@ public class TeacherStartPageController implements Initializable {
     DoneTestRepository doneTestRepo = new DoneTestRepository();
     ObservableList<propertymodels.DoneTest> doneTests = FXCollections.observableArrayList();
      ObservableList<propertymodels.DoneTest> searchBarList = FXCollections.observableArrayList();
-    public void addTest(ActionEvent event) {
+    
+     public void addTest(ActionEvent event) throws IOException {
 
-        //todo
+        Parent studentScene = FXMLLoader.load(getClass().getResource("TeacherAddTest.fxml"));
+
+                System.out.println("jag vill inte debugga");
+
+                Scene scene = new Scene(studentScene);
+
+                System.out.println("jag vill inte debugga2");
+
+                //Scene scene = new Scene(studentScene);
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                System.out.println("aliörshgäaorijgreag    ");
+
+                stage.setScene(scene);
+
+
+
+                stage.show();
     }
 
     public void populateTableDoneTests() {
@@ -80,30 +106,6 @@ public class TeacherStartPageController implements Initializable {
 
     }
 public void searchBar(){
-//
-//        searchBar.textProperty().addListener(new ChangeListener() {
-//            @Override
-//            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-//                if(newValue !=null){
-//                      doneTests.stream().forEach((d)->{
-//                    
-//                        if(searchBar.getText().equalsIgnoreCase(d.getStudentName())){
-//                            searchBarList.add(d);
-//                        }
-//                    
-//                    });
-//                    doneTests.clear();
-//                    tableDoneTest.setItems(searchBarList);
-//                }else{
-//                    searchBarList.clear();
-//                    populateTableDoneTests();
-//                }
-//                
-//             }
-//
-//           
-//
-//        });
 
   FilteredList<propertymodels.DoneTest> filteredData = new FilteredList<>(doneTests, p -> true);
 
@@ -137,6 +139,7 @@ public void searchBar(){
 }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        teacherName.setText(currentTeacher.getName());
         populateTableDoneTests();
         searchBar();
        

@@ -19,7 +19,7 @@ public class StudentAnswer implements Serializable
 
     IntegerProperty participant_Id;
     IntegerProperty question_Id;
-    StringProperty givenAnswer;
+    IntegerProperty givenAnswer;
     Date date;
 
     public StudentAnswer()
@@ -27,11 +27,11 @@ public class StudentAnswer implements Serializable
 
     }
 
-    public StudentAnswer(int participant_Id, int question_Id, String givenAnswer, Date date)
+    public StudentAnswer(int participant_Id, int question_Id, int givenAnswer, Date date)
     {
         this.participant_Id = new SimpleIntegerProperty(participant_Id);
         this.question_Id = new SimpleIntegerProperty(question_Id);
-        this.givenAnswer = new SimpleStringProperty(givenAnswer);
+        this.givenAnswer = new SimpleIntegerProperty(givenAnswer);
         this.date = date;
     }
 
@@ -55,12 +55,12 @@ public class StudentAnswer implements Serializable
         this.question_Id.set(question_Id);
     }
 
-    public String getGivenAnswer()
+    public int getGivenAnswer()
     {
         return givenAnswer.get();
     }
 
-    public void setGivenAnswer(String givenAnswer)
+    public void setGivenAnswer(int givenAnswer)
     {
         this.givenAnswer.set(givenAnswer);
     }
