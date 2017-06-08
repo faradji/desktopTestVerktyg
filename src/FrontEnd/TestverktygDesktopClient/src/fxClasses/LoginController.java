@@ -79,9 +79,10 @@ public class LoginController implements Initializable {
                 models.Teacher teacher = tr.getTeacher(p.getId());
 
                 propertymodels.Teacher propertyT = new propertymodels.Teacher(teacher.getId(), teacher.getName(),
-                        teacher.getPassword(), teacher.getSubject(), teacher.getDTYPE());
+                        teacher.getPassword(), teacher.getDTYPE(), teacher.getSubject());
 
                 currentTeacher = propertyT;
+                System.out.println(currentTeacher.getName());
 
                 Parent teacherScene = FXMLLoader.load(getClass().getResource("TeacherStartPage.fxml"));
 
@@ -105,8 +106,8 @@ public class LoginController implements Initializable {
 
                 models.Student student = sr.getStudent(p.getId());
                 System.out.println("Blabla");
-                propertymodels.Student propertyS = new propertymodels.Student(student.getId(), student.getName(),
-                        student.getPassword(), student.getDTYPE());
+                propertymodels.Student propertyS = new propertymodels.Student(student.getId(), student.getName(), student.getDTYPE(),
+                        student.getPassword());
 
                 currentStudent = propertyS;
                 System.out.println("lasjglasrihgnioasrhg<arg");

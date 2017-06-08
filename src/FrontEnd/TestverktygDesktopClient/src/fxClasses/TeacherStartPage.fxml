@@ -25,9 +25,7 @@
                 <TableColumn fx:id="columnCourse" prefWidth="75.0" text="Course"> </TableColumn>
                   <TableColumn fx:id="columnTest" prefWidth="75.0" text="Test"> </TableColumn>
               </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
+               
             </TableView>
             <Label fx:id="teacherName" layoutX="110.0" layoutY="30.0" prefHeight="17.0" prefWidth="81.0" text="teacher_Name" />
             <TextField fx:id="searchBar" layoutX="226.0" layoutY="59.0" />

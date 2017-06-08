@@ -64,8 +64,9 @@ public class QuestionRepository {
         
         Test test = (Test) session.get(Test.class, testId);
         
-        
+        System.out.println(test.getName());
         question.setTest(test);
+        System.out.println(test.getId() + " tesssssssssssssssst");
         question.setTest_Id(test.getId());
         
         session.save(question);

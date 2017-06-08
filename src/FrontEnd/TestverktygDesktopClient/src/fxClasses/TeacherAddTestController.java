@@ -47,104 +47,57 @@ public class TeacherAddTestController implements Initializable {
     TestRepository tr = new TestRepository();
 
     @FXML
-
     private Label labelTeacherName;
-
     @FXML
-
-    private Label labelResponseAlt;
-
-    @FXML
-
     private Label labelSubject;
-
     @FXML
-
     private Label labelSeeResult;
-
     @FXML
-
     private Label labelTimeLeft;
-
     @FXML
-
     private Label labelQuestionNr;
-
     @FXML
-
+    private Label labelResponseAlt;
+    @FXML
     private Label labelCheckBoxCorrect;
-
     @FXML
-
     private Label labelAddPic;
-
     @FXML
-
+    private Label labelTeacherName11;
+    @FXML
+    private TextField textFieldNameOfTest;
+    @FXML
     private CheckBox chckBxYes;
-
     @FXML
-
     private CheckBox chckBxNo;
-
     @FXML
-
     private TextField textFieldTimeLeft;
-
     @FXML
-
-    private TextField textFieldTestName;
-
-    @FXML
-
     private TextField textFieldQuestionText;
-
     @FXML
-
     private TextField textFieldQuestionAlt1;
-
     @FXML
-
     private CheckBox checkBxQuestionAlt1;
-
     @FXML
-
     private TextField textFieldQuestionAlt2;
-
     @FXML
-
     private CheckBox checkBxQuestionAlt2;
-
     @FXML
-
-    private CheckBox checkBxQuestionAlt3;
-
-    @FXML
-
-    private TextField textFieldQuestionAlt4;
-
-    @FXML
-
-    private CheckBox checkBxQuestionAlt4;
-
-    @FXML
-
     private TextField textFieldQuestionAlt3;
-
     @FXML
-
-    private ImageView imageViewImage;
-
+    private CheckBox checkBxQuestionAlt3;
     @FXML
-
+    private TextField textFieldQuestionAlt4;
+    @FXML
+    private CheckBox checkBxQuestionAlt4;
+    @FXML
     private TextField textFieldImageUrl;
-
     @FXML
-
     private Button btnSave;
-
     @FXML
-
     private Button btnDone;
+    @FXML
+    private ImageView imageViewImage;
 
     List<models.Question> newQuestions = new ArrayList();
 
@@ -188,7 +141,7 @@ public class TeacherAddTestController implements Initializable {
 
         });
 
-        //setLabelsOfTeacher();
+        setLabelsOfTeacher();
     }
 
     @FXML
@@ -264,9 +217,6 @@ public class TeacherAddTestController implements Initializable {
             }
 
         }
-
-        labelTeacherName.setText(source1);
-
     }
 
     public void setLabelsOfTeacher() {
@@ -339,7 +289,7 @@ public class TeacherAddTestController implements Initializable {
 
         models.Test t = new models.Test();
 
-        t.setName(textFieldTestName.getText());
+        t.setName(textFieldNameOfTest.getText());
 
         t.setAutoCorrectedTest(isAutoCorrected);
 
@@ -355,17 +305,20 @@ public class TeacherAddTestController implements Initializable {
 
         for (int i = 0; i < newQuestions.size(); i++) {
 
-            models.Question q = new models.Question();
+            models.Question q = new models.Question(newQuestions.get(i).getqText(), 
+                    newQuestions.get(i).getCorrectAnswer(),
+                    newQuestions.get(i).getAnswers(),
+                    newQuestions.get(i).getImageURL());
 
-            q.setqText(newQuestions.get(i).getqText());
-
-            q.setAnswers(newQuestions.get(i).getAnswers());
-
-            q.setImageURL(newQuestions.get(i).getImageURL());
-
-            q.setCorrectAnswer(newQuestions.get(i).getCorrectAnswer());
-
-            q.setTest_Id(newTest.getId());
+//            q.setqText(newQuestions.get(i).getqText());
+//
+//            q.setAnswers(newQuestions.get(i).getAnswers());
+//
+//            q.setImageURL(newQuestions.get(i).getImageURL());
+//
+//            q.setCorrectAnswer(newQuestions.get(i).getCorrectAnswer());
+//
+//            q.setTest_Id(newTest.getId());
 
             qr.addQuestion(newTest.getId(), q);
 
