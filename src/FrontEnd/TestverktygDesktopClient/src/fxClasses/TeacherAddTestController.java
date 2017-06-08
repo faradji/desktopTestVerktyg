@@ -28,7 +28,6 @@ import javafx.scene.control.TextField;
 
 import javafx.scene.image.ImageView;
 
-
 import repositories.QuestionRepository;
 
 import repositories.TestRepository;
@@ -91,8 +90,7 @@ public class TeacherAddTestController implements Initializable {
     private TextField textFieldTimeLeft;
 
     @FXML
-
-    private TextField textFieldTestName;
+    private TextField textFieldNameOfTest; 
 
     @FXML
 
@@ -161,7 +159,7 @@ public class TeacherAddTestController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-
+        setLabelsOfTeacher();
         labelQuestionNr.setText("Fråga nummer " + questionNumCount);
 
         chckBxYes.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -338,8 +336,7 @@ public class TeacherAddTestController implements Initializable {
         QuestionRepository qr = new QuestionRepository();
 
         models.Test t = new models.Test();
-
-        t.setName(textFieldTestName.getText());
+        t.setName(textFieldNameOfTest.getText());
 
         t.setAutoCorrectedTest(isAutoCorrected);
 
@@ -351,8 +348,8 @@ public class TeacherAddTestController implements Initializable {
 
         t.setTotalTime(totalTime);
 
-        models.Test newTest = tr.addTest(currentTeacher.getId(),t);
-
+        models.Test newTest = tr.addTest(currentTeacher.getId(), t);
+        System.out.println("test --------------------------------" + newTest.getId());
         for (int i = 0; i < newQuestions.size(); i++) {
 
             models.Question q = new models.Question();
@@ -367,7 +364,7 @@ public class TeacherAddTestController implements Initializable {
 
             q.setTest_Id(newTest.getId());
 
-            qr.addQuestion(newTest.getId(), q);
+            qr.addQuestion((newTest.getId()), q);
 
         }
 
