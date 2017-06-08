@@ -1,37 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.LoginController">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+<VBox prefHeight="500.0" prefWidth="800.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxClasses.LoginController">
+   <children>
+      <VBox prefHeight="30.0" prefWidth="800.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="lblUserName" text="Username: " />
-                  <TextField fx:id="txtUserName" promptText="Username" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="lblPassword" text="Password: " />
-                  <PasswordField fx:id="txtPassword" promptText="Password" />
-               </children>
-            </HBox>
-            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnLoginClicked" text="Log In" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="800.0" styleClass="btn" text="Newton Testverktyg" />
          </children>
       </VBox>
-   </center>
-   <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Rubrik" />
-         </children>
-      </HBox>
-   </top>
-</BorderPane>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="759.0">
+         <center>
+            <VBox alignment="CENTER" prefHeight="421.0" prefWidth="759.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Log in" />
+                  <HBox alignment="CENTER" prefHeight="51.0" prefWidth="759.0">
+                     <children>
+                        <Label fx:id="lblUserName" text="Username: " />
+                        <TextField fx:id="txtUserName" promptText="Username" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="51.0" prefWidth="759.0">
+                     <children>
+                        <Label fx:id="lblPassword" text="Password: " />
+                        <PasswordField fx:id="txtPassword" promptText="Password" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnLoginClicked" styleClass="btn" text="Log In" />
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="759.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="107.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/orange_brain.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </top>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </BorderPane>
+      <VBox prefHeight="30.0" prefWidth="800.0" />
+      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="800.0" styleClass="btn" text="Grupp fem" />
+   </children>
+</VBox>
